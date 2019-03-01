@@ -30,9 +30,13 @@ now. -nikomatsakis
 
 Our immediate goal is to produce an "RFC" covering two inter-related areas:
 
-- **Layout:**
+- [**Layout:**](https://github.com/rust-lang/unsafe-code-guidelines/blob/master/active_discussion/layout.md)
   - What are the layout rules that unsafe code authors can rely on?
   - When do we guarantee ABI compatibility between Rust types and C types?
   - When can you rely on "enum layout" optimizations?
 - [**Validity invariants:**](https://github.com/rust-lang/unsafe-code-guidelines/blob/master/active_discussion/validity.md)
-  - 
+  - Which invariants derived from types are there that the compiler
+    expects to be always maintained, and (equivalently) that unsafe
+    code must always uphold (or else cause undefined behavior)?
+    
+    
