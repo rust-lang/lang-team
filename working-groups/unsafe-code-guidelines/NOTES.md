@@ -38,5 +38,52 @@ Our immediate goal is to produce an "RFC" covering two inter-related areas:
   - Which invariants derived from types are there that the compiler
     expects to be always maintained, and (equivalently) that unsafe
     code must always uphold (or else cause undefined behavior)?
-    
-    
+
+## Current status
+
+We've finished up the **layout** conversation. Some of the key points:
+
+- [Struct layout](https://github.com/rust-lang/unsafe-code-guidelines/blob/master/reference/src/layout/structs-and-tuples.md)
+  - The layout of tuples `(T1..Tn)` is defined "as if" there were a corresonding struct
+    in libcore `struct TupleN<P1..Pn>(P1..Pn)`.
+  - The layout of (Rust) structs is generally undefined, but there are some open questions
+    around possible exceptions:
+    - [homogeneous structs](https://github.com/rust-lang/unsafe-code-guidelines/issues/36)
+    - [single-field structs](https://github.com/rust-lang/unsafe-code-guidelines/issues/34)
+    - [zero-sized structs](https://github.com/rust-lang/unsafe-code-guidelines/issues/37) 
+  - repr(C) structs are [laid out in a C-compatible
+    fashion](https://github.com/rust-lang/unsafe-code-guidelines/blob/master/reference/src/layout/structs-and-tuples.md#c-compatible-layout-repr-c),
+    and we identified some subtle points around zero-sized types and
+    C++ compatibility
+- [Enum layout](https://github.com/rust-lang/unsafe-code-guidelines/blob/master/reference/src/layout/enums.md)
+  - repr(C) enums were specified in [RFC 2195](https://rust-lang.github.io/rfcs/2195-really-tagged-unions.html)
+  - We described a [conservative version of "discriminant
+    elision"](https://github.com/rust-lang/unsafe-code-guidelines/blob/master/reference/src/layout/enums.md#discriminant-elision-on-option-like-enums)
+    -- aka, "the option optimization" -- that people can rely on
+  - Layout of other enums is not defined
+- Unions tagged with `#[repr(C)]` behave like C unions. repr(rust)
+  unions are not specified -- in particular, some of the fields may
+  not be laid out at offset 0.
+- [Function
+  pointers](https://github.com/rust-lang/unsafe-code-guidelines/blob/master/reference/src/layout/function-pointers.md)
+  are defined as being laid out the same way as their C counterparts,
+  though they cannot be NULL.
+- [Integers and
+  booleans](https://github.com/rust-lang/unsafe-code-guidelines/blob/master/reference/src/layout/integers-floatingpoint.md)
+  and [SIMD vector
+  types](https://github.com/rust-lang/unsafe-code-guidelines/blob/master/reference/src/layout/vectors.md)
+  are basically defined as C compatible; we did not revisit the "great bool debate".
+- [References and raw
+  pointers](https://github.com/rust-lang/unsafe-code-guidelines/blob/master/reference/src/layout/pointers.md)
+  are largely specified as behaving as they do in rustc
+  today. However, we do not specify the layout of `&dyn (Trait1 +
+  Trait2)`, to leave room for multi-trait objects.
+
+We are currently discussing **validity invariants**. Key points and
+open questions so far:
+
+## Points to consider and places for feedback
+
+- What form should an RFC take here?
+- After validity invariants, what is a good next area for us to focus on?
+
