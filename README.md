@@ -25,8 +25,8 @@ available from the following links:
 - [CalDav Link][caldav] -- use this if you use Google Calendar
 - [ICS file, for use outside from google calendar][ics] -- you probably want this otherwise
 
-[caldav]: https://calendar.google.com/calendar?cid=bW96aWxsYS5jb21fdGNwcWhzY2VrZ2ljNXRtMjU1YmhkZDdkNDBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ
-[ics]: https://calendar.google.com/calendar/ical/mozilla.com_tcpqhscekgic5tm255bhdd7d40%40group.calendar.google.com/public/basic.ics
+[caldav]: https://calendar.google.com/calendar?cid=cmVjdWQ0YjlvOGNtYzBtNXJtcjAzM3A1bmtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ
+[ics]: https://calendar.google.com/calendar/ical/recud4b9o8cmc0m5rmr033p5nk%40group.calendar.google.com/public/basic.ics
 
 
 ## Code of Conduct and licensing
