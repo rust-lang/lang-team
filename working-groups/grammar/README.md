@@ -23,12 +23,19 @@ are:
 
 # How can I get involved?
 
-Meetings take place on the [#wg-grammar channel on Discord][discord] at [20:00
-CET][time] every other Wednesday. Feel free to drop by the Discord channel if
-you are interested!
+If you'd like to get involved, the best idea right now is to introduce yourself
+in our discord channel -- and perhaps consider attending on our meetings.
 
+- **Discord channel:** [#wg-grammar][discord]
 
+## Do I need to attend any meetings?
+
+We have a bi-weekly sync meeting. Check the [lang team meeting
+calendar][calendar] for the most up to date time. Attendance is not mandatory
+but recommended as this can be a good opportunity to ask questions and find new
+issues to work on.
+
+[calendar]:https://github.com/rust-lang/lang-team#meeting-calendar
 [discord]: https://discord.gg/dj9NjJR
-[time]: https://time.is/compare/2000_in_CET
 [RFC 1331]: https://github.com/rust-lang/rfcs/blob/master/text/1331-grammar-is-canonical.md
 [Rust language specification]: https://github.com/rust-lang-nursery/reference/
