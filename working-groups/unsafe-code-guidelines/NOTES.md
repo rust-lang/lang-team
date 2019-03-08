@@ -1,8 +1,8 @@
-This file will contain summaries from the meetings where the
+This file contains summaries from the meetings where the
 unsafe-code-guidelines WG synchronizes with the lang team and broader
-community. That hasn't happened yet. =)
+community.
 
-# First meeting agenda (Date TBD)
+# Update from March 14, 2019
 
 ## Review of how UCG has operated thus far
 
