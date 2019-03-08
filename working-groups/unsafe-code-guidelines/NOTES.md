@@ -46,6 +46,10 @@ We've finished up the **layout** conversation. Some of the key points:
 - [Struct layout](https://github.com/rust-lang/unsafe-code-guidelines/blob/master/reference/src/layout/structs-and-tuples.md)
   - The layout of tuples `(T1..Tn)` is defined "as if" there were a corresonding struct
     in libcore `struct TupleN<P1..Pn>(P1..Pn)`.
+    - **cramertj notes:** sgrif and I have discussed lots of times
+      that the easiest path towards variadic generics would preclude
+      this, and I'd like to make sure we've fully evaluated that
+      consequence.
   - The layout of (Rust) structs is generally undefined, but there are some open questions
     around possible exceptions:
     - [homogeneous structs](https://github.com/rust-lang/unsafe-code-guidelines/issues/36)
@@ -81,6 +85,8 @@ We've finished up the **layout** conversation. Some of the key points:
 
 We are currently discussing **validity invariants**. Key points and
 open questions so far:
+
+- XXX
 
 ## Points to consider and places for feedback
 
