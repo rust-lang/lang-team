@@ -22,10 +22,10 @@ conferencing software, while others are text meetings. The meeting
 description should indicate that. Our meeting calendar is publicly
 available from the following links:
 
-- [CalDav Link][caldav] -- use this if you use Google Calendar
-- [ICS file, for use outside from google calendar][ics] -- you probably want this otherwise
+- [View calendar][caldav] -- use this to view the calendar online and add it to your Google Calendar
+- [ICS file, for use outside from google calendar][ics] -- you can use this to subscribe from other programs
 
-[caldav]: https://calendar.google.com/calendar?cid=cmVjdWQ0YjlvOGNtYzBtNXJtcjAzM3A1bmtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ
+[caldav]: https://calendar.google.com/calendar/embed?src=recud4b9o8cmc0m5rmr033p5nk%40group.calendar.google.com&ctz=America%2FNew_York
 [ics]: https://calendar.google.com/calendar/ical/recud4b9o8cmc0m5rmr033p5nk%40group.calendar.google.com/public/basic.ics
 
 
