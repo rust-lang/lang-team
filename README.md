@@ -16,7 +16,10 @@ things.
 
 The [main meeting is held weekly][main meeting] with a rotating topic.
 You can find out more details in [the dropbox paper
-document](https://paper.dropbox.com/doc/Lang-Team-Agenda--AbDuDa0clYbhCSjq4tGNrKs0Ag-bbhfd7hrR26fDoz8Hsb2v).
+document](https://paper.dropbox.com/doc/Lang-Team-Agenda--AbDuDa0clYbhCSjq4tGNrKs0Ag-bbhfd7hrR26fDoz8Hsb2v). Anyone
+is welcome to attend and listen in, but recordings are also posted on
+[the Language Design team playlist of the Rust YouTube
+channel](https://www.youtube.com/playlist?list=PL85XCvVPmGQg-gYy7R6a_Y91oQLdsbSpa).
  
 In addition to the main meetings, working groups often have their own
 meetings. You can subscribe to our publicly available calendar to see
