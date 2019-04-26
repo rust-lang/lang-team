@@ -12,6 +12,10 @@ things.
 - **Want to attend a meeting or follow along?** See the "meeting
   calendar" section below.
 
+## Working groups
+
+Check out the [working-groups](working-groups) directory to see a list of active working groups.
+
 ## Meeting Calendar
 
 The [main meeting is held weekly][main meeting] with a rotating topic.
