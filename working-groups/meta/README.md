@@ -16,8 +16,10 @@ working group and how we plan to work in the [announcement on internals][announc
 
 # How can I get involved?
 
-Attend our meetings! You can find them on the lang team
-calendar. Alternatively, read [the minutes](minutes). You can add any
+Attend our meetings! You can find them on the [lang team
+calendar][calendar]. Alternatively, read [the minutes](minutes). You can add any
 responses into [the internals thread][internals]. Finally, hop onto
 [`#t-lang/wg-meta` on the Rust zulip][zulip] and say hi!
+
+[calendar]: https://github.com/rust-lang/lang-team/#meeting-calendar
 
