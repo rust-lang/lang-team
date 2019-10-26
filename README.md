@@ -27,10 +27,12 @@ channel](https://www.youtube.com/playlist?list=PL85XCvVPmGQg-gYy7R6a_Y91oQLdsbSp
  
 In addition to the main meetings, working groups often have their own
 meetings. You can subscribe to our publicly available calendar to see
-them all. Many meetings take place using the Zoom video conferencing
+them all. Many meetings take place using the [Zoom][zoom] video conferencing
 software, while others are text meetings. The meeting description
 should indicate that. Our meeting calendar is publicly available from
 the following links:
+
+[zoom]: https://zoom.us/
 
 - [View calendar][caldav] -- use this to view the calendar online and add it to your Google Calendar
 - [ICS file, for use outside from google calendar][ics] -- you can use this to subscribe from other programs
