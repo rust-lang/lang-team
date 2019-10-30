@@ -41,12 +41,6 @@ the following links:
 [ics]: https://calendar.google.com/calendar/ical/recud4b9o8cmc0m5rmr033p5nk%40group.calendar.google.com/public/basic.ics
 [main meeting]: https://calendar.google.com/event?action=TEMPLATE&tmeid=NmU4ajUyaWpmaHZic2YzYXVxa25rcnIyZHRfMjAxOTA0MTFUMTkwMDAwWiByZWN1ZDRiOW84Y21jMG01cm1yMDMzcDVua0Bn&tmsrc=recud4b9o8cmc0m5rmr033p5nk%40group.calendar.google.com&scp=ALL
 
-Upcoming meeting topics:
-
-- June 6: std-aware cargo
-- May 30: “C Parity”  or “FFI”, proposed charter
-- May 23: async-await review
-
 ## Code of Conduct and licensing
 
 All interactions on this repository (whether on issues, PRs, or
