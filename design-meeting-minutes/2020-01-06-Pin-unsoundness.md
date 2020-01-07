@@ -30,28 +30,29 @@
 
 
 - [Boats](https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=980b86aeb02c923e25937297e5018ef6)’[s reproduction](https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=980b86aeb02c923e25937297e5018ef6) is by far the most minimal I saw
-    // A !Unpin type to reference
-    struct MyType<'a>(Cell<Option<&'a mut MyType<'a>>>, PhantomPinned);
+
+      // A !Unpin type to reference
+      struct MyType<'a>(Cell<Option<&'a mut MyType<'a>>>, PhantomPinned);
     
-    impl<'a> DerefMut for &'a MyType<'a> {
-        fn deref_mut(self: &&mut MyType<'a>) -> &mut MyType<'a> {
-            self.0.replace(None).unwrap()
-        }
-    }
+      impl<'a> DerefMut for &'a MyType<'a> {
+          fn deref_mut(self: &&mut MyType<'a>) -> &mut MyType<'a> {
+              self.0.replace(None).unwrap()
+          }
+      }
     
-    fn main() {
-        let mut unpinned = Box::new(MyType(Cell::new(None), PhantomPinned));
-        let pinned: Pin<Box<MyType<'_>>> = Box::pin(MyType(Cell::new(Some(&mut unpinned)),
-                              PhantomPinned);
-        let mut pinned_ref: Pin<&MyType<'_>> = pinned.as_ref();
+      fn main() {
+          let mut unpinned = Box::new(MyType(Cell::new(None), PhantomPinned));
+          let pinned: Pin<Box<MyType<'_>>> = Box::pin(MyType(Cell::new(Some(&mut unpinned)),
+                                PhantomPinned);
+          let mut pinned_ref: Pin<&MyType<'_>> = pinned.as_ref();
     
-        // call the unsound DerefMut impl
-        let pinned_mut: Pin<&mut MyType<'_>> = pinned_ref.as_mut();
+          // call the unsound DerefMut impl
+          let pinned_mut: Pin<&mut MyType<'_>> = pinned_ref.as_mut();
         
-        // pinned_mut points to the address at `unpinned`, which
-        // can be moved in the future. UNSOUND!
-        let unpinned1 = *unpinned;
-    }
+          // pinned_mut points to the address at `unpinned`, which
+          // can be moved in the future. UNSOUND!
+          let unpinned1 = *unpinned;
+      }
 
 
 - Two routes to fix, essentially, not incompatible
