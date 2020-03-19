@@ -1,0 +1,126 @@
+# ffi-unwind design meeting
+
+* [Watch the recording](https://youtu.be/ZZzTMyHsStA)
+
+## Links
+- [Blog post](https://blog.rust-lang.org/inside-rust/2020/02/27/ffi-unwind-design-meeting.html)
+- [hackmd notes from March 2 meeting](https://hackmd.io/rG_5ksyCTuKsjks5cHONZQ)
+- Older meeting notes (note that Proposal numbers) don’t line up
+    - [+ffi-unwind 2020-01-13](https://paper.dropbox.com/doc/ffi-unwind-2020-01-13-agituL322N0qRsCbcnn7D) 
+## Three proposals
+- One
+- Two
+- Three
+## Notes and minutes
+- The biggest question before us is:
+    - do we want a “C unwind” ABI or not
+- With Proposal Two:
+    - extern “C” means “no unwind”, if you try to unwind you get UB
+        - exception: “forced unwind”, so long as there are no dtors
+    - extern “C unwind” means 
+        - if you invoke with `-Cpanic=abort`, we’ll catch the exception and abort
+- Proposal 3
+    - no “C unwind”
+    - just have “extern C” but unwinding is allowed when `-Cpanic=unwind` and otherwise not
+        - exception: “forced unwind”, so long as there are no dtors
+    - basically the same as C code calling C++ that may throw an exception
+- Size measurements?
+    - No because these proposals all basically allow us to avoid overhead, 
+    - Note that in proposal 3: 
+        - extern “C” with panic=unwind can unwind, and hence there might be some landing pads that are not optimized away
+            - relatively minor case
+        - but users who are size-sensitive are often using panic=abort anyway and this doesn’t apply then
+- If we added a “no-unwind attribute” to functions, then:
+    - we could get some size wins (but wouldn’t apply to ptr calls unless we propagate to type system)
+    - you would also get the reasoning benefits
+- From previous meeting, came to conclusion that
+    - A “C unwind” ABI is “better” than a unified “C” ABI *if* the annotations are all correct:
+        - 
+    - A single “C” ABI is better in the following ways:
+        - Less error prone, 
+- If the user invokes a function that has “C” ABI but actually unwinds:
+    - Given a “C unwind” ABI, that is UB
+    - Given a unified ABI, it unwinds successfully
+- Some cases where this could happen somewhat unexpectedly:
+    - C++ could throw bad-alloc exceptions
+- Ralf [raised some soundness concerns](https://rust-lang.zulipchat.com/#narrow/stream/210922-project-ffi-unwind/topic/Soundness.20concerns.20around.20catch_unwind) around `catch_unwind`:
+    - code may rely on `catch_unwind` to catch exceptions, do some “fixup”, and then re-throw the exception
+    - currently, `catch_unwind` lets foreign exceptions unwind through
+        - but this is relatively easy to fix
+    - ultimately an orthogonal concern
+- If we adopt a unified ABI:
+    - the main downside is that you can have libraries that “rely” on C++ exceptions
+        - those libraries work in -Cpanic=unwind
+        - but they are “incompatible” with -Cpanic=abort, the exceptions just start to cause UB
+    - to rely on C++ exceptions “portably”
+        - you have to catch the C++ exceptions in C++ code
+        - *or* compile with `-fno-exceptions` (i.e., *don’t throw exceptions*)
+- What about things like `read` which might need to unwind on some platforms with cancelation etc?
+    - those are forced unwinds: 
+        - with panic=abort, they only work reliably if you have no destructors
+        - with panic=unwind, they would run destructors but this is not portable
+- Advantage of “Proposal 2”, if you get your annotations right, your code works “right” (or, at least, it *aborts*) regardless of whether you use `-Cpanic=abort` or `-Cpanic=unwind`
+    - but *unexpected* exceptions fail more strongly even in `-Cpanic=unwind`
+- Another advantage of “Proposal 2” is 
+    - if Rust decides to adopt a non-native unwinding representation, then the impact will be smaller, because most “C” functions are known not to unwind
+    - we’d only have to adapt the “C unwind” shims
+- Some common scenarios
+    - Invoking a C library that uses longjmp error recovery (e.g. lua):
+        - Under all proposals, you can do that so long as the frames being jumped over have no destructors
+        - Same applies to `pthread_exit` or similar pthread mechanisms
+    - Invoking a C++ function that throws exceptions which we wish to propagate through Rust code
+        - this could include `bad_alloc` etc
+        - Has anyone asked for this?
+            - This requires `-Cpanic=unwind` to work, and the C++ code cannot be compiled with `-fno-exceptions` 
+        - Proposals 1/2:
+            - You would use “C unwind” ABI to signal that it is happening
+        - Proposal 3:
+            - You would just use “C” to invoke the C++ code
+    - Invoking a C++ function that throws exceptions and we catch them in the C++ code
+        - Proposals all basically work equivalently, since there are no foreign exceptions propagating
+    - Rust code invoking C (or C++…) that invokes Rust (R1..C..R2)
+        - Want to have Rust panics from R2 propagate through C code and get caught by R1
+        - Proposals 1/2:
+            - Use “C unwind” for the middle C code (which will be invoked by pointer)
+            - Use “C unwind” at the R2 entry points
+        - Proposal 3:
+            - Use “C” for everything (and compile everything with panic=unwind), works fine
+        - They do need the ability to invoke extern functions via fn pointers that will unwind
+        - Under any proposal, it would be “observable” what type string we use for Rust panics etc
+        - If the C code had destructors etc, then they would execute under any proposal
+    - C code invoke Rust that invokes C
+        - this is “C++ functions that throw exceptions that propagate through Rust”
+- There are procedural macros for catching Rust panics and turning them into error codes before passing them back to C++
+- What shims do we insert and other things?
+    - Proposal 1/2:
+        - invoking a “C” ABI function
+            - always marked as “nounwind”
+        - invoking a “C unwind” ABI functions
+            - with `-Cpanic=abort`, we catch non-forced exceptions and turn them into aborts
+            - forced exceptions will be UB if there are destructors in scope, so they can propagate freely
+        - generating the body of an `extern` `"``C``"` Rust function
+            - with `-Cpanic=unwind`, we have to catch Rust panics and turn them into aborts
+                - with `-Cpanic=abort` we don’t have to because it already aborted
+                - you can do this with only safe code, hence the concern
+        - generating the body of an `extern "C unwind"` Rust function
+            - “do nothing”
+    - Proposal 3:
+        - C and Rust calls are basically “the same” modulo other ABI differences
+        - with `-Cpanic=abort` — we can consider them “nounwind”
+            - what’s the story here around forced unwind anyway? “well, they’re a bit magic”
+        - with `-Cpanic=unwind` — we do not :)
+- Subtyping etc?
+    - We do not plan compiler to permit coercions between C unwind and C
+    - but users can write their own shims
+    - and we could conceivably allow compiler to do it
+- Debug mode shims
+    - e.g. for places where UB would be introduced — have to check compilation time etc
+- Key observations:
+    - Introduce ABI “C unwind” is more work to implement, though definitely do-able
+    - Depending audience, learning curve for “C unwind” may be higher or less high
+        - e.g. explaining the need to use “C unwind” 
+    - But distinguishing “C unwind” ABIs does allow us to:
+        - potentially switch Rust unwinding in the future
+        - identify Rust libraries that are relying on unwinding and handle that case more gracefully with `-Cpanic=abort`
+- Tracking issue:
+
