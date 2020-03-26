@@ -1,0 +1,102 @@
+# Sealed Rust Design Meeting
+
+[Watch the recording](https://youtu.be/_DsxXz3vssI)
+
+## Links
+- [Sealed Rust: the Plan](https://ferrous-systems.com/blog/sealed-rust-the-plan/)
+
+
+## Minutes/notes
+- James: coming from background in safety critical areas
+    - fairly tied to “qualified tool chains”
+    - looking for a lang that is well-specified
+    - confidence that the program will “do what you intend” but also you need a long lifetime
+        - e.g. planes are still in use after 30-40 years
+        - would want a toolchain that can last that long
+    - always hoped Rust could be a good language for these areas
+        - Safety yay!
+    - but still some work to go 
+    - this is a large set of work that is not necessarily useful outside of this scope
+    - don’t want to put a burden
+- Scott: and having a company/entity that is doing that long-term support would be useful regardless
+    - Yes. and having a company is a particular plus.
+- Ralf: some of the goals are quite well-aligned with the project, though, right? e.g. a spec
+- James: yes, also a test suite for that spec
+    - overhead is probably more things like paperwork, validation against spec
+- non-goal: forking the language :)
+- Ralf: as an academic, I have ideas of what I have in my head when you say spec, but I’m curious what kind of spec is needed for safety critical and to what extent would academic collaboration be useful
+    - James: safety critical spec. spend a lot of time talking about what your application needs to do
+        - but guidance on “tool qualification” (certifying your tools) is very vague
+        - need to have a “level of confidence” that it will “perform to level that is necessary”
+- Historical specs are very prose-driven (e.g., C, Ada, etc)
+    - but we are thinking of something more “machine driven”
+    - but we should be pragmatic, maybe we can isolate some parts (e.g. borrow checker) and prove properties about them
+        - lean on academic support where possible
+- Centril: some parts of compiler seem like they could be formally specified (e.g., the “AST validation” step, using e.g., denotational semantics)
+    - Ralf: the operational semantics contains large fragments that wouldn’t be that hard to specify 
+- James: we also have the ability to “subset” the language
+    - we might say “you can’t do that in sealed rust” to start
+    - or we can add custom rules like “if you use unsafe code you must follow this checklist”
+        - end-engineers can have the requirement to check certain requirements
+    - this is what MISRA C is, essentially
+        - hope is that “safe sealed rust” is kind of like “MISRA Rust”
+        - and unsafe might opt into a checklist or something
+- Centril: when adding unstable features, usually very easy to check if they are being used, but if you were trying to subset the language for stable features, that would be harder
+- James: goal would be that “sealed rust” is sort of a “very slow channel”, though I’m not sure how that is best achieved (e.g., slower than stable)
+    - Centril: you could use a `#[sealed]` attribute in stdlib or something like this to “opt-in” to stability at the “sealed” channel level
+    - James: process I see is before you apply sealed attribute, you need to have specification + validation work done
+        - this means we can take new features and do that work to include feature X in the next sealed release
+        - “anything we want to include needs to opt-in to this level of specification”
+        - some things can be harder to isolate
+- Ralf: is there a risk that some “old component” would have to live in compiler for 3 years… or something?
+    - James: I expect to have one sealed rust major release “per edition”
+    - James: I’d expect that something like NLL vs polonius would be more of an impl detail without necessarily changing the spec of what programs are accepted
+    - James: I expect long-term support for sealed rust to be done by external funding
+        - way that the regulations and paperwork are done, you need a responsible entity to carry the work
+    - Ralf: we could basically run normal rustc against test suite and have it de facto validated without paperwork?
+        - Yes. But to be able to pay people to do this work, we have to sell *something*, so one of the questions is how much we would want to release publicly. We aim to be as open as we can, and things like spec must absolutely be public. Validation suite is less clear, traditionally these are part of what people sell.
+- Niko: are there any new languages that have been qualified?
+    - Dialects of C and C++ yes but not sure of any new ones
+    - Industry is focused on C and Ada
+    - New *tooling* — codegen tools — has been certified, but those generate C at the end of the day.
+        - Serious question: should we compile Rust to C?
+    - Something we’ve thought about is:
+        - Qualifying Rust down to (say) MIR and then connecting MIR to a different back-end
+            - where that back-end is qualified
+        - Many have used C as that “IR”
+    - End of the day, your job is to prove you’ve done “due diligence” and try not to be surprising
+- Do people qualify *output* of the tools?
+    - to certify a product, you need many things (testing, peer review, etc), and tooling is just one facet of this
+- centril: backtracking to NLL vs polonius, if we were to spec compiler in terms of NLL, and we move to polonius, there would be some programs that are now accepted but were previously rejected. How do you deal w/ those in terms of the certification?
+    - james: requirements writing is an “art” to be as specific as you can w/o overconstraining your system. Want to specify what system will do but not *how*.
+        - Compare to Rust structure layout. You might say what data is within but not the ordering.
+    - centril: this may then differ from an internal spec that does specify precise analysis?
+        - james: test cases would be invalidated, presumably, and maybe this could be framed as a “refinement”
+- centril: when you connect to editions, this is more about timing and long-term support, and not so much the idea of phasing in breaking changes or deprecations?
+    - james: I think even safety critical industry sees that stagnant tooling is bad
+    - james: having a mechanism for doing “breaking or semi-breaking” changes like editions would be useful, though clearly 6 weeks is too fast
+        - you want to stick to 1 compiler for entire lifecycle of your product, to give you as much time to hit corner cases as possible
+        - long term support is sort of an orthogonal thing — e.g. ferrous or another entity might fork rust at a certain point and maintain for a cost — so people can rely on that fork
+            - it may be in some cases that you don’t backport a soundness fix that is too hard but you maintain a ‘checklist’ of things to look out for
+- centril: I’m wondering if there’s a need to use the “technical edition” mechanism
+    - james: I don’t see if being significantly different than stable, e.g. maybe for new keywords or what have you, but it’s mostly about the timeline
+    - james: could be really useful if you’ve done all the work to validate a library in SR 2021 to be able to not touch it when upgrading
+        - ralf: even if you still use the old code, you’re still using the new tool
+        - niko: but you can imagine that if you check that SR 2024 still compiles SR 2021 the same way, that helps
+        - james: yes or maybe a list of “things to consider”, but let’s not worry about this for now, got enough problems
+- scott: how much does your hypothetical SR consumer care about optimizations 
+    - james: most qualified compilers start as non-optimizing compilers, with goal of being verifiable
+        - slowly start adding optimizations on top
+    - james: backend for first release is not clear
+    - centril: cranelift might be stable by then, and wasm has specification work we could build on
+    - james: qualified is not a “single goal”, even w/in an industry there are levels
+        - coffee machine vs weather radar vs flight control
+    - james: rust will not (easily) get to the highest level because it wasn’t designed w/ qualification in mind
+        - first level of sealed rust is probably targeting “mid to low” level of qualification in avionics
+        - rustc would prob need to be rewritten to get to the strictest level
+            - but we’d have a validation suite, spec, etc to build off of
+- Ralf: I dream of compiling Rust code through compcert =)
+    - centril: or agda!
+- James: plans aren’t set in stone! this is all in the conversation stage.
+    - Hoping to find ways to fund folks during the work within context of Rust org by Sealed Rust as well.
+
