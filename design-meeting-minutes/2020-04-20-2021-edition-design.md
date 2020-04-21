@@ -67,9 +67,29 @@ and the implementation that need to be reviewed.
 This will apparently help with async fns, tho not the ones with GATs, but niko
 seemed to think that will be done by 2021 as well maybeee ??
 
-## implicit mod and crate visibility
+## Implicit modules
 
-I didn't follow this one closely, sorry
+Explicit modules can be confusing and lead to confusing errors that arise due
+to lacking a `mod foo` statement, even for experienced users. However, last
+year we did hit some real challenges with removing them, both because of
+disturbing users' existing workflows and technical limitations associated with
+scanning directories on networked file systems and the like.
+
+Conclusion was that we're not really inclined to "re-open" this issue -- we did
+a lot of work on modules and we want to move onto other areas at the moment.
+However, as a simple step, we would be interested in adding a lint that warns
+about missing `mod foo` statements and improving error messages as a starting
+point (because the lint can be disabled, or disabled by default, that would
+address the problems around networked file systems).
+
+## Crate visibility
+
+We held off on stabilizing `crate fn` because of concerns around a parser
+ambiguity. We'd like to revisit that, it seems like a relatively small change
+and it's still definitely a "nice to have". We do have to investigate the
+options for resolving the ambiguity, which had to do with types like `struct
+Foo(crate ::bar)`. (There is a listing of some of the options in the paper
+doc...)
 
 ## Type Ascription (and Named Arguments)
 
