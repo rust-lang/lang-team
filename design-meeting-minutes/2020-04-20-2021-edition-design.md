@@ -35,11 +35,13 @@ doesn't affect any known code.
 
 The main syntax proposal seems to be
 
+```rust
 let Some(x) = y else {
     return Err(BrokenThingsAlert);
 }
 
 println!("{}", x);
+```
 
 This also ties into or patterns, they might be looking for ppl motivated to
 work on this
