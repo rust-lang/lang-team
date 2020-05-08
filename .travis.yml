@@ -19,3 +19,4 @@ before_script:
 
 script:
   - mdbook build && mdbook test
+  - echo lang-team.rust-lang.org > book/CNAME
