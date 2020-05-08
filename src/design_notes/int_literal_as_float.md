@@ -2,7 +2,7 @@
 
 ## Background
 
-In rust today, an integer like like `1` cannot be inferred to floating
+In rust today, an integer like `1` cannot be inferred to floating
 point type. This means that valid-looking numeric expressions like
 `22.5 + 1` will not compile, and one must instead write `22.5 +
 1.0`. Can/should we change this?
