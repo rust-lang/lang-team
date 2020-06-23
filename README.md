@@ -8,7 +8,7 @@ things.
 
 ## Quick facts
 
-- **Where to find us:** You can reach out to us on [Discord](about/chat-platform.md), though some working groups are on Zulip.
+- **Where to find us:** You can reach out to us on [Zulip](https://rust-lang.zulipchat.com).
 - **Want to attend a meeting or follow along?** See the "meeting
   calendar" section below.
 
