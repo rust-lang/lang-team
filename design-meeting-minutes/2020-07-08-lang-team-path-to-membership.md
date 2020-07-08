@@ -1,0 +1,71 @@
+# 2020.07.08 — Lang Team Path To Membership
+
+[Recording available](https://youtu.be/SeH-hZgDG1Y)
+
+- [Compiler-team meeting issue #32](https://github.com/rust-lang/lang-team/issues/32)
+- MCPs are revealing, imo, a liaison shortage, and our team has been steadily reducing in number, so we need to think about recruiting
+- Project group lead is a good start but it doesn’t demonstrate
+    - ability to work on projects that are not your own passion
+    - ability to work with others
+- Path to membership that doubles also as “expectations for a lang-team member”
+    - Project group lead
+    - Liaison 
+    - Participate regularly in meetings or in some fashion
+- What is the role of the liaison?
+    - Should we expect neutrality, sort of like Manish with the [Facilitator blog post](http://- https://manishearth.github.io/blog/2019/02/04/rust-governance-scaling-empathy/)?
+- Do all groups need a liaison?
+    - Most important typically mostly for controversial topics
+    - Pre-requisite might be the number of participants
+        - maybe like if the discussion is large enough, there should be a facilitator
+- What are the expectations for a lang-team member? Some subset of:
+    - Lead project groups, where appropriate
+    - Liaison for projects, where appropriate
+    - Participate in triage meetings
+    - Participate in design meetings
+    - Respond to rfcbot fcp requests in a timely fashion
+    - Participate constructively in, and help facilitate, RFC discussion, issues, PRs, and other GitHub-based discussions
+        - Provide important technical points
+        - Help to drive discussions towards common understanding
+            - Understanding and documenting the positions and points being raised
+    - Monitor and respond to communication in Zulip
+- Note that these expectations do not preclude taking vacations, or having periods where you’re excessively busy, as long as that’s well-communicated to the rest of the team.
+- Desire a certain sense of generality
+- Levels of lang-team membership?
+    - What is the “core piece” of membership?
+    - Is it checking off the RFC/FCP checklist?
+        - this is certainly, in an operational sense, the *core* thing
+    - Necessary but not sufficient, perhaps. We should expect participating in some subset of the things above as well.
+- Working backwards from box checking:
+    - the critical part is having concerns, which requires knowledge, and then communicating that concern in a way that it can be resolved
+- Path to membership is to complete these things:
+    - Lead one or more project groups
+    - Liaison one or more project groups
+    - Demonstrating capability to build consensus and encourage productive discussion
+        - ideally, we’d be able to point to official summary comments and the like
+- If we said that there was a role of explicit facilitation, it’d be easier to identify those comments
+    - we shouldn’t expect facilitators not to have opinions, may be true but also sometimes impossible
+    - but you should still be able to produce summaries
+- Levels of membership
+    - Is there a role like compiler team contributors that makes sense?
+    - Maybe collecting liaisons etc? Is there any benefit to this? It’s not obvious what they have in common.
+    - Might just be like “people who are liaison’ing, which is a really valuable contribution”
+        - after N months of inactivity
+    - Being able to ping for meetings is at least a useful
+- MCP quality of service
+    - Can we have deadlines or other things
+    - Some kind of regular ping might be helpful here
+        - Zulip ping @T-Lang may help
+- Circling back:
+    - Can we get consensus on the idea of non-lang-team liaisons and some consensus on the idea of an explicit path?
+    - How do we feel about having project groups with no lang team members at all?
+        - For things that are not “core efforts’, seems ok, but there are risks
+        - Would be more upset to be declined if nobody is involved
+        - Good idea to have clearer charter and expectations in these cases
+        - We should select non-lang-team liaisons based on an expectation of good language design sense
+        - Also, we would still expect that liaison person is someone we’ve had good experience with and who is committed to project, so that mitigates risk
+- Next steps:
+    - Write this up in the form of documentation
+    - Amend MCP RFC perhaps
+    - If you have people you think might be good liaisons, bring up in t-lang/private Zulip stream
+
+
