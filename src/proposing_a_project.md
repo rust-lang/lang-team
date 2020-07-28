@@ -48,7 +48,7 @@ implementation as well, although sometimes that involves very
 difficult people).
 
 If we decide that a proposal requires an RFC, then once it is assigned
-a liaison is will be tagged with `charter-needed`.
+a liaison, it will be tagged with `charter-needed`.
 
 * **Propose a charter:** The liaison will work with the author of the
   proposal (and any other interested parties) to create a project
