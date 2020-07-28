@@ -1,9 +1,13 @@
-# Project groups
+# Active project groups
 
-These days, we are making an effort to do most of our design work in the context
-of an active Project Group. You can find a list of active project groups by
-searching the [issues tagged with project-group on the lang-team repo][pg]. Each
-issue contains links to the repositories and other information about the group,
-as well as regular status updates in the form of comments.
+Would you like to find out what the lang team is working on? Check out
+our [github project board]. It shows the active projects at each stage
+of development, along with an explanation of the various stages. Each
+project has a representative issue that links to more complete
+information. You can read more about the phases of a project in the
+[proposing a project] page.
 
-[pg]: https://github.com/rust-lang/lang-team/labels/project-group
+[github project board]: https://github.com/rust-lang/lang-team/projects/2
+[proposing a project]: ./proposing_a_project.html
+
+If you would like to propose a new project, see the ["proposing a new project"](./proposing_a_project.md) page.
