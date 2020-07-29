@@ -40,5 +40,7 @@ the well-formedness of const generics and how to introduce lazy normalization.
 
 ## Initial people involved
 
+@lcnr
+
 *List the lang-team liaison who picked up the proposal along with the project group lead(s) and any other folks who would like to participate in some capacity. If you have some idea who might implement the idea, that's good to list too.*
 
