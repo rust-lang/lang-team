@@ -36,6 +36,7 @@ the well-formedness of const generics and how to introduce lazy normalization.
 - [original RFC](https://github.com/rust-lang/rfcs/pull/2000)
 - [`min_const_generics` compiler MCP](https://github.com/rust-lang/compiler-team/issues/332)
 - [`min_const_generics` tracking issue](https://github.com/rust-lang/rust/issues/74878)
+- [lang team meeting](https://github.com/rust-lang/lang-team/issues/37)
 
 ## Initial people involved
 
