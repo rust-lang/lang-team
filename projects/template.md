@@ -3,12 +3,11 @@
 ## Summary and problem statement
 
 Implement and design the `const_generics` feature with
-the main goal of stabilizing the `min_const_generics` subset.
+the initial goal of stabilizing the `min_const_generics` subset.
 
 ## Prioritization
 
-This project group will pretty much directly work on the third
-point of the [lang team priorities], by working on supporting const generics on stable.
+This project group will pretty much directly work on the third highest [lang team priority] by trying to support const generics on stable.
 
 [lang team priorities]: https://lang-team.rust-lang.org/priorities.html
 
