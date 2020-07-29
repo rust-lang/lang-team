@@ -9,7 +9,7 @@ the initial goal of stabilizing the `min_const_generics` subset.
 
 This project group will pretty much directly work on the third highest [lang team priority] by trying to support const generics on stable.
 
-[lang team priorities]: https://lang-team.rust-lang.org/priorities.html
+[lang team priority]: https://lang-team.rust-lang.org/priorities.html
 
 ## Motivation, use-cases, and solution sketches
 
