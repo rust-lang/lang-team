@@ -6,19 +6,9 @@ language itself, such as its syntax, semantics, or specification. This
 repository houses planning documents, meeting minutes, and other such
 things.
 
-## Quick facts
+## Rendered form
 
-- **Where to find us:** You can reach out to us on [Zulip](https://rust-lang.zulipchat.com).
-- **Want to attend a meeting or follow along?** See the "meeting
-  calendar" section below.
-
-## Working groups
-
-Check out the [working-groups](working-groups) directory to see a list of active working groups.
-
-## Meeting Calendar
-
-This content has moved to <https://rust-lang.github.io/lang-team/calendar.html>.
+Visit the rendered form of this site at [lang-team.rust-lang.org](https://lang-team.rust-lang.org/).
 
 ## Code of Conduct and licensing
 
