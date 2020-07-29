@@ -1,26 +1,42 @@
-# PROJECT TITLE GOES HERE
+# const generics
 
 ## Summary and problem statement
 
-*Describe the problem(s) this group is trying to solve as concisely as you can.*
+Implement and design the `const_generics` feature with
+the main goal of stabilizing the `min_const_generics` subset.
 
 ## Prioritization
 
-*If possible, please describe how this is related to the declared [lang team priorities]. It's ok if you don't think that the idea fits into any of the stated priorities, you can just say so. Note though that projects which don't fit into the declared priorities are less likely to be accepted, particularly if they are large in scope.*
+This project group will pretty much directly work on the third
+point of the [lang team priorities], by working on supporting const generics on stable.
 
 [lang team priorities]: https://lang-team.rust-lang.org/priorities.html
 
 ## Motivation, use-cases, and solution sketches
 
-*Please describe the problem you are trying to solve in more detail. and give some use-cases that illustrate it.*
+Const generics allows us to to parameterized types by values. Most noticably
+this allows us to abstract over array lengths.
 
-*Please also sketch out one or more solutions to the problem. You don't have to have all the details worked out, but it should be enough to convey the idea.*
+The initial goal is to stabilize `min_const_generics` in a way which is both usable
+while preventing any future developments.
 
-*You can copy this section from the proposal, though you should amend it with any new concerns that arose during the discussion.*
+To do so we will impose two restrictions on const generics:
+
+- They can only have the type of an integral primitive type (integers, bool, and char).
+- Expressions used in const generic position must be either:
+  - Just a const generic name in scope (e.g. N)
+  - A const expression which contains on no free type or const parameters.
+
+There are also some additional concerns which require attention before stabilizion `min_const_generics`, most of which are hopefully minor. 
+
+The currently most interesting problems after `min_const_generics` is how to assert
+the well-formedness of const generics and how to introduce lazy normalization.
 
 ## Links and related work
 
-*Provide links to the MCP issue, any internal thread(s), github issues, related work from other languages, or other things that are worth following up on.*
+- [original RFC](https://github.com/rust-lang/rfcs/pull/2000)
+- [`min_const_generics` compiler MCP](https://github.com/rust-lang/compiler-team/issues/332)
+- [`min_const_generics` tracking issue](https://github.com/rust-lang/rust/issues/74878)
 
 ## Initial people involved
 
