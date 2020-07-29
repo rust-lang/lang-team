@@ -21,9 +21,9 @@ while preventing any future developments.
 
 To do so we will impose two restrictions on const generics:
 
-- They can only have the type of an integral primitive type (integers, bool, and char).
+- They can only have the type of an integral primitive type (integers, `bool`, and `char`).
 - Expressions used in const generic position must be either:
-  - Just a const generic name in scope (e.g. N)
+  - Just a const generic name in scope (e.g. `N`)
   - A const expression which contains on no free type or const parameters.
 
 There are also some additional concerns which require attention before stabilizion `min_const_generics`, most of which are hopefully minor. 
@@ -39,8 +39,6 @@ the well-formedness of const generics and how to introduce lazy normalization.
 - [lang team meeting](https://github.com/rust-lang/lang-team/issues/37)
 
 ## Initial people involved
-
-@lcnr
 
 *List the lang-team liaison who picked up the proposal along with the project group lead(s) and any other folks who would like to participate in some capacity. If you have some idea who might implement the idea, that's good to list too.*
 
