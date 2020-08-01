@@ -27,7 +27,7 @@ So far, the `align` attribute only allows for an integer literal as the input. T
 
 It has also been suggested that `size` be allowed as an input value, to request that a type have alignment equal to its own size.
 
-This charter considers it **out of scope** to persue the general concept of const expressions within an `align` attribute. It's not impossible to design, but that's a much bigger project than this project group is setting out to do.
+Other fixed-name values might be determined to be useful during the project, but this charter considers it **out of scope** to persue the general concept of const expressions within an `align` attribute. It's not impossible to design, but that's a much bigger project than this project group is setting out to do.
 
 ## Links and related work
 
