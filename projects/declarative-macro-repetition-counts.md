@@ -137,7 +137,10 @@ convoluted expressions involved.
 The compiler already knows how many repetitions there are.  What is
 missing is a way to obtain it.
 
-We propose to add syntax to allow this to be expressed directly:
+We propose to add syntax to allow this to be expressed directly.
+
+As an initial suggestion, we are considering `${function(...)}` where function
+can be `count` or `index`.  For example:
 
 ```
 macro_rules! myvec {
@@ -153,22 +156,8 @@ macro_rules! myvec {
 }
 ```
 
-The new "**metavariable expression**" expansion `${count(ident)}` expands to a literal
-number equal to the number of times `ident` would be expanded at the depth
-that it appears.
-
-More generally, metavariable expressions are of the form `${ ... }` and contain an
-expression that is evaluated during macro expansion, and using information available
-only to the macro transcriber.
-
-There are two possible expressions:
-
-* `${count(ident)}` expands to the number of repetitions of the named identifier at the
-  next repetition depth.
-* `${index(ident)}` expands to the index of the current repetition of the named identifier.
-
-Metavariable expressions may be extended in a backwards-compatible way by
-future RFCs, but any other expressions are **out of scope** for this project.
+In the future this could be used for other things, but anything other than
+the repetition count or index are **out of scope** for this project.
 
 ## Links and related work
 
