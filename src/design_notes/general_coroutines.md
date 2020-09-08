@@ -67,11 +67,15 @@ stream! {
     - Used by [eRFC-2033][1]
   - Magic mutation: `let before = arg; yield output; let after = arg;`
     - Used by [RFC-2781][2] and [MCP-49][3]
-- Many people have a strong gut preference for yield expressions but they tend
-  to fall apart, grow in complexity, and become ever more surprising when you
-  look into them further.
+- Many people have a strong gut preference for yield expressions.
+  - In simple cases, Rust generally prefers to produce values as output from
+    expressions rather than by mutation of state ⇒ yield expressions *feel* more
+    Rusty.
   - I think it might be a bit like the `.await` bikeshed? People didn't *feel*
     like `.await` was correct but it turned out to be well-justified.
+  - Justification ⇒ in addition to reasons below, holding references to past
+    resume args is rare, often a logic error. Rust can use mutation checks to
+    catch and give feedback.
 - "Magic mutation" is a bit of a misnomer. The resume arguments are *not being
   mutated.* The argument bindings are simply being reassigned across yields.
   - In a sense, argument bindings are reassigned in the exact same way across
@@ -81,15 +85,9 @@ stream! {
     while later arguments are produced by `yield` expressions.
   - This does not play nicely with alternate coroutine syntaxes like `coroutine
     { }`.
-- "Yield expression" moves resume arguments into the generator state.
-  - `!Copy` arguments bloat the witness size.
-  - By comparison, "magic mutation" passes arguments in the same way as any
-    normal function. The arguments can then be moved into the state manually
-    when needed.
-  - In practice, coroutines rarely care about old inputs anyway. Futures are
-    strictly forbidden from using old contexts, sinks tend to fully process each
-    item after moving onto the next, parsers process each token as much as possible before continuing, etc. Usually people yield because they are
-    finished with whatever they already have and need something new.
+- "Magic mutation" passes arguments in the same way as any normal function call.
+  The arguments can be used by name without increasing witness size. Can still
+  be moved into the state manually when needed.
 - "Magic mutation" allows coroutines (like subroutines) to receive multiple
   resume arguments naturally rather than requiring users to use tuples.
 
@@ -122,28 +120,20 @@ stream! {
 
 - All proposals want movability/`impl Unpin` to be inferred.
   - Exact inference rules may only be revealed by an attempt at implementation.
-- Unpin inference rules have an impact on the soundness of `pin_mut!`
-  expansions:
-  - Stack-pinning (really witness-pinning) may be able to force coroutine
-    `!Unpin` by creating a mutable reference to closure state, depending on
-    rules.
-    - It must often force `!Unpin` even in cases where the mutable reference
-      is short-lived: the stack-pinning must last until drop.
-  - Could instead place a `PhantomPinned` onto the pseudo-stack, to be included
-    in the coroutine witness and force `!Unpin`.
+- Soundness of `pin_mut!` is a little tricky but seems to be fine no matter what.
+  - If the resulting mutable reference is live across a yield ⇒ coroutine is
+    `!Unpin` because of inference rules
+  - If the pinned data is `!Unpin` and dropped after a yield ⇒ coroutine is
+    `!Unpin` because witness contains `!Unpin` data
+  - Thus, if the coroutine can be moved after resume, any data stack-pinned
+    (really witness-pinned) by `pin_mut!` is not referenced and is `Unpin`.
 - Until inference is solved, the `static` keyword can be used as a modifier.
-
-```rust
-|| {
-  pin_mut!(stuff);
-  yield;
-} // stuff drops here. It better not have moved!
-```
 
 ## "Once" coroutines
 
 - A lot of coroutines consume captured data.
-- These coroutines (notably futures) can be resumed many times but can only be restarted "once".
+- These coroutines (notably futures) can be resumed many times but can only be
+  run through "once".
 - In contrast to non-yield `FnOnce` closures, this can not be solved at the type
   level because a coroutine can run out after an arbitrary, runtime-dependent
   number of resumptions.
@@ -155,9 +145,9 @@ stream! {
     I will use it to mean any state from which the closure can not be resumed.
 - [RFC-2781][2] and [eRFC-2033][1] propose that all coroutines become poisoned
   after returning. Always.
-- [MCP-49][3] optionally proposes instead that closures can only be poisoned if
+- [MCP-49][3] optionally proposes that closures can only be poisoned if
   explicitly annotated, and otherwise loop around after return, yield-or-no.
-  - The looping semantics can be very handy in a few situations.
+  - The looping semantics can be very handy in a few situations. The work around is to `return => loop { yield; continue; }`
   - But the behavior of the `mut` modifier may be too obscure and require too
     much explanation vs "closures poison if they contain yield".
 
@@ -182,7 +172,7 @@ stream! {
 
 ## Try
 
-- All proposals work with the `?` operator fine without even trying (haha).
+- All proposals work fine with the `?` operator without even trying (haha).
 - `Poll<Result<_, _>>` and `Poll<Option<Result<_, _>>>` already implement `Try`!
 - Generators usually want a totally different `?` desugar that does `yield Some(Err(...)); return None;` instead of `return Err(...)`.
   - This comes up a lot in discussions of general coroutine syntaxes but just
@@ -195,9 +185,11 @@ stream! {
   But the reason for this is simple: you don't need arguments to *construct* a Rusty coroutine, only to resume it.
   - This is similar to async functions in other languages vs Rust's async
     blocks.
+  - Resume arguments are a bit unusual in general.
+  - A Rusty generator function might look more familiar.
 
 ```python
-# Coroutine takes an argument for construction
+# Generator function takes an argument for construction when called.
 def square_numbers(n):
     while True:
         yield n * n
@@ -207,7 +199,7 @@ def square_numbers(n):
 ```rust
 // Ordinary function takes an argument for construction. Coroutine is below.
 fn square_numbers(mut n: i32) -> impl FnMut() -> i32 {
-  // Capture construction args. No need to call anything!
+  // Captures construction args rather than having them passed in as arguments.
   || loop {
     yield n * n;
     n += 1;
@@ -226,6 +218,11 @@ fn square_numbers(mut n: i32) -> impl FnMut() -> i32 {
   - The only big difference is that once `yield` is involved, some variables get
     stored in a witness struct rather than in the stack frame. Plus the need for
     a poison state.
+- In fact, `return` behaves exactly like a simultaneous `yield` + `break 'closure_body`.
+  - In a sense, every closure already has a single yield point at which it
+    resumes after `return`.
+  - `yield` only adds additional resume points: hence the need for a
+    discriminant.
 
 ## Past discussions
 
