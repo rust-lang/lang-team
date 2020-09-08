@@ -79,8 +79,9 @@ stream! {
   - Justification ⇒ in addition to reasons below, holding references to past
     resume args is rare, often a logic error. Rust can use mutation checks to
     catch and give feedback.
-- "Magic mutation" is a bit of a misnomer. The resume arguments are *not being
-  mutated.* The argument bindings are simply being reassigned across yields.
+- "Magic mutation" is a bit of a misnomer. The resume argument values are *not
+  being mutated.* The argument bindings are simply being reassigned across
+  yields.
   - In a sense, argument bindings are reassigned in the exact same way across
   returns.
 - "Yield expression" causes problems with first-resume input.
@@ -89,10 +90,11 @@ stream! {
   - This does not play nicely with alternate coroutine syntaxes like `coroutine
     { }`.
 - "Magic mutation" passes arguments in the same way as any normal function call.
-  The arguments can be used by name without increasing witness size. Can still
-  be moved into the state manually when needed.
+  Although arguments can be moved into the coroutine witness when needed, they
+  do not bloat the state otherwise.
 - "Magic mutation" allows coroutines (like subroutines) to receive multiple
   resume arguments naturally rather than requiring users to use tuples.
+  - The arguments are named, increasing clarity.
 
 ## Enum-wrapping
 
@@ -150,7 +152,8 @@ stream! {
   after returning. Always.
 - [MCP-49][3] optionally proposes that closures can only be poisoned if
   explicitly annotated, and otherwise loop around after return, yield-or-no.
-  - The looping semantics can be very handy in a few situations. The work around is to `return => loop { yield; continue; }`
+  - The looping semantics can be very handy in a few situations. The work around
+    is to `return => loop { yield; continue; }`
   - But the behavior of the `mut` modifier may be too obscure and require too
     much explanation vs "closures poison if they contain yield".
 
@@ -202,7 +205,7 @@ def square_numbers(n):
 ```rust
 // Ordinary function takes an argument for construction. Coroutine is below.
 fn square_numbers(mut n: i32) -> impl FnMut() -> i32 {
-  // Captures construction args rather than having them passed in as arguments.
+  // Captures construction params rather than having them passed in as arguments.
   || loop {
     yield n * n;
     n += 1;
@@ -224,8 +227,9 @@ fn square_numbers(mut n: i32) -> impl FnMut() -> i32 {
 - In fact, `return` behaves exactly like a simultaneous `yield` + `break 'closure_body`.
   - In a sense, every closure already has a single yield point at which it
     resumes after `return`.
-  - `yield` only adds additional resume points: hence the need for a
-    discriminant.
+  - A `yield` adds a second resume point: hence the need for a discriminant.
+- Under that proposal, anywhere a closure can be used, a coroutine can too. And
+  vice versa.
 
 ## Past discussions
 
