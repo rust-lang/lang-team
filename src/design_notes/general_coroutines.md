@@ -48,6 +48,9 @@ stream! {
 - Thus, [MCP-49][3] proposes using the `Fn*` traits instead, including a new
   `FnPin` for immovable coroutines.
   - Hierarchy: `Fn` is `FnMut + Unpin` is `FnPin` is `FnOnce`.
+    - May not be *required* at the trait level (someone may someday find a use
+      to implementing `FnMut + !FnPin`) but all closures implement the traits in
+      this order.
 
 ## Coroutine syntax
 
