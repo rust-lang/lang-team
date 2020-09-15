@@ -17,6 +17,8 @@ around them below:
 - Thus, the "generator" syntax proposed in [eRFC-2033][1] and currently
   implemented behind the "generator" feature is actually a coroutine syntax for
   the sake of these notes, *not a true generator*.
+- Note also that "coroutines" here are really "semicoroutines" since they can
+  only yield back to their caller.
 - Generators are a specialization of coroutines.
 - I will continue to group the [original eRFC text][1] and the later [generator
   resume arguments](https://github.com/rust-lang/rust/pull/68524) extension
