@@ -500,8 +500,9 @@ fn write_greeting(name: String) -> impl FnMut(&mut Vec<String>) {
 ## Generator unification
 
 - So far in this proposal, I've been very careful to distinguish generators (as
-  supported by the async_stream crate, the draft stream trait RFC, etc) from the
-  coroutines discussed here. They are treated as two separate language features.
+  supported by the propane and async_stream crates, proposed by [RFC-2996][4],
+  etc) from the coroutines discussed here. They are treated as two separate
+  language features.
 - Does Rust have "room" for both stream syntax and a generator syntax? Would it
   be better to find a single solution to both?
 - A single solution is difficult for a few reasons:
