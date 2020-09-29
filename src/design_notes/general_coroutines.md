@@ -154,14 +154,15 @@ std::future::from_fn(|ctx| {
   - This part of why it is so hard to unify generalized coroutines with a
     generator syntax like `gen { }` or `gen fn`. Where does the first input go?
     Where do you annotate the argument type even?
-- Users usually want to give resume arguments named bindings to increase
-  clarity.
-  - Magic mutation provides name-ability via pattern-matching in the closure
-    parameters. Since unmoved arguments are dropped just prior to yielding, they
-    do not need to be captured into closure state.
-  - Yield expressions require users to repeatedly re-bind resume arguments to
-    named bindings. Such bindings must be included in the closure state if they
-    have any drop logic.
+- To increase clarity, users almost always want resume arguments to be named.
+  - With magic mutation, all resume arguments are already named since they reuse
+    the closures arguments on every resume. Any unmoved arguments are dropped
+    just prior to yielding, so they are not witnessed and do not increase the
+    coroutine size.
+    - Also get multiple arguments for free if using the `Fn*` traits.
+  - Yield expressions require users to repeatedly assign resume arguments to
+    named bindings manually. Such bindings must be included in the closure state
+    if they have any drop logic.
 
 ## Borrowed resume arguments
 
@@ -250,7 +251,7 @@ let mut values = Vec::new();
 - Note these two approaches are "isomorphic": a coroutine that returns
   `GeneratorState<T, T>` could be wrapped to return `T` by some sort of
   combinator and a coroutine that only returns `T` can have `yield` and `return`
-  values manually wrapped in `GeneratorState`:
+  values manually wrapped in `GeneratorState`. This is just about ergonomics:
 ```rust
 // Without enum wrapping:
 std::iter::from_fn(|| {
@@ -292,12 +293,17 @@ fn merge_gen_state<T>(f: impl FnMut() -> GeneratorState<T, T>) -> T { ... }
 ## Movability
 
 - All proposals want movability/`impl Unpin` to be inferred.
-  - Exact inference rules may only be revealed by an attempt at implementation.
+  - If we forbid "borrowed data escaping into closure state", the inference
+    rules should be relatively simple: witnessing any borrow triggers
+    immovability.
+    - Dead borrows should not be witnessed.
+  - But exact inference rules may only be well understood after an attempt at
+    implementation.
 - Soundness of `pin_mut!` is a little tricky but seems to be fine no matter what.
-  - If the resulting mutable reference is live across a yield ⇒ coroutine is
-    `!Unpin` because of inference rules
-  - If the pinned data is `!Unpin` and dropped after a yield ⇒ coroutine is
-    `!Unpin` because witness contains `!Unpin` data
+  - If the resulting mutable borrow is witnessed ⇒ coroutine is `!Unpin` because
+    of inference rules
+  - If the pinned data is `!Unpin` and is witnessed ⇒ coroutine is `!Unpin`
+    because witness contains `!Unpin` data
   - Thus, if the coroutine can be moved after resume, any data stack-pinned
     (really witness-pinned) by `pin_mut!` is not referenced and is `Unpin`.
 - Until inference is solved, the `static` keyword can be used as a modifier.
@@ -341,24 +347,25 @@ static || {
     I will use it to mean any state at which the closure panics if resumed.
 - [RFC-2781][2] and [eRFC-2033][1] propose that all coroutines become poisoned
   after returning.
-- [MCP-49][3] optionally proposes that capture-destroying closures should only
-  implement `FnOnce` unless explicitly annotated, even if they should apparently
-  be resumable several times.
+- [MCP-49][3] recommends that all non-capture-destroying coroutines resume at
+  their initial state after returning.
+  - This can be very handy in some situations. In fact, I use it several times
+    in examples to increase readability. See anywhere I `iter.map(coroutine)` or
+    the base64 encoder.
+  - Similar question around generators: should they loop to save on a state or
+    should they be fused-by-default?
+  - If we do decide to panic-after-return, restart-after-return can still be
+    emulated using `loop { .. }` as the coroutine body instead of simply `{ ..
+    }`. This is even zero-cost because unreachable poison states are eliminated.
+- [MCP-49][3] also optionally proposes that capture-destroying closures should
+  only implement `FnOnce` unless explicitly annotated, even if they should
+  apparently be resumable several times.
   - `mut || { drop(capture); }` is recommended as the modifier, to hint that an
     `FnMut` impl is being requested when the closure in question would otherwise
     impl only `FnOnce`.
   -  But the behavior of this modifier is probably too obscure and requires
       too much explanation vs "closures always impl FnMut/FnPin if they contain
       yield".
-- [MCP-49][3] also recommends that all non-capture-destroying coroutines resume
-  at their initial state after returning.
-  - This can be very handy in some situations. In fact, I use it several times
-    in examples to increase readability. See anywhere I `iter.map(coroutine)` or
-    the base64 encoder.
-  - Similar question around generators: should they loop to save on a state or
-    should they be fused-by-default?
-  - If decided against: can be worked-around using `loop { .. }` as the
-    coroutine body instead of just `{ .. }`.
 
 ## Async coroutines
 
