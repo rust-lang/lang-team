@@ -28,7 +28,7 @@ around them below:
   are stored if needed across yields. I'm borrowing this terminology here. Any
   such cross-yield bindings are said to be "witnessed".
 
-```rust
+```rust,ignore
 // This is an example coroutine which might assist a streaming base64 encoder
 |sextet, octets| {
     let a = sextet; // witness a, b, and c sextets for later use
@@ -108,7 +108,7 @@ async gen {
   - People will get yelled at by the borrow checker if they try to hold borrows
     of arguments across yields. But the fix is generally easy: move the argument
     to a new binding before yielding.
-```
+```text
 => |x| {
     let y = &x;
     yield;
@@ -138,7 +138,7 @@ error[E0506]: cannot pass new `x` because it is borrowed
   shadow old ones at yield in order to allow easy borrowing of past argument
   values. But this is a huge footgun. See if you can spot the issue with the
   following code if `ctx` shadows its past value rather than overwriting it:
-```rust
+```rust,ignore
 std::future::from_fn(|ctx| {
   if is_blocked() {
     register_waker(ctx);
@@ -168,7 +168,7 @@ std::future::from_fn(|ctx| {
 
 - What happens when a coroutine witnesses a borrow passed as a resume argument?
   For example:
-```rust
+```rust,ignore
 let co = |x: &i32| {
   let mut values = Vec::new();
   loop {
@@ -191,7 +191,7 @@ co(&x);
   treat the witness and capture data the same whenever possible, the example
   above would fail in a similar way to the example below, giving a "borrowed
   data escapes into closure state" error or similar even if `x` is not mutated.
-```rust
+```rust,ignore
 let mut values = Vec::new();
 |x: &i32| {
   loop {
@@ -210,7 +210,7 @@ let mut values = Vec::new();
 - Coroutines would eventually like to yield borrows of state to the caller. This
   is "lending" coroutine (sometimes also called an "attached" coroutine).
 - Using [MCP-49][3], a lending coroutine might look like:
-```rust
+```rust,ignore
 || {
   let mut buffer = Vec::new();
   loop {
@@ -252,7 +252,7 @@ let mut values = Vec::new();
   `GeneratorState<T, T>` could be wrapped to return `T` by some sort of
   combinator and a coroutine that only returns `T` can have `yield` and `return`
   values manually wrapped in `GeneratorState`. This is just about ergonomics:
-```rust
+```rust,ignore
 // Without enum wrapping:
 std::iter::from_fn(|| {
   yield Some(1);
@@ -308,7 +308,7 @@ fn merge_gen_state<T>(f: impl FnMut() -> GeneratorState<T, T>) -> T { ... }
     (really witness-pinned) by `pin_mut!` is not referenced and is `Unpin`.
 - Until inference is solved, the `static` keyword can be used as a modifier.
 
-```rust
+```rust,ignore
 // movable via inference
 || {
   let x = 4;
@@ -388,7 +388,7 @@ static || {
   - What happens if a yielded future is destroyed early? Panic on resume?
 - Generators and async are both sugars on top of coroutines and are orthogonal
   to each other. But neither is orthogonal to the underlying coroutine feature:
-```rust
+```rust,ignore
 // an async block
 async {
   "hello"
@@ -412,7 +412,7 @@ async gen {
       used.
   - For example, an simple little checksumming async write wrapper might look
     like this:
-```rust
+```rust,ignore
 |ctx: &mut Context, bytes: &[u8]| -> Poll<usize> {
   let mut checksum = 0;
   let mut count = 0;
@@ -465,7 +465,7 @@ def write_greeting(name, words):
 
 ```
 
-```rust
+```rust,ignore
 // Function only needs name to construct coroutine.
 // Coroutine gets mutable access to the word list each resume.
 fn write_greeting(name: String) -> impl FnMut(&mut Vec<String>) {
@@ -522,7 +522,7 @@ fn write_greeting(name: String) -> impl FnMut(&mut Vec<String>) {
     so obvious for coroutines in general as it is for generators specifically.
 - Once generalized coroutines are in place, a generator syntax like the one in
   [RFC-2996][4] is a trivial sugar on top:
-```rust
+```rust,ignore
 gen {
   for item in inner {
     for mapped in func(item) {
@@ -542,7 +542,7 @@ std::iter::from_fn(|| {
   None
 })
 ```
-```rust
+```rust,ignore
 async gen {
   while let Some(item) = inner.next().await {
     yield func(item).await;
