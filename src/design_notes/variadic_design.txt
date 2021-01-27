@@ -49,12 +49,12 @@ The trait would contain helpful types and methods for working with variadic tupl
 - AsRefs type, `(A, B, C) -> (&A, &B, &C)`
 - AsMuts type, `(A, B, C) -> (&mut A, &mut B, &mut C)`
 - elements_as_refs fn, with signature `(&'a self) -> Self::AsRefs<'a>`
-- elements_as_mut fn, with signature `(&'a mut self) -> Self::AsRefs<'a>`
+- elements_as_mut fn, with signature `(&'a mut self) -> Self::AsMuts<'a>`
 
 - Not provided, but proposed as future extensions:
   - Allowing unpacking tuple types in an argument position, preventing the need to call variadic functions like
   `foo((1, 2.0, "3"))`
-  - Alowing the `...` syntax in generic type position, preventing the need to write traits such as `Fn` like
+  - Allowing the `...` syntax in generic type position, preventing the need to write traits such as `Fn` like
   `Fn<(T1, T2, T3)>`
 
 ### Pros
