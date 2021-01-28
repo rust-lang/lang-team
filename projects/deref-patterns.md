@@ -7,10 +7,10 @@ Allow pattern matching through types that impl `Deref` or `DerefMut`.
 Currently in rust, matching is blocked by bounderies like smart pointers, containers, and some wrappers. 
 To solve this problem you would need to either use if let guards (unstable), or nested match/if-let. 
 The former is limited to one such level, and the latter can become excessive for deeply nested types. 
-To solve this, I propose that "deref patterns" be added, to allow for such matching to be performed.
+To solve this, it is proposed propose that "deref patterns" be added, to allow for such matching to be performed.
 
 An exception to the above problem, is that `Box<T>` can be matched with `feature(box_patterns)`. 
-However, this is magic behaviour of box, and I am not a fan of this kind of magic. 
+However, this is magic behaviour of box, and a goal of this project is to remove that magic. 
 
 The proposed solution has a number of unanswered questions, including the syntax for patterns, whether or not to limit to standard library types,
  and how to allow exhaustive patterns soundly if not limited to standard library types. 
@@ -19,14 +19,13 @@ The proposed solution has a number of unanswered questions, including the syntax
 ## Motivation, use-cases, and solution sketches
 
 Recursive types necessarily include smart pointers, even when you could normally match through them.
-For example, in a proc-macro I worked on to support restricted variadic generics, I wanted to match "fold expressions", which take the form `(<pattern> <op> ...)`, so I would need to match against `Expr::Paren(ParenExpr{expr: Expr::Binary(ExprBinary{ left, op, right: Expr::Verbaitum(t), ..}), ..})`. However, this is currently not possible, and required nested matches.  
+For example, in a work in progress proc-macro to support restricted variadic generics, the parser needed to match "fold expressions", which take the form `(<pattern> <op> ...)`. With deref patterns, this could be implemented using `Expr::Paren(ParenExpr{expr: Expr::Binary(ExprBinary{ left, op, right: Expr::Verbaitum(t), ..}), ..})`. However, this is currently not possible, and required nested matches.  
 This generalizes to any case where you need to check some pattern, but hit a deref boundery. 
 
 
 ## Prioritization
 
-I do not believe this fits into any of the listed priorities. 
-It may be considered "Targeted ergonomic wins and extensions", however, I believe it is a larger than is intended for the category.
+This likely does not fit into any of the listed priorities, though it may be considered "Targeted ergonomic wins and extensions".
 
 ## Links and related work
 
@@ -42,5 +41,5 @@ Prior discussions raised on the IRLO thread:
 
 ## Initial people involved
 
-I would be involved initially, as well as Nadreiril on zulip. 
-I would be open to anyone who wished to helping with it. 
+Initially, Connor Horman and Nadriel on zulip would be involved
+
