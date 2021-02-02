@@ -19,7 +19,7 @@ The proposed solution has a number of unanswered questions, including the syntax
 ## Motivation, use-cases, and solution sketches
 
 Recursive types necessarily include smart pointers, even when you could normally match through them.
-For example, in a work in progress proc-macro to support restricted variadic generics, the parser needed to match "fold expressions", which take the form `(<pattern> <op> ...)`. With deref patterns, this could be implemented using `Expr::Paren(ParenExpr{expr: Expr::Binary(ExprBinary{ left, op, right: Expr::Verbaitum(t), ..}), ..})`. However, this is currently not possible, and required nested matches.  
+For example, in a work in progress proc-macro to support restricted variadic generics, the parser needed to match "fold expressions", which take the form `(<pattern> <op> ...)`. With deref patterns, this could be implemented using `Expr::Paren(ParenExpr{expr: Expr::Binary(ExprBinary{ left, op, right: Expr::Verbatim(t), ..}), ..})`. However, this is currently not possible, and required nested matches.  
 This generalizes to any case where you need to check some pattern, but hit a deref boundery. 
 
 
@@ -42,4 +42,3 @@ Prior discussions raised on the IRLO thread:
 ## Initial people involved
 
 Initially, Connor Horman and Nadriel on zulip would be involved
-
