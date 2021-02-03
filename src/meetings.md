@@ -38,7 +38,7 @@ topic, often in connection with an active working group.
 
 You can propose a topic for a design meeting by opening an [Design
 meeting proposal] issue on the lang-team repository. During our weekly
-traige meetings, we scan open issues to try and decide whether to
+triage meetings, we scan open issues to try and decide whether to
 schedule meetings in the upcoming weeks.
 
 [Design meeting proposal]: https://github.com/rust-lang/lang-team/issues/new/choose
