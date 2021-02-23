@@ -25,7 +25,7 @@ There are currently 3 different possible solutions:
 * Restrict deref patterns to (possibly a subset of) standard library types
 * Expose an unsafe lang item trait called `DerefPure`, and restrict deref patterns to implementors of that trait
 
-This initial Project Group will persue the second option, that is limiting deref patterns to a subset of standard library types. Other projects may, in the future, expand upon the work from this project to include user-provided types. The project will determine the subset that deref patterns can be applied to.
+This initial Project Group will persue the second option, that is limiting deref patterns to a subset of standard library types. Other projects may, in the future, expand upon the work from this project to include user-provided types. The project will determine the critera for a subset needed for sound exhaustive matching, and propose an initial subset to support.
 
 
 ## Motivation, use-cases, and solution sketches
