@@ -6,6 +6,7 @@
 * Other: simulacrum, Amanieu, Esteban
 * Action item scribe: simulacrum
 * Minutes scribe: nikomatsakis
+* [Watch the recording](https://youtu.be/-V2zxC8YpnI)
 
 ## Design meeting candidates
 
