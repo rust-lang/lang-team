@@ -19,7 +19,7 @@ adding private fields can remove the auto trait unintentionally from a type.
 Stabilizing the ability to define auto traits also allows "testing" for the
 absence of a specific type:
 
-```
+```ignore
 auto trait NoString {}
 impl !NoString for String {}
 ```
