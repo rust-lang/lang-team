@@ -3,7 +3,12 @@
 Auto traits permit automatically implementing a trait for types which contain
 fields implementing the trait. That is, they are fairly close to an automatic
 derive. They describe properties of types rather than behaviors; current stable
-Rust has two auto traits: `Send` and `Sync`.
+Rust has several auto traits: `Send`, `Sync`, `Unpin`, `UnwindSafe`,
+`RefUnwindSafe`.
+
+`Freeze` is also an auto trait indirectly observable on stable; it is used by
+the compiler to determine which types can be placed in read-only memory, for
+example.
 
 Auto traits are tracked in [rust-lang/rust#13231], and are also sometimes
 referred to as OIBITs ("opt-in built-in traits").
