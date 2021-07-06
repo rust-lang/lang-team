@@ -41,9 +41,7 @@ In other words, it's useful to have the _destructor_ occurring at a known time (
 
 ### Today's drop rules are, however, a source of confusion
 
-The `let _guard = foo` pattern can be easily confused with `let _ = foo`. `let guard = foo; ...; drop(guard);` has the advantage of explicitness, so does something like `foo.with(|guard| ...)`
-
-Temporary rules interact with `match` in ways that surprise people:
+The fact that `let _ = foo` drops `foo` immediately is a known source of confusion, along with the lifetimes of temporaries in `match` statements and the like:
 
 ```rust=
 match foo.lock().data.copy_out() {
@@ -51,7 +49,13 @@ match foo.lock().data.copy_out() {
 } // lock released here!
 ```
 
-Temporary rules interact poorly with unsafe code today, e.g. `CString::new().as_ptr()` is a known footgun. Would this change help? Or perhaps just change the footguns around. (The change as _written_ would not help here, because the temporary would be dropped probably _even earlier_.)
+The `let _guard = foo` pattern is probably what prople want, but it's not necessarily obvious to readers when the destructor runs.
+
+`let guard = foo; ...; drop(guard);` has the advantage of explicitness, so does something like `foo.with(|guard| ...)`
+
+### Clarify for unsafe code can be quite important
+
+There are known footguns today with the timing of destructors and unsafe code. For example, `CString::new().as_ptr()` is a common thing people try to do that does not work. Eager destructors would enable more motion, which might exacerbate the problem.
 
 ## Alternatives
 
