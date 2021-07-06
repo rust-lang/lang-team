@@ -10,22 +10,16 @@ standalone functions _and_ closures without upvars.
 Today, these function types have a small set of capabilities, which are
 exposed via trait implementations and implicit conversions.
 
--   The `Fn`, `FnMut` and `FnOnce` traits are implemented based on the way
-    in which upvars are used.
+- The `Fn`, `FnMut` and `FnOnce` traits are implemented based on the way
+  in which upvars are used.
 
--   `Copy` and `Clone` traits are implemented when all upvars implement the
-    same trait (trivially true for function types without upvars).
+- `Copy` and `Clone` traits are implemented when all upvars implement the
+  same trait (trivially true for function types without upvars).
 
--   `auto` traits are implemented when all upvars implement the same trait.
+- `auto` traits are implemented when all upvars implement the same trait.
 
--   Function types without upvars have an implicit conversion to the
-    corresponding _function pointer_ type.
-
-This design note attempts to capture a range of proposed solutions, and some
-of the feedback regarding those solutions. This design note does not intend
-to favor any specific solutions, just reflect past discussions. The presence
-or absence of any particular feedback in this document does not necessarily
-serve to favor or disfavor any particular solution.
+- Function types without upvars have an implicit conversion to the
+  corresponding _function pointer_ type.
 
 ## Motivation
 
@@ -52,6 +46,14 @@ be possible to write trampolines using only safe code.
 
 [trampoline]: https://en.wikipedia.org/wiki/Trampoline_(computing)
 
+## Purpose
+
+The goal of this design note is describe a range of techniques for implementing
+_trampolines_ (defined below) and some of the feedback regarding those solutions.
+This design note does not intend to favor any specific solutions, just reflect past
+discussions. The presence or absence of any particular feedback in this document
+does not necessarily serve to favor or disfavor any particular solution.
+
 ## History
 
 Several mechanisms have been proposed to allow trampolines to be written in safe
@@ -59,13 +61,13 @@ code. These have been discussed at length in the following places.
 
 PR adding `Default` implementation to function types:
 
--   https://github.com/rust-lang/rust/pull/77688
+- https://github.com/rust-lang/rust/pull/77688
 
 Lang team triage meeting discussions:
 
--   https://youtu.be/NDeAH3woda8?t=2224
--   https://youtu.be/64_cy5BayLo?t=2028
--   https://youtu.be/t3-tF6cRZWw?t=1186
+- https://youtu.be/NDeAH3woda8?t=2224
+- https://youtu.be/64_cy5BayLo?t=2028
+- https://youtu.be/t3-tF6cRZWw?t=1186
 
 ## Example
 
@@ -177,26 +179,26 @@ opt-in to the `Default` trait implementation for their function type.
 
 Points against this argument:
 
--   We already leak this kind of capability with the `Clone` trait implementation.
-    A function author may write a `FnOnce` closure and rely on it only being callable once. However, if the upvars are all `Clone` then the function itself can be
-    cloned and called multiple times.
+- We already leak this kind of capability with the `Clone` trait implementation.
+  A function author may write a `FnOnce` closure and rely on it only being callable once. However, if the upvars are all `Clone` then the function itself can be
+  cloned and called multiple times.
 
--   It is difficult to construct practical examples of this happening. The leakage
-    happens in the wrong direction (upstream) to be easily exploited whereas we
-    usually care about what is public to downstream crates.
+- It is difficult to construct practical examples of this happening. The leakage
+  happens in the wrong direction (upstream) to be easily exploited whereas we
+  usually care about what is public to downstream crates.
 
-    Without specialization, the `Default` bound would have to be explicitly listed
-    which would then be readily visible to consumers of the upstream code.
+  Without specialization, the `Default` bound would have to be explicitly listed
+  which would then be readily visible to consumers of the upstream code.
 
--   Features like `impl Trait` make it relatively easy to avoid leaking this
-    capability when it's not wanted.
+- Features like `impl Trait` make it relatively easy to avoid leaking this
+  capability when it's not wanted.
 
 Points for this argument:
 
--   The `Clone` trait requires an existing instance of the function in order to be
-    exploited. The fact that the `Default` trait gives this capability to types
-    directly makes it sufficiently different from `Clone` to warrant a different
-    decision.
+- The `Clone` trait requires an existing instance of the function in order to be
+  exploited. The fact that the `Default` trait gives this capability to types
+  directly makes it sufficiently different from `Clone` to warrant a different
+  decision.
 
 These discussions also raise the question of whether the `Clone` trait itself
 should be implemented automatically. It is convenient, but it leaves a very
@@ -211,34 +213,34 @@ or that the resulting code seemed unnatural or confusing. This lead to
 proposals involving other traits which will be described in their own
 sections.
 
--   Some people do not see `Default` as being equivalent to the
-    default-constructible concept from C++, and instead see it as something
-    more specialized.
+- Some people do not see `Default` as being equivalent to the
+  default-constructible concept from C++, and instead see it as something
+  more specialized.
 
-    To avoid putting words in people's mouths I'll quote @Mark-Simulacrum
-    directly:
+  To avoid putting words in people's mouths I'll quote @Mark-Simulacrum
+  directly:
 
-    > I think the main reason I'm not a fan of adding a Default impl here is
-    > because you (probably) would never actually use it really as a "default";
-    > e.g. Vec::resize'ing with it is super unlikely. It's also not really a
-    > Default but more just "the only value." Certainly the error message telling
-    > me that Default is not implemented for &fn() {foo} is likely to be pretty
-    > confusing since that does have a natural default too, like any pointer to
-    > ZST). That's in some sense just more broadly true though.
+  > I think the main reason I'm not a fan of adding a Default impl here is
+  > because you (probably) would never actually use it really as a "default";
+  > e.g. Vec::resize'ing with it is super unlikely. It's also not really a
+  > Default but more just "the only value." Certainly the error message telling
+  > me that Default is not implemented for &fn() {foo} is likely to be pretty
+  > confusing since that does have a natural default too, like any pointer to
+  > ZST). That's in some sense just more broadly true though.
 
--   There were objections on the grounds that `Default` is not sufficient to
-    guarantee _uniqueness_ of the function value. Code could be written today that
-    exposes a public API with a `Default + Fn()` bound, expecting all types
-    meeting that bound to have a single unique value.
+- There were objections on the grounds that `Default` is not sufficient to
+  guarantee _uniqueness_ of the function value. Code could be written today that
+  exposes a public API with a `Default + Fn()` bound, expecting all types
+  meeting that bound to have a single unique value.
 
-    If we expanded the set of types which could implement `Default + Fn()` (such
-    as by stabilizing `Fn` trait implementations or by making more function
-    types implement `Default`) then the assumptions of such code would be
-    broken.
+  If we expanded the set of types which could implement `Default + Fn()` (such
+  as by stabilizing `Fn` trait implementations or by making more function
+  types implement `Default`) then the assumptions of such code would be
+  broken.
 
-    On the other hand, we really can't stop people from writing faulty code and
-    this does not seem like a footgun people are going to accidentally use, in
-    part because it's so obscure.
+  On the other hand, we really can't stop people from writing faulty code and
+  this does not seem like a footgun people are going to accidentally use, in
+  part because it's so obscure.
 
 ### New lang-item
 
@@ -253,18 +255,18 @@ added with the "safe transmute" RFC to transmute from the unit `()` type.
 The details of how this would work in practice were not discussed in detail,
 but there were some salient points:
 
--   This solves the "uniqueness" problem, in that ZSTs are by definition unique.
--   It does not help with the "privacy leakage" concerns.
--   It opens up a new can of worms relating to the fact that ZST closure types
-    may still have upvars.
--   Several people expressed something along the lines of:
+- This solves the "uniqueness" problem, in that ZSTs are by definition unique.
+- It does not help with the "privacy leakage" concerns.
+- It opens up a new can of worms relating to the fact that ZST closure types
+  may still have upvars.
+- Several people expressed something along the lines of:
 
-    > if we were going to have a trait that allows this, it might as well be
-    > Default, because telling people "no, you need the special default" doesn't
-    > really help anything.
+  > if we were going to have a trait that allows this, it might as well be
+  > Default, because telling people "no, you need the special default" doesn't
+  > really help anything.
 
-    Or, that if it's possible to do this one way with safe code, it should be
-    possible to do it in every way that makes sense.
+  Or, that if it's possible to do this one way with safe code, it should be
+  possible to do it in every way that makes sense.
 
 ## `Singleton` or `ZST` trait
 
@@ -282,10 +284,10 @@ calling the function without any `self` argument at all. As the most
 restrictive (for the callee) and least restrictive (for the caller) it
 would sit at the bottom of the `Fn` trait hierarchy and inherit from `Fn`.
 
--   Would be easy to understand for users already familiar with the `Fn` trait hierarchy.
--   More unambiguously describes a closure with no upvars rather than one which is a ZST.
--   Doesn't solve the problem of accidentally leaking capabilities.
--   Does not force a decision on whether closures should implement `Default`.
+- Would be easy to understand for users already familiar with the `Fn` trait hierarchy.
+- More unambiguously describes a closure with no upvars rather than one which is a ZST.
+- Doesn't solve the problem of accidentally leaking capabilities.
+- Does not force a decision on whether closures should implement `Default`.
 
 This approach would also generalize the existing closure -> function pointer
 conversion for closures which have no upvars. Instead of being special-cased
@@ -329,15 +331,15 @@ fn get_adapted_function_ptr<const F: fn(i32)>() -> fn(i32) {
 }
 ```
 
--   Avoids many of the pitfalls with implementing `Default`.
--   Requires giving up the original function type. There could be cases where
-    you still need the original type but the conversion to function pointer
-    is irreversible.
--   It's not yet clear if const-evaluation will be extended to support this
-    use-case.
--   Const evaluation has its own complexities, and given that we already have
-    unique function types, it seems like the original problem should be solvable
-    using the tools we already have available.
+- Avoids many of the pitfalls with implementing `Default`.
+- Requires giving up the original function type. There could be cases where
+  you still need the original type but the conversion to function pointer
+  is irreversible.
+- It's not yet clear if const-evaluation will be extended to support this
+  use-case.
+- Const evaluation has its own complexities, and given that we already have
+  unique function types, it seems like the original problem should be solvable
+  using the tools we already have available.
 
 ## Opt-in trait implementations
 
@@ -345,6 +347,6 @@ This was barely touched on during the discussions, but one option would be to
 have traits be opted-in via a `#[derive(...)]`-like attribute on functions and
 closures.
 
--   Gives a lot of power to the user.
--   Quite verbose.
--   Solves the problem of leaking capabilities.
+- Gives a lot of power to the user.
+- Quite verbose.
+- Solves the problem of leaking capabilities.
