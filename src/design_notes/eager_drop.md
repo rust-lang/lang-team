@@ -53,7 +53,7 @@ The `let _guard = foo` pattern is probably what prople want, but it's not necess
 
 `let guard = foo; ...; drop(guard);` has the advantage of explicitness, so does something like `foo.with(|guard| ...)`
 
-### Clarify for unsafe code can be quite important
+### Clarity for unsafe code can be quite important
 
 There are known footguns today with the timing of destructors and unsafe code. For example, `CString::new().as_ptr()` is a common thing people try to do that does not work. Eager destructors would enable more motion, which might exacerbate the problem.
 
