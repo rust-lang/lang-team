@@ -41,15 +41,20 @@ In other words, it's useful to have the _destructor_ occurring at a known time (
 
 ### Today's drop rules are, however, a source of confusion
 
-The fact that `let _ = foo` drops `foo` immediately is a known source of confusion, along with the lifetimes of temporaries in `match` statements and the like:
+The semantics of `let _ = <expr>` have been known to caught a lot of confusion, particularly given the interaction of place expressions and value expresssions:
 
-```rust=
+- `let _ = foo` -- no effect
+- `let _ = foo()` -- immediately drops the result of invoking `foo()`
+- `let _guard = foo` -- moves `foo` into `_guard` and drops at the end of the block
+- `let _guard = foo()` -- moves `foo()` into `_guard` and drops at the end of the block
+
+Another common source of confusion is the lifetimes of temporaries in `match` statements and the like:
+
+```rust
 match foo.lock().data.copy_out() {
     ...
 } // lock released here!
 ```
-
-The `let _guard = foo` pattern is probably what prople want, but it's not necessarily obvious to readers when the destructor runs.
 
 `let guard = foo; ...; drop(guard);` has the advantage of explicitness, so does something like `foo.with(|guard| ...)`
 
@@ -65,3 +70,4 @@ There are known footguns today with the timing of destructors and unsafe code. F
   - Go
   - D
   - Python
+- Note that the [scopeguard](https://crates.io/crates/scopeguard) crate offers macros like `defer!` that inject a let into the block.
