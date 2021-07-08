@@ -4,3 +4,20 @@ language = "en"
 multilingual = false
 src = "src"
 title = "The Rust Language Design Team"
+
+[output.html]
+additional-js =["mermaid.min.js", "mermaid-init.js"]
+
+[output.html.fold]
+enable = true
+level = 0
+
+[preprocessor]
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
+[output.html.redirect]
+"/rust-2018/edition-changes.html" = "index.html"
+"/priorities.html" = "initiatives/priorities.html"
+"/project_groups.html" = "initiatives/active.html"
+"/proposing_a_project.html" = "initiatives/proposing.html"
