@@ -26,4 +26,4 @@ To exit the Experimental stage, you need to prepare an RFC on the rust-lang/rfcs
 
 ### Exit: Go inactive
 
-It often happens that initiatives "stall out". This could be because some of the problems seem insurmountable, because the people involved wind up not having enough time to continue, or because other things take priority. At any point, the owner can decide to step back, at which point the [initiative becomes inactive](./inactive.md). If an initiative has not made progress in several months, the team may also opt to move it to inactive status.
+It often happens that initiatives "stall out". This could be because some of the problems seem insurmountable, because the people involved wind up not having enough time to continue, or because other things take priority. At any point, the owner can decide to step back, at which point the initiative becomes [inactive](./inactive.md). If an initiative has not made progress in several months, the team may also opt to move it to inactive status.
