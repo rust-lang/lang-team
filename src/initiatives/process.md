@@ -42,7 +42,7 @@ In a nutshell, the process for a successful initiative is as follows:
 
 - **Empower individuals and give ownership:**
   - Each initiative in this proposal is ultimately owned by a single person who drafts the proposals and recommendations.
-  - The role of team is to review the designs, provide feedback, and ultimately decide whether to accept the design.
+  - The role of the lang team is to review the designs, provide feedback, and ultimately decide whether to accept the design.
   - The team can introduce constraints and requests that the owner should either satisfy or explain why they are not able to do so.
 - **Clarify the role of each individual:**
   - As described in the [roles] page, each individual and group involved in an initiative has a clear, defined role in the decision making process.
