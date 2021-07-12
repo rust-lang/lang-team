@@ -14,18 +14,19 @@ In a nutshell, the process for a successful initiative is as follows:
   - Once that happens, we will create a Zulip stream, tracking issue, and (optionally) repository, etc.
 - If warranted, [explore][experimental] the design space and author the RFC
   - In this phase, the [owner] works with the [liaison] and other contributors to expore the design space and develop the RFC
-  - Code can be landed in this phase, but the feature gate is marked as "experimental"
+  - Code can be landed in this phase, but the feature gate is marked as "experimental" and its associated page in the [Unstable Book](https://doc.rust-lang.org/nightly/unstable-book/the-unstable-book.html) also incudes a disclaimer that the content has not been RFC'd.
   - Users of the feature gate will get a warning that the RFC is under development
   - Once the RFC is ready, it can be opened on the RFC repository and approved by the lang team
 - Finish [development]
-  - At this point, development proceeds but the feature gate does not have to be marked as "experimental"
+  - At this point, development proceeds but the feature gate does not have to be marked as "experimental" (the unstable book can also be updated).
+  - The goal here is both to implement the feature and to create an "explainer" that guides people on what it does (this can be located in the unstable book or elsewhere).
 - [Feature complete]
-  - When the liaison feels that it is ready, the initiative may be declared "feature complete".
-  - This is primarily a 'signaling' mechanism to encourage testing and feedback.
+  - When the liaison feels that the code and explainer are ready, the initiative may be declared "feature complete".
+  - This is primarily a 'signaling' mechanism to the broader community to encourage testing and feedback.
   - This is a good phase in which to write the Rust reference chapter and other supporting documentation.
   - Presuming feedback is positive, a stabilization report is prepared and (hopefully) approved.
 - [Stabilized]
-  - Done! The Zulip stream and group can stick around as a place to report bugs or for further discussion, but the initiative is complete.
+  - Done! The Zulip stream can stick around as a place for further discussion, but the initiative is complete. Any Rust team and repository is typically archived.
   - The final step is to conduct a retrospective discussion between the [owner] and [liaison] about how the process went.
 
 [proposal]: ./process/stages/proposal.md

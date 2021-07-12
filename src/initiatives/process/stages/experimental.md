@@ -16,6 +16,10 @@ Initiatives in the experimental stage can have the following resources:
 
 Some initiatives are rather simple. In that case, we can skip this "experimental" stage and go straight towards development without authoring an RFC. This often applies to small tweaks in the language, or to things like adding a new lint.
 
+### Advertising that a feature is exprimenal
+
+Feature development that occurs in the experimental stage is very tentative. We must take care to ensure that users ar aware of this. All feature gates related to "experimental" initiatives need to be flagged as experimental and issue a suitable warning to users. Furthermore, the "unstable book" page for the features should indicate that they are currently experimental and do not yet have an accepted RFC.
+
 ### During this stage: updates to the team
 
 During this stage, the owner and the liaison should meet on a regular basis. The owner should update the liaison about major design directions and seek their guidance on complex issues (particularly if the owner is not a member of the team). The liaison is responsible for documenting these updates and preparing a monthly update to the team as a whole. They are also responsible for deciding when an issue should be escalated to a lang team design meeting. Sometimes it makes sense to have a design meeting even if there isn't a decision to be made, just to update the team about the overall progress.
