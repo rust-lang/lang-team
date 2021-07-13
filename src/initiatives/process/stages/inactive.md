@@ -1,0 +1,5 @@
+# Inactive groups
+
+As an alternative to stabilization, initiatives may become _inactive_. This could be because we decided the idea doesn't work, but it could also be that people just no longer had time to work on it and so the idea was paused until somebody else shows up with time and energy. When marking an initiative as inactive, we try to do a final retrospective that judges how well the experience went. We also try to prepare a summary of the final state in case someone wants to start working on the design again (or perhaps a small piece of it; a common failing for initiatives is trying to tackle too big of a problem). These technical summaries can be placed in the [design notes] section of this website.
+
+[design notes]: /design_notes.md
