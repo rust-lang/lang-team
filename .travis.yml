@@ -13,7 +13,8 @@ rust:
   - stable
 
 before_script:
-  - cargo install --vers "^0.4.5" mdbook
+  - cargo install --vers "^0.4.10" mdbook
+  - cargo install --vers "^0.8.3" mdbook-mermaid
 
 script:
   - mdbook build && mdbook test
