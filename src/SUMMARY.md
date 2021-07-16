@@ -27,3 +27,4 @@
   - [Generalizing coroutines](./design_notes/general_coroutines.md)
   - [Extending the capabilities of compiler-generated function types](./design_notes/fn_type_trait_impls.md)
   - [Auto traits](./design_notes/auto_traits.md)
+  - [Eager drop](./design_notes/eager_drop.md)
