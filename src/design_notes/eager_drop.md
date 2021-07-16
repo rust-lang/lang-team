@@ -62,6 +62,8 @@ match foo.lock().data.copy_out() {
 
 There are known footguns today with the timing of destructors and unsafe code. For example, `CString::new().as_ptr()` is a common thing people try to do that does not work. Eager destructors would enable more motion, which might exacerbate the problem.
 
+In addition, unsafe code means we might not be able to know the semantics associated with a destructor, such as what precisely a `Mutex<()>` guards, and moving a drop earlier *will* break some unsafe code in hard-to-detect ways.
+
 ## Alternatives
 
 - Scoped methods
