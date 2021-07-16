@@ -17,5 +17,5 @@ before_script:
   - cargo install --vers "^0.8.3" mdbook-mermaid
 
 script:
-  - mdbook build && mdbook test
+  - mdbook build
   - echo lang-team.rust-lang.org > book/CNAME
