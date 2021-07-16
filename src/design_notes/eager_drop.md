@@ -72,4 +72,5 @@ In addition, unsafe code means we might not be able to know the semantics associ
   - Go
   - D
   - Python
-- Note that the [scopeguard](https://crates.io/crates/scopeguard) crate offers macros like `defer!` that inject a let into the block.
+- Built-in macros or RAII/closure-based helpers in the standard library.
+  - Note that the [scopeguard](https://crates.io/crates/scopeguard) crate offers macros like `defer!` that inject a let into the block.
