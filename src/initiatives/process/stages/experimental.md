@@ -16,9 +16,9 @@ Initiatives in the experimental stage can have the following resources:
 
 Some initiatives are rather simple. In that case, we can skip this "experimental" stage and go straight towards development without authoring an RFC. This often applies to small tweaks in the language, or to things like adding a new lint.
 
-### Advertising that a feature is exprimenal
+### Advertising that a feature is experimental
 
-Feature development that occurs in the experimental stage is very tentative. We must take care to ensure that users ar aware of this. All feature gates related to "experimental" initiatives need to be flagged as experimental and issue a suitable warning to users. Furthermore, the "unstable book" page for the features should indicate that they are currently experimental and do not yet have an accepted RFC.
+Feature development that occurs in the experimental stage is very tentative. We must take care to ensure that users are aware of this. All feature gates related to "experimental" initiatives need to be flagged as experimental and issue a suitable warning to users. Furthermore, the "unstable book" page for the features should indicate that they are currently experimental and do not yet have an accepted RFC.
 
 ### During this stage: updates to the team
 
