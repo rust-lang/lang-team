@@ -26,7 +26,7 @@ During this stage, the owner and the liaison should meet on a regular basis. The
 
 ### Exit: RFC approval
 
-To exit the Experimental stage, you need to prepare an RFC on the rust-lang/rfcs repository. This RFC needs to be approved by the lang team. The RFC can include "unresolved questions" to be resolved during the "development" phase.
+To exit the Experimental stage, you typically need to prepare an RFC on the rust-lang/rfcs repository. This RFC needs to be approved by the lang team. The RFC can include "unresolved questions" to be resolved during the "development" phase.
 
 ### Exit: Go inactive
 
