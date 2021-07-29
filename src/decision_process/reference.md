@@ -102,6 +102,8 @@ their status.
   - Equivalent to `abstain`, except that it sets a status of `dissent`. This
     status on one team member does not block a decision. A status of `dissent`
     on two or more team members will block a decision.
+  - Note that `dissent` should not be set when first raising a concern, only
+    after attempts to resolve the concern have been unsuccessful.
 - `rustbot restart`
   - If not in a decision period: error
   - If in a decision period: set all members other than the one issuing the
