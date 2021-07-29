@@ -165,3 +165,25 @@ Because, well, it is! We can always re-open a PR or issue, after all.
 Just write it in the comment for a `@rustbot close`. In practice, a "close"
 does not preclude reopening later, and a "postpone" does not guarantee
 reopening later.
+
+## Is "Don't force an irreversible decision?" absolute?
+
+No; it's a strongly held principle, but not an absolute one. Sometimes we may
+have to make an irreversible decision, even in the face of dissent. However, we
+should be *extraordinarily* careful when doing so, and in particular, we should
+consider very carefully whether we could make a reversible decision, or find a
+better consensus, or whether the consequences of *not* making the decision
+outweigh the consequences of making it. This should be an extremely rare event.
+
+The previous decision-making process based on `rfcbot` allowed indefinitely
+blocking concerns. This new process introduces a means of carefully resolving
+such concerns, and a very careful means of proceeding *despite* such concerns
+while ensuring those concerns are understood and recorded and considered.
+
+## What purpose does `restart` serve?
+
+Sometimes, a proposal has changed enough to warrant re-checking people's
+positions, but has not changed enough to warrant closing it and starting the
+process over. `restart` clears people's statuses to ensure that they have the
+opportunity to re-confirm (or raise a hold or concern) before the decision
+proceeds.
