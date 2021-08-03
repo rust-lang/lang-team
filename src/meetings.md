@@ -2,10 +2,18 @@
 
 The lang team has several standing meetings. The current timing for these
 can be found on the [lang team calendar](./calendar.html). We
-generally record our public meetings and post the recordings in our
-[YouTube playlist] (along with automatically created subtitles). We
-also publish notes and minutes in written form in this github
+publish notes and minutes in written form in this github
 repository.
+
+Dy default, our triage and design meetings are not recorded, in order to
+encourage engagement from a broad audience. We may record certain design
+meetings, evaluated on a case-by-case basis, and only with the agreement of all
+participants. Any intention to record a design meeting will be established at
+that time that meeting is scheduled during the monthly planning meeting and
+included in the blog post announcing the upcoming meetings.
+
+Our [YouTube playlist] has recordings of some of our past meetings
+(along with automatically created subtitles).
 
 [youtube playlist]: https://www.youtube.com/playlist?list=PL85XCvVPmGQg-gYy7R6a_Y91oQLdsbSpa
 
