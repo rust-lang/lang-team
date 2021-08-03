@@ -2,7 +2,7 @@
 
 We have a lang-team calendar that shows the time for our various meetings.
 Meetings are generally open to anyone who wants to listen in. We also try to
-post [minutes and recordings](./minutes.md) on a "best-effort" basis from our
+post [minutes](./minutes.md) (and recordings, if any) on a "best-effort" basis from our
 meetings.
 
 - [View calendar][caldav] -- use this to view the calendar online and add it to your Google Calendar
