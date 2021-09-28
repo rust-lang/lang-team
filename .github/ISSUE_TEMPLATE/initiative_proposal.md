@@ -34,4 +34,4 @@ This issue is part of the lang-team [initiative process]. Once this issue is fil
 **This issue is not meant to be used for technical discussion. There is a Zulip stream for that. Use this issue to leave procedural comments, such as volunteering to review, indicating that you second the proposal (or third, etc), or raising a concern that you would like to be addressed.**
 
 [forge]: https://forge.rust-lang.org/
-[initiative process]: https://lang-team.rust-lang.org/initiatives.md
+[initiative process]: https://lang-team.rust-lang.org/initiatives.html
