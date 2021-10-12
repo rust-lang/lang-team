@@ -38,7 +38,8 @@ proposal has overlooked an important consideration. She writes a comment:
 >
 > Did you consider reversing the polarity? Or the impact on the flux capacitor?
 
-At this point, rustbot updates the state:
+At this point, rustbot updates the state; Barbara's status of
+**hold** will link to her comment:
 
 > Hello! @Alan has proposed to merge this. This is a **reversible decision**,
 > which means that it will be affirmed once the "final comment period" of 10
@@ -91,7 +92,7 @@ This time, Niklaus has a concern:
 >
 > I have not had time to read this yet! Give me a bit of time to write it up.
 
-After 7 days have passed, rustbot writes to her:
+After 7 days have passed, rustbot writes to him:
 
 > @Niklaus, I see you have placed a hold but 7 days have passed. Are you any
 > closer to reaching a decision? (cc @Alan)
