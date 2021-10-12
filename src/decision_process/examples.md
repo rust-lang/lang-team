@@ -42,7 +42,7 @@ At this point, rustbot updates the state:
 
 > Hello! @Alan has proposed to merge this. This is a **reversible decision**,
 > which means that it will be affirmed once the "final comment period" of 10
-> days have passed, unless a team member pauses or suspends the decision.
+> days have passed, unless a team member places a "hold" on the decision (or cancels it).
 >
 > | Team member | State |
 > | --- | --- |
@@ -62,7 +62,7 @@ The comment is updated:
 
 > Hello! @Alan has proposed to merge this. This is a **reversible decision**,
 > which means that it will be affirmed once the "final comment period" of 10
-> days have passed, unless a team member pauses or suspends the decision.
+> days have passed, unless a team member places a "hold" on the decision (or cancels it).
 >
 > | Team member | State |
 > | --- | --- |
@@ -102,7 +102,7 @@ merge` as well. The status now looks like this:
 
 > Hello! @Alan has proposed to merge this PR. This is a **reversible
 > decision**, which means that it will be affirmed once the "final comment
-> period" of 10 days have passed, unless a team member pauses or suspends the
+> period" of 10 days have passed, unless a team member places a "hold" on the decision (or cancels it).
 > decision.
 >
 > | Team member | State |
@@ -128,7 +128,7 @@ The status now looks like this:
 
 > Hello! @Alan has proposed to merge this. This is a **reversible decision**,
 > which means that it will be affirmed once the "final comment period" of 10
-> days have passed, unless a team member pauses or suspends the decision.
+> days have passed, unless a team member places a "hold" on the decision (or cancels it).
 >
 > | Team member | State |
 > | --- | --- |
@@ -155,7 +155,7 @@ The status now looks like this:
 
 > Hello! @Alan has proposed to merge this. This is a **reversible decision**,
 > which means that it will be affirmed once the "final comment period" of 10
-> days have passed, unless a team member pauses or suspends the decision.
+> days have passed, unless a team member places a "hold" on the decision (or cancels it).
 >
 > | Team member | State |
 > | --- | --- |
@@ -204,7 +204,7 @@ move forward:
 
 > Hello! @Alan has proposed to merge this. This is a **reversible decision**,
 > which means that it will be affirmed once the "final comment period" of 10
-> days have passed, unless a team member pauses or suspends the decision.
+> days have passed, unless a team member places a "hold" on the decision (or cancels it).
 >
 > | Team member | State |
 > | --- | --- |
@@ -225,7 +225,7 @@ her behalf.) The status now looks like this:
 
 > Hello! @Alan has proposed to merge this. This is a **reversible decision**,
 > which means that it will be affirmed once the "final comment period" of 10
-> days have passed, unless a team member pauses or suspends the decision.
+> days have passed, unless a team member places a "hold" on the decision (or cancels it).
 >
 > | Team member | State |
 > | --- | --- |
