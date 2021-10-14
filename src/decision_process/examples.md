@@ -193,12 +193,11 @@ that the updated proposal addresses Grace's concern:
 >
 > I appreciate the potential impact this may have on the ecosystem. However, I
 > feel that as now described in section XYZ of the RFC, the value of A
-> outweighs the risk of B, and we've now mitigated the potential risk by...
+> outweighs the risk of B, and I think C mitigates the potential risk by...
 
 (Notice that while Niklaus feels that the team has understood Grace's concern,
-he does not use "We" in his response, and does not imply that his summary
-represents the entire team. Niklaus is just withdrawing his own support for the
-concern.)
+he does not speak for the entire team or imply that his summary represents the
+entire team. Niklaus is just withdrawing his own support for the concern.)
 
 At this point, the entire team other than Grace agrees that the proposal should
 move forward:
