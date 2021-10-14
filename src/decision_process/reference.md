@@ -12,8 +12,8 @@
 - Once the "decision period" has begun, a clock of 10 days starts. The clock is
   never paused unless an explicit `@rustbot restart` command is given.
 - The `restart` command sets the decision period back to its initial state
-  (members decisions are also changed back to blank, as appropriate, though the
-  history of their previous statuses is preserved).
+  (members' current statuses are also set back to blank, though the history of
+  their previous statuses is preserved as with any other status change).
 - A decision is reached when the following conditions are met:
   - At least 10 days have elapsed since the decision period began (or when it
     was last `restart`ed).

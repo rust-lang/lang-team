@@ -119,8 +119,9 @@ writes:
 
 > @rustbot restart
 
-This clears the state of all team members (preserving the history) and begins
-the clock anew. rustbot also pings the relevant team members:
+This strikes through the state of all team members (setting their current
+status to blank, while preserving the history) and begins the clock anew.
+rustbot also pings the relevant team members:
 
 > Dear @rust-lang/team, @Alan has restarted the clock!
 
