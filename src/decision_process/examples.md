@@ -76,9 +76,8 @@ Barbara's previous ~~hold~~ status links to her previous comment setting her
 status to `hold`, and her current **merge** status links to her more recent
 comment setting her status to `merge`.
 
-At this point, all the statuses are either empty, **abstain**, or **merge**,
-and more than 10 days have passed since the FCP started. Therefore, it
-completes immediately.
+At this point, all the statuses are either empty or **merge**, and more than 10
+days have passed since the FCP started. Therefore, it completes immediately.
 
 ## Authoring an RFC (illustration of `rustbot restart`)
 
