@@ -13,7 +13,7 @@ Key:
 * 🛑 -- Blocked (link to an issue)
 * ⏳ -- Paused
 * 🔬 -- Under active research
-* 💻 -- Under active deveopment
+* 💻 -- Under active development
 * 🚀 -- Feature complete and seeking feedback
 * ✅ -- Stable
 
