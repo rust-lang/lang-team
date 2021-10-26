@@ -17,7 +17,9 @@ be seen as just a tuple with N elements. The syntax is thus built around allowin
 types into their components, and taking multiple types that will be condensed into a tuple.
 
 For using these types, it is proposed that one destructure the tuple, generally into a single head, and the remaining
-tail. This matches the recursive style used in C++.
+tail. This matches the recursive style used in C++. There is also some desire to
+be able to iterate in both directions (from left or right) rather than fixing
+the choice to a single direction.
 
 ### Pros
 
@@ -28,9 +30,11 @@ tail. This matches the recursive style used in C++.
 ### Cons
 
 - Mentioned by eddyb, a subtuple type could have different padding than its parent.
-  EG: `&(A, B, C, D) != &A, &(B, C, D)` 
+  EG: `&(A, B, C, D) != &A, &(B, C, D)`
 
 - The `..` syntax is already used in ranges, so some other syntax would be needed
+    - Note that `...` syntax may be available, as `..=` is now the inclusive
+      range syntax.
 
 ### Syntax
 
@@ -65,7 +69,7 @@ The trait would contain helpful types and methods for working with variadic tupl
 
 ### Cons
 
-- Overlaps with inclusive range syntax, though it shouldn't actually break any backwards compatibility
+- None yet.
 
 ### Syntax
 
@@ -131,3 +135,12 @@ all new functionality on top of that idea.
 The overlap with range is a common topic of discussion, but all full proposals seem to still use that syntax.
 Overall, the basic syntax seems to be agreed on, but usability and 'extra' ergonomic functionality still requires
 a lot of work.
+
+## Tuple layout
+
+Another important consideration for these proposals, particularly those resting
+on tuples, is the layout of the tuple. We do not currently guarantee any
+particular ordering of the fields in a tuple, which can limit our ability to
+"subset" the tuple under a reference. See [this
+comment](https://github.com/rust-lang/lang-team/pull/76#issuecomment-857206830)
+for some discussion.
