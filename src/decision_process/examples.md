@@ -285,10 +285,10 @@ Once everyone has changed their status, rustbot posts a comment:
 
 > The final comment period has resolved, with a decision to **close**.
 
-(Note: Since `close` is an inherently mutable status (a PR can always be
-reopened), rustbot can observe that everyone has set a mutable status, and will
-start treating the decision as mutable; this means the final comment period can
-end even if Barbara hasn't responded yet.)
+(Note: Since `close` is an inherently reversible status (a PR can always be
+reopened), rustbot can observe that everyone has set a reversible status, and
+will start treating the decision as reversible; this means the final comment
+period can end even if Barbara hasn't responded yet.)
 
 This may not be the end of this feature's consideration, and the concern might
 get resolved in many different ways. The initiative owner might need to do some

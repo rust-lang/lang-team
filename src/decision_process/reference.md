@@ -1,14 +1,16 @@
 # Decision-making process, detailed description
 
 - Entering a "decision period" can be done by having a team member tell rustbot
-  an initial status (`merge`, `stabilize`, or `close`; or, `mutable` or
-  `immutable` with a custom identifier).
+  an initial status (`merge`, `stabilize`, or `close`; or, `reversible` or
+  `irreversible` with a custom identifier).
   - All other team members have no initial status set.
-  - During a "mutable" (reversible) decision period, if later commenters
-    indicate the decision is immutable, the decision changes to immutable.
-  - During an "immutable" (irreversible) decision period, if all commenters
-    change their status to a mutable status (most commonly `close`), the
-    decision becomes mutable.
+  - During a reversible decision period, if later commenters indicate the
+    decision is irreversible, the decision changes to irreversible.
+  - During an irreversible decision period, if all commenters change their
+    status to a reversible status (most commonly `close`), the decision becomes
+    reversible.
+  - Bot commands accept `mut`/`mutable`/`rev` as synonyms for `reversible`, and
+    `immut`/`immutable`/`irrev` as synonyms for `irreversible`.
 - Once the "decision period" has begun, a clock of 10 days starts. The clock is
   never paused unless an explicit `@rustbot restart` command is given.
 - The `restart` command sets the decision period back to its initial state
@@ -18,7 +20,7 @@
   - At least 10 days have elapsed since the decision period began (or when it
     was last `restart`ed).
   - Everyone is set to the same status, or to `abstain`, or to `dissent` (with
-    at most one `dissent` status), or (for a mutable decision only) blank.
+    at most one `dissent` status), or (for a reversible decision only) blank.
 - Member may place a *hold* (raise a concern) at any phase of the process:
   proposal, experimentation, testing, stabilization. Ideally, concerns should
   be raised as early as possible.
@@ -59,36 +61,38 @@
 
 # Rustbot commands
 
-The following commands are accepted by rustbot. A number of comments take one
-or more optional `@member` arguments, denoted `@member*`; if supplied, the
-command is issued on behalf of those member(s), instead of the person writing
-the command. (The `@` for each member is required.) It is also permitted to
-write `@rust-lang/team` to select all members of the team. rustbot will always
-link from each member's row in the table to each comment they made that changed
-their status.
+The following commands are accepted by rustbot. (Commands written below omit
+the required `@` on rustbot to avoid invoking rustbot when quoting the
+documentation.) A number of comments take one or more optional `@member`
+arguments, denoted `@member*`; if supplied, the command is issued on behalf of
+those member(s), instead of the person writing the command. (The `@` for each
+member is required.) It is also permitted to write `@rust-lang/team` to select
+all members of the team. rustbot will always link from each member's row in the
+table to each comment changing their status.
 
-- `rustbot @member* mutable ident` or `rustbot @member* mut ident` or
-  `rustbot @member* reversible ident`
+- `rustbot @member* reversible ident` or `rustbot @member* mutable ident`
+  (unambiguous prefixes such as `mut` or `rev` also work)
   - If not in a decision period: begin a reversible ("mutable") decision,
     proposing the outcome `ident`; all other members are set to a blank status.
   - If in a decision period: set yourself to `ident`. (Decisions do not proceed
     unless all members have the same status or `abstain`.)
-- `rustbot @member* immutable ident` or `rustbot @member* irreversible ident`
+- `rustbot @member* irreversible ident` or `rustbot @member* immutable ident`
+  (unambiguous prefixes such as `immut` or `irrev` also work)
   - If not in a decision period: begin an irreversible ("immutable") decision,
     proposing the outcome `ident`; all other members are set to a blank status.
   - If in a decision period: set yourself to `ident`. If the decision was
-    previously considered mutable, change it to immutable. The decision now
-    requires full team consensus. (Members may set a status of `abstain` on the
-    decision if they wish.)
+    previously considered reversible, change it to irreversible. The decision
+    now requires full team consensus. (Members may set a status of `abstain` on
+    the decision if they wish.)
 - `rustbot @member* merge`
-  - Alias for `rustbot @member* mutable merge` - a mutable decision with the
-    proposed outcome `merge`.
+  - Alias for `rustbot @member* reversible merge` - a reversible decision with
+    the proposed outcome `merge`.
 - `rustbot @member* close`
-  - Alias for `rustbot @member* mutable close` - a mutable decision with the
-    proposed outcome `close`.
+  - Alias for `rustbot @member* reversible close` - a reversible decision with
+    the proposed outcome `close`.
 - `rustbot @member* stabilize`
-  - Alias for `rustbot @member* immutable stabilize` - an immutable decision
-    with the proposed outcome `stabilize`.
+  - Alias for `rustbot @member* irreversible stabilize` - an irreversible
+    decision with the proposed outcome `stabilize`.
 - `rustbot @member* abstain`
   - If not in a decision period: error
   - If in a decision period: set your status to `abstain`. This status does not
@@ -109,8 +113,8 @@ their status.
   - If in a decision period: set all members other than the one issuing the
     command to have a blank status. Preserve the last set status of the person
     issuing the `restart`.
-  - Note: if the last set status of any team members were immutable, the
-    decision will continue to be treated as immutable until all such members
+  - Note: if the last set status of any team members were irreversible, the
+    decision will continue to be treated as irreversible until all such members
     set an explicit status otherwise.
 - `rustbot cancel`
   - If not in a decision period: error
@@ -132,12 +136,11 @@ isn't a problem to be solved with tooling.
 
 ## Do we want to require "all but N" people to affirm a decision, as `rfcbot` does?
 
-We opted to require 100% participation on immutable (irreversible) decisions
-such as stabilization, but not on very lightweight mutable (reversible)
-decisions such as starting an initiative. We believe that lang team members can
-be expected to at least leave a comment (even if just `rustbot abstain`), but
-in the limit we also have the option to set a status on another member's
-behalf.
+We opted to require 100% participation on irreversible decisions such as
+stabilization, but not on very lightweight reversible decisions such as
+starting an initiative. We believe that lang team members can be expected to at
+least leave a comment (even if just `rustbot abstain`), but in the limit we
+also have the option to set a status on another member's behalf.
 
 ## Why does the timer start when the decision period *starts*, and not when a consensus is reached?
 
