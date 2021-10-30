@@ -20,14 +20,16 @@ could apply to any Rust governance team, not just the language team.
   [satisficing](https://en.wikipedia.org/wiki/Satisficing) solutions (those
   that are just good enough for people to accept them as a compromise among
   conflicting values, without actually being happy with the outcome).
-- **Don't force an irreversible decision.** We should make as many decisions
-  reversible as possible. Even when a decision seems irreversible (e.g.,
-  stabilization), we should strive to find a subset that still allows
-  addressing the use case, or a subset that will support evaluation and
-  data-gathering to enable making the decision in the future. If that's not
-  possible, consider the null alternative; not making a change should always be
-  the easier path, and the burden of proof to override a concern on an
-  irreversible decision should be high.
+- **Don't force an irreversible decision.** We should make decisions
+  reversible whenever we can. When making a necessarily irreversible decision
+  (e.g. stabilizing a feature), we should pay close attention to dissent, and
+  hesitate before overriding objections. If possible, we should seek a better
+  alternative, or seek common ground we can find consensus on, or seek an
+  intermediate step that addresses the same use case and supports evaluation
+  for a more informed decision in the future. If none of those are possible,
+  consider the null alternative; not making a change should always be the
+  easier path, and the burden of proof to override a concern on an irreversible
+  decision should be high.
 - **Value expertise.** When cooperatively resolving a concern, or when
   considering overriding a concern, carefully weigh the advice and
   recommendations of experts. This includes team advisors, domain experts, and
