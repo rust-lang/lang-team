@@ -1,464 +1,402 @@
 ---
-tags: "design-meeting"
-title: "2021-09-22: GAT Defaults"
+title: "Design meeting 2021-10-13: Where the where"
+tags: "design meeting"
 ---
 
-# Outlives defaults
+# Design meeting 2021-10-13: Where the where
 
-## Links
+Issue: https://github.com/rust-lang/rust/issues/89122
+[Source](https://rust-lang.github.io/generic-associated-types-initiative/design-discussions/where-the-where.html)
 
-* Discussion issue: [#87479](https://github.com/rust-lang/rust/issues/87479)
-* [Source](https://rust-lang.github.io/generic-associated-types-initiative/design-discussions/outlives-defaults.html)
+First brought up on zulip: https://rust-lang.zulipchat.com/#narrow/stream/144729-wg-traits/topic/GAT.20syntax.20whining
 
 ## Summary
 
-We are moving towards stabilizing GATs (tracking issue: [#44265]) but there is one major ergonomic hurdle that we should decide how to manage before we go forward. In particular, a great many GAT use cases require a surprising where clause to be well-typed; this typically has the form `where Self: 'a`. In "English", this states that the GAT can only be used with some lifetime `'a` that could've been used to borrow the `Self` type. This is because GATs are frequently used to return data owned by the `Self` type. It might be useful if we were to create some rules to add this rule by default. Once we stabilize, changing defaults will be more difficult, and could require an edition, therefore it's better to evaluate the rules now.
+Proposed: to alter the syntax of where clauses on type aliases so that they appear *after* the value:
 
-[#44265]: https://github.com/rust-lang/rust/issues/44265
-
-## Background: what where clause now?
-
-Consider the typical "lending iterator" example. The idea here is to have an iterator that produces values that may have references into the **iterator itself** (as opposed to references into the collection being iterated over). In other words, given a `next` method like `fn next<'a>(&'a mut self)`, the returned items have to be able to reference `'a`. The typical `Iterator` trait cannot express that, but GATs can:
-
-```rust
-trait LendingIterator {
-    type Item<'a>;
-
-    fn next<'b>(&'b mut self) -> Self::Item<'b>;
-}
+```
+type StringMap<K> = BTreeMap<K, String>
+where
+    K: PartialOrd
 ```
 
-Unfortunately, this trait definition turns out to be not quite right in practice. Consider an example like this, an iterator that yields a reference to the same item over and over again (note that it owns the item it is referencing):
+This applies both in top-level modules and in traits (associated types, generic or otherwise).
+
+## Background
+
+The current syntax for where to place the "where clause" of a generic associated types is awkward. Consider this example ([playground](https://play.rust-lang.org/?version=nightly&mode=debug&edition=2018&gist=bdb55a5d5cb17e20d73e22a3f2db0e57)):
 
 ```rust
-struct RefOnce<T> {
-    my_data: T    
+trait Iterable {
+    type Iter<'a> where Self: 'a;
+
+    fn iter(&self) -> Self::Iter<'_>;
 }
 
-impl<T> LendingIterator for RefOnce<T> {
-    type Item<'a> where Self: 'a = &'a T;
+impl<T> Iterable for Vec<T> {
+    type Iter<'a>
+    where 
+        Self: 'a = <&'a [T] as IntoIterator>::IntoIter;
 
-    fn next<'b>(&'b mut self) -> Self::Item<'b> {
-        &self.my_data
+    fn iter(&self) -> Self::Iter<'_> {
+        self.iter()
     }
 }
 ```
 
-Here, the type `type Item<'a> = &'a T` declaration is actually illegal. Why is that? The assumption when authoring the trait was that `'a` would always be the lifetime of the `self` reference in the `next` function, of course, but that is not in fact *required*. People can reference `Item` with any lifetime they want. For example, what if somebody wrote the type `<SomeType<T> as LendingIterator>::Item<'static>`? In this case, `T: 'static` would have to be true, but `T` may in fact contain borrowed references. This is why the compiler gives you a "T may not outlive `'a`" error ([playground](https://play.rust-lang.org/?version=nightly&mode=debug&edition=2018&gist=821e30ee635326a22fc19cd940bbaf62)). 
-
-We can encode the constraint that "`'a` is meant to be the lifetime of the `self` reference" by adding a `where Self: 'a` clause to the `type Item` declaration. This is saying "you can only use a `'a` that could be a reference to `Self`". If you make this change, you'll find that the code compiles ([playground](https://play.rust-lang.org/?version=nightly&mode=debug&edition=2018&gist=87cb2430ee76ece77499d3c6605874df)): 
+Note the impl. Most people expect the impl to be written as follows (indeed, the author wrote it this way in the first draft):
 
 ```rust
-trait LendingIterator {
-    type Item<'a> where Self: 'a;
+impl Iterable for Vec<T> {
+    type Iter<'a>  = <&'a [T] as Iterator>::Iter
+    where 
+        Self: 'a;
 
-    fn next<'b>(&'b mut self) -> Self::Item<'b>;
-}
-```
-
-## When would you NOT want the where clause `Self: 'a`?
-
-If the associated type cannot refer to data that comes from the `Self` type, then the `where Self: 'a` is unnecessary, and is in fact somewhat constraining.
-
-### Example: Output doesn't borrow from Self
-
-In the `Parser` trait, the `Output` does not ultimately contain data borrowed from `self`:
-
-```rust
-trait Parser {
-    type Output<'a>;
-    fn parse<'a>(&mut self, data: &'a [u8]) -> Self::Output<'a>;
-}
-```
-
-If you were to implement `Parser` for some reference type (in this case, `&'b Dummy`) you can now set `Output` to something that has no relation to `'b`:
-
-```rust
-impl<'b> Parser for &'b Dummy {
-    type Output<'a> = &'a [u8];
-
-    fn parse<'a>(&mut self, data: &'a [u8]) -> Self::Output<'a> {
-        data 
+    fn iter(&self) -> Self::Iter<'_> {
+        self.iter()
     }
 }
 ```
 
-Note that you would need a similar `where` clause if you were going to have a setup like:
+However, this placement of the where clause is in fact rather inconsistent, since the `= <&'a [T] as Iterator>::Iter` is in some sense the "body" of the item.
+
+The same current syntax is used for where clauses on type aliases ([playground](https://play.rust-lang.org/?version=nightly&mode=debug&edition=2018&gist=74eeed1795b693f238150f825a0e8438)):
 
 ```rust
-trait Transform<Input> {
-    type Output<'a>
-    where
-        Input: 'a;
+type Foo<T> where T: Eq = Vec<T>;
 
-    fn transform<'i>(&mut self: &'i Input) -> Self::Output<'i>;
+fn main() { }
+```
+
+## Top-level type aliases
+
+Currently, we accept where clauses in top-level type aliases, but they are deprecated (warning) and semi-ignored:
+
+```
+type StringMap<K> where
+    K: PartialOrd
+= BTreeMap<K, String>
+```
+
+Under this proposal, this syntax remains, but is deprecated. The newer syntax for type aliases (with `where` coming after the type) would remain feature gated until such time as we enforce the expected semantics.
+
+## Interaction with trait aliases
+
+One thing discussed in the thread was the interaction with trait alias syntax. With trait aliases, the where clauses can appear in different positions relative to `=` with different meanings:
+
+```rust
+// To use this alias, `T: Bar` must hold
+trait Foo<T> where T: Bar = ...
+
+// `Foo<T>` is an alias for `T: Bar`
+trait Foo<T> = ... where T: Bar
+```
+
+
+However, this is related to another point about GAT syntax:
+
+```rust
+trait Foo {
+    // To use Bar, T: Ord must hold
+    type Bar<T: Ord>;
+    
+    // Impl must prove that `Self::Bar<T>: Ord`,
+    // and other users can rely on that
+    type Bar<T>: Ord;
 }
 ```
 
-### Example: Iter static
-
-In the previous example, the lifetime parameter for `Output` was not related to the `self` parameter. Are there (realistic) examples where the associated type is applied to the lifetime parameter from `self` *but* the `where Self: 'a` is not desired?
-
-There are some, but they rely on having "special knowledge" of the types that will be used in the impl, and they don't seem especially realistic. The reason is that, if you have a GAT with a lifetime parameter, it is likely that the GAT contains some data borrowed for that lifetime! But if you use the lifetime of `self`, that implies we are borrowing some data from `self` -- however, it doesn't *necessarily* imply that we are borrowing data of any particular type. Consider this example:
-
-```rust
-trait Message {
-    type Data<'a>: Display;
-
-    fn data<'b>(&'b mut self) -> Self::Data<'b>;
-
-    fn default() -> Self::Data<'static>;
-}
-
-struct MyMessage<T> {
-    text: String,
-    payload: T,
-}
-
-impl<T> Message for MyMessage<T> {
-    type Data<'a>: Display = &'a str;
-    // No requirement that `T: 'a`!
-
-    fn data<'b>(&'b mut self) -> Self::Data<'b> {
-        // In here, we know that `T: 'b`
-    }
-
-    fn default() -> Self::Data<'static> {
-        "Hello, world"        
-    }
-}
-```
-
-Here the `where T: 'a` requirement is not necessary, and may in fact be annoying when invoking `<MyMessage<T> as Message>::default()` (as it would then require that `T: 'static`).
-
-Another possibility is that the usage of `<MyMessage<T> as Message>::Data<'static>` doesn't appear inside the trait definition, although it is hard to imagine exactly how one writes a useful function like that in practice.
+There is no syntax with GATs today to add "impl must prove" constraints like `T: Ord`. Perhaps if there were, it might apply to trait aliases, too?
 
 ## Alternatives
 
-### Status quo
+### Keep the current syntax.
 
-We ship with no default. This makes it hard to add a default later, as that would potentially be a breaking change. In practice, though, a sufficiently smart default (such as the one described next) may be something we could add later because it has no known "counterexamples".
-- Another point here: this wouldn't be a terrible option if there was a nice/easy way to give useful diagnostics, but that's rather difficult
-
-### Smart default: add `where Self: 'a` if the GAT is used with the lifetime from `&self` (and extend to other type parameters)
-
-Analyze the types of methods within the trait definition. If a GAT is applied to a lifetime `'x`, examine the implied bounds of the method for bounds of the form `T: 'x`, where `T` is an input parameter to the trait. If we find such bounds on all methods for every use of the GAT, then add the corresponding default.
-
-Consider the `LendingIterator` trait:
+In this case, we must settle the question of how we expect it to be formatted (surely not as I have shown it above).
 
 ```rust
-trait LendingIterator {
-    type Item<'a>;
+impl<T> Iterable for Vec<T> {
+    type Iter<'a> where Self: 'a 
+        = <&'a [T] as IntoIterator>::IntoIter;
 
-    fn next<'b>(&'b mut self) -> Self::Item<'b>;
-}
-```
-
-Analyzing the closure body, we see that it contains `Self::Item<'b>` where `'b` is the lifetime of the `self` reference (e.g., `self: &'b Self` or `self: &'b mut Self`). The implied bounds of this method contain `Self: 'b`. Since there is only one use of `Self::Item<'b>`, and the implied bound `Self: 'b` applies in that case, then we add the default `where Self: 'a` to the GAT. 
-
-This check is a fairly simple syntactic check, though not necessarily easy to explain. It would accept all the examples that appear in this document, including the example with `fn default() -> Self::Data<'static>` (in that case, the default is not triggered, because we found a use of `Data` that is applied to a lifetime for which no implied bound applies). The only case where this default behaves *incorrectly* is the case where all uses of `Self::Data` that appear within the trait need the default, but there are uses outside the trait that do not (I couldn't come up with a realistic example of how to do this usefully).
-
-#### Extending to other type parameters
-
-The inference can be extended naturally beyond `self` to other type parameters. Therefore this example:
-
-```rust
-trait Parser<Input> {
-    type Output<'i>;
-
-    fn get<'input>(&mut self, i: &'input Input) -> Self::Output<'input>;
-}
-```
-
-would infer a `where Input: 'i` bound on `type Output<'i>`.
-
-Similarly:
-
-```rust
-trait Parser<Input> {
-    type Output<'i>;
-
-    fn get(&mut self, i: &'input Input) -> Self::Output<'input>;
-}
-```
-
-would infer a `where Input: 'i` bound on `type Output<'i>`.
-
-#### Avoiding the default
-
-If this default is truly not desired, there is a workaround: one can declare a supertrait that contains just the associated type. For example:
-
-```rust
-trait IterType {
-    type Iter<'b>;
-}
-
-trait LendingIterator: IterType {
-    fn next(&mut self) -> Self::Iter<'_>;
-}
-```
-
-This workaround is not especially obvious, however.
-
-#### Related precedent
-
-We used to require `T: 'a` bounds in structs:
-
-```rust
-struct Foo<'a, T> {
-    x: &'a T
-}
-```
-
-but as of [RFC 2093] we infer such bounds from the fields in the struct body. In this case, if we do come up with a default rule, we are essentially inferring the presence of such bounds by usages of the associated type within the trait definition.
-
-[RFC 2093]: https://rust-lang.github.io/rfcs/2093-infer-outlives.html
-
-## Recommendation
-
-Niko's recommendation is to use the "smart defaults". Why? They basically always do the right thing, thus contributing to [supportive](https://rustacean-principles.netlify.app/how_rust_empowers/supportive.html), at the cost of (theoretical) [versatility](https://rustacean-principles.netlify.app/how_rust_empowers/versatile.html). This seems like the right trade-off to me.
-
-The counterargument would be: the rules are sufficiently complex, we can potentially add this later, and people are going to be surprised by this default when it "goes wrong" for them. It would be hard, but not impossible, to add a tailored error message for cases where the `where T: 'b` check fails.
-
-Not sure about Jack's opinion. =)
-- Jack's opinion is to use the "smart default"; I haven't seen an example where this would fail, but think it would be rare enough that moving to a supertrait is a good alternative.
-
-## Appendices
-
-* [Appendix A: Ruled out alternatives](https://rust-lang.github.io/generic-associated-types-initiative/design-discussions/outlives-defaults.html#appendix-a-ruled-out-alternatives)
-* [Appendix B: Considerations](https://rust-lang.github.io/generic-associated-types-initiative/design-discussions/outlives-defaults.html#appendix-b-considerations)
-* [Appendix C: Other examples](https://rust-lang.github.io/generic-associated-types-initiative/design-discussions/outlives-defaults.html#appendix-c-other-examples)
-
-
-# Questions / Queue
-
-## Q
-
-Josh: Not directly about GATs themselves, but shouldn't `LendingIterator::next` return an `Option`, so that it can stop?
-
-Yes
-
-## Q
-
-Mark: Are there any downsides to the "smart default avoidance" of separating out a `trait Foo { type Item<'a>; }`? (in particular, I seem to recall some possible difficulty with trait objects but can't quite remember it.)
-
-* Niko: I don't thnk so but there may have been some bugs around this general area
-* Casting?
-    * Niko: if you do this workaround, there wouldn't be much reason to upcast to `Foo`
-
-## Q
-
-Mara: Smart diagnostics/suggestions can also be *supportive*, while keeping the language itself 'simple'. If the smart defaults are implementable, then no defaults with good diagnostics+suggestions are possible too.
-
-* Niko: 
-    * detect the problem in the impl
-    * but the fix is in the trait, that's a bit awkward
-    * where clauses appear in the rustdoc and so forth, so people have to think about it
-* Josh:
-    * Couldn't you detect it in the trait? Instead of inferring the default, ask people to write it
-* Niko:
-    * Something about that is bothering me; perhaps because I don't have a realistic example where you don't want the default
-* Josh:
-    * If we think it's rare, but possible, then a lint may make sense
-    * And a way to say explicitly "not this"
-* Felix:
-    * If it's rare but possible, there's the workaround of supertrait
-* Josh:
-    * I find that to be too obtuse, I'd rather have a syntax
-    * My inclination is that there probably aren't many "false positives"
-* Niko:
-    * the syntax might be `#[allow(lint)]`
-* Scott:
-    * by the time we have explicit syntax for both sides, shouldn't it just be a compiler error, not a lint
-* Josh:
-    * One advantage of the lint is that we can choose to drop it, in favor of doing the inference
-    * If we decided that there are really no false position
-* Niko:
-    * Wouldn't that require an error? Someone could have allowed the lint
-* Josh:
-    * Right, if we enforce some explicit syntax, we could always switch it later, once we've had time for people to (potentially) find cases where you don't want the default
-* Niko:
-    * I am not saying there are no examples, but I'm saying that those examples have to fit a very particular pattern
-        * they have to be borrowing from a type that includes a type parameter
-        * and it has to be known that the impls will borrow from that parameter but not from any generics
-            * (but then why is it a GAT?)
-* Mara:
-    * How often would it happen that you add a method that changes the meaning of a GAT?
-
-### Q
-
-Josh: `fn next<'b>(&'b mut self) -> Self::Item<'b>;` has an explicit lifetime. Will this work just as well with lifetime inference?
-(Scott: I'd guess it'd need `-> Self::Item<'_>` under the new lints, but seems like it would?)
-
-Yes, I was just using explicit names.
-
-### Q
-
-Josh: Is there a way to raise the declaration of `'a` to the level of `trait LendingIterator` so that the same `'a` can be used in both declarations, rather than introducing a `'b` in the function declaration?
-
-```rust
-trait LendingIterator {
-    fn foo<'a>(&'a self) -> impl Trait<'a>;
-}
-
-// means something quite different:
-trait LendingIterator<'a> {
-}
-```
-
-(Withdrawn, any kind of syntax for that could imply a runtime equivalence that doesn't exist.)
-
-### Q
-
-Josh: Third possibility: what about running the inference to detect if the smart default may be appropriate, then emitting a warning with suggestion (and having a syntax to say "no, really, I don't want that")? Closely related: if we *do* use the smart default, I think we need a syntax for averting that default, rather than introducing an artificial supertrait.
-
-had this conversation
-
-### Q
-
-Scott: Are these bounds relevant to the impls too, or just to the trait definition?  (Guess: the impl uses the concrete thing so can be less restrictive, like works with lifetimes in impls today.)
-
-* Niko: relevant to the impls too, I would assume the impl inherits the defaults from the trait too
-* Scott: could we remove the default? It'd be a breaking change to get rid of them, right?
-    * Niko: well, without an edition
-* Scott: I'm thinking about cases where we do require people to repeat things...
-* Scott: Smart default looks at uses in the trait definition to figure out whether the where bound is there
-    * does the impl look at the methods as defined in the impl, or does it copy from the trait?
-* Niko: Good question, I assumed it would copy from the trait, but that might work too
-* Scott: if it did neither, what would happen?
-* Niko: the impl would just get an error
-* Felix: I'm confused, don't the traits/impls have to stay in sync
-* Niko: today the impl can be looser
-* Scott: I'm imagining if you have an impl that has no lifetimes, then I wouldn't need a where clause there
-* Niko: yes, and that was kind of my example above -- traits in general can't know that, but sometimes you might know that the impl is not going to use type/lifetime parameters from the self type, and hence the where clause wouldn't be needed
-    * but this requires that you know the set of impls you will have
-
-### Q
-
-Felix: Can we ship with the status quo and add inference later without it being a breaking change? I'm guessing "no", but I wanted to confirm. (copied from inline comment above)
-
-Niko: In theory no, but maybe in practice?
-
-### Q
-
-Mark: How dangerous is it that folks *adding* a method (perhaps with a default body) will potentially cause breaking changes to downstream consumers?
-
-```rust
-trait Something {
-    type Foo<'a>;
-    
-    // added later:
-    fn foo<'a>(&'a self) -> Option<Self::Foo<'a>> {
-        None
+    fn iter(&self) -> Self::Iter<'_> {
+        self.iter()
     }
 }
-
-// previously existent
-impl<T> Something for Foo<T> {
-	type Foo<'a> = ();
-}
-
-// also previously existing
-fn foo<T>(x: <T as Something>::Foo<'static>) // that was invoked with T = Foo<U>
-
 ```
 
-```rust
-trait Foo {
-  type Bar<'a>;
+### Accept either
 
-  // added later
-  fn foo<'a>(&'a self) -> Option<Self::Bar<'a>> {
-    None
-  }
-}
-trait Parser: Foo {
-  fn parse<'a, 'b>(&'a self, input: &'b MyData<'b>) -> Self::Bar<'b>;
-}
-impl Foo for Baz {
-  type Bar<'a> = ();
-}
-// After addition, requires that Self: 'input
-fn bar<'a, input, T: Parser>(&self, input: &'input MyData<'input>) -> <T as Foo>::Bar<'input> {} 
-```
-Jack: not sure if this actually is a good example
+What do we do if both are supplied?
+
+### Questions / Discussion
 
 ### Q
 
-Josh: Can we talk about the first alternative in appendix A, the `'self` lifetime? That would be really useful in general. That seems to be what appendix B is suggesting too. How difficult would it be to add?
+> Mark: I'm not sure I understand the distinction between the following two (from the trait alias section). Isn't it true in both that the `T: Bar` bound must hold?
+> * is there a concise explanation somewhere for this? It feels like a critical element but also not something obvious (to me, anyway).
+
 
 ```rust
-trait Foo {
-    type Bar<'self> = ...;
-    // a lifetime parameter 'a and a where clause that says Self: 'a
+trait SendSync: Send + Sync
+```
+
+What about something more complex? [RFC #1733](https://rust-lang.github.io/rfcs/1733-trait-alias.html) gave this syntax:
+
+```rust
+trait RevPartialEq<T> = where T: PartialEq<Self>;
+```
+
+To illustrate difference:
+
+```rust
+// OK
+trait RevPartialEq<T> = where T: PartialEq<Self>;
+fn test<X: RevPartialEq<u32>>(x: X) {
+    22_u32 == x
 }
 ```
 
 ```rust
-fn foo(&self, x: &str) -> &str; // is already elided to have the output be the lifetime from `&self`.
-```
-
-```rust
-struct S {
-    field1: Vec<String>,
-    field2: &'self str,
+// Error: `u32: PartialEq<T>` does not hold
+//
+// Related to implied bounds, though.
+trait Test<T> where T: PartialEq<Self> = Debug;
+fn test<X: Test<u32>>(x: u32) {
+    22_u32 == x
 }
 ```
 
-Niko: a 'self syntax would not cover cases like this, though the smart default would
+just as if I had written:
 
 ```rust
-trait Parser<Input> {
-    type Output<'i> where Input: 'i;
+// just as if I had written:
+//
+// trait Test<T>
+// where T: PartialEq<Self>
+// { }
+```
+
+```rust
+trait Test<T>
+where Self: PartialEq<T>
+{ }
+
+// No error: `Self: PartialEq<u32>` is considerd a "super trait"
+// and hence part of "implied bounds".
+fn test<X: Test<u32>>(x: u32) {
+    22_u32 == x
+}
+```
+
+No way to make an implied bound that doesn't begin with Self.
+
+```rust
+trait DebugIterator {
+    type Item: Debug;
+    // Knowing that X: DebugIterator implies X::Item: Debug
+}
+```
+
+No way to make an implied bound that doesn't begin with Self.
+
+```rust
+trait DebugIterator {
+    type Item<T>: Debug;
+    // What if I wanted `T: Debug<U>` as an implied bound?
+    // Does that even make sense??
+}
+```
+
+Niko: I feel the trait alias syntax is just confusing
+
+Mark: Is there a reason to have both kinds of where clauses in traits? What if you only had implied bounds with trait aliases? (Or only the reverse...)
+
+Felix: Does it have any impact on quality of dev ex?
+    * Maybe you get an error that points to a better line of code?
     
-    fn parse<'i>(&self, input: &'i Input) -> Self::Output<'i>;
-}
+We don't know.
+
+Jack: As a data point, there was at least one issue with GATs where they were using where clauses but shouldn't have been (or maybe it was the other way around...) but I don't know what the right syntax would be.
+
+(Update: I think this was the issue: https://github.com/rust-lang/rust/issues/87831)
+
+Niko: I remember this, I think they were putting the where clause on the trait maybe?
+
+### Q
+
+> Felix: is part of expectation here that `cargo fix` or `rustfmt` will auto-convert the ugly syntax to the nice one? (This ties into my Q above regarding the increase in severity for parametric type aliases.) ((or maybe type aliases would be excluded from auto-suggested change))
+
+niko: cargo fix for sure. For rustfmt, if we said that it was an error in GATs, then it would be new ground, right? Accepting a superset of rust and emitting rust? But I don't see any fundamental reason why not.
+
+pnkfelix: if you convert type aliases, you are going from a where clause that gets ignored to one that gets enforced.
+
+niko: yeah we'd need some opt-in of some kind.
+
+### Q
+
+> * Felix: In the "accept either" option: I assume we will always have to accept the old syntax, at least in old editions.
+>	* so it makes some sense to continue accepting either.
+>	* but that does *not* mean we have to accept both in tandem on the same item.
+
+That makes sense, at least for top-level type aliases.
+
+### Q
+
+> * Scott: Random thought: `WHERE` and `HAVING` being different in SQL is also confusing to people, so I don't know if different keywords would necessarily be better.  Probably still better than it being position-dependent, though.
+
+Niko: egads I forgot what those mean
+
+Scott: HAVING comes after the GROUP BY, and you can reference difference things; it applies to the results of your projection.
+
+Niko: I kind of agree that unless the keywords are *very well chosen* it won't help.
+
+Scott: Is there some way to leverage the same thing twice somehow to get the semantics, vs two different keywords?
+
+Niko: Do people even want that distinction? When discussing implied bounds, there was discussion about how removing where clauses becomes semver significant. Almost a private vs a public bound. Do you get to rely on it, or does everyone else get to rely on it too?
+
+### Q
+
+> * Scott: we have `struct Foo<T>(T) where T: Copy;` but `struct Foo<T> where T: Copy { x: T }`.  Does anyone remember why those are different?  Is there a general rule there that we can divine from there that would help us pick here?  Something about braces?
+
+Niko: I don't recall it being discussed a lot, but the general rule was that the first one looked like a function. [RFC 0135](https://rust-lang.github.io/rfcs/0135-where.html)
+
+Scott: Seems like it has to do with braces enclosing a lot of content, but the parens were short... maybe that says that the type is "one thing", not a multi-line whatever, so it is more like the tuple struct case.
+
+Niko: I feel that way, it feels more like the fn or tuple struct case to me.
+
+Scott: It feels like it would be weird to have the where clause list before the parameter list or `->` in a function, although you could have it there if you wanted.
+
+Niko: The original RFC argued that function parameters and return types were more important than the where clauses, and that the bounds were a kind of footnote. I think you can make an analogous case here.
+
+Niko: Does anyone want to argue *against* the proposed where clause syntax?
+
+Scott: I'm in favor, but I'm trying to figure out *why*.
+
+Jack: It's very subjective. Everybody seems to agree that the where clauses should go at the end because of formatting, but it's very subjective.
+
+Arguments for the current syntax (where before =):
+
+* Consistency of 'copying and pasting' an item from trait and appending 'the definition' (which in this is the value of the type alias).
+* Trait alias subtleties.
+
+Arguments against (iow, for where after =):
+
+* Consistency with function and tuple struct placement
+    * Note that we initially had tuple structs put the where before the `()` ([link](https://github.com/rust-lang/rust/issues/17904#issuecomment-58603749)) but it was "obviously wrong" somehow
+* The thing after the where clauses (if any) should start on its own line, and we don't have precedent for `=` starting on its own line
+    * where clauses are a "big long list" of things and you want it to be easy to find the end
+* Calls attention to the value of the type alias vs the bounds
+    * can put them in the angle brackets to emphasize them (most of the time)
+    * ["secondary notation"](https://en.wikipedia.org/wiki/Cognitive_dimensions_of_notations) works better, more able to draw a distinction
+
+There's a reason that rustfmt behaves like so:
+
+```rust
+let x = long_expression;
+
+// Becomes
+let x =
+    long_expression;
+
+// Not
+let x
+    = long_expression;
+```
+
+
+Example of issue with "long" where clauses: https://github.com/rust-lang/rust/issues/86787
+
+```rust
+    type T = Either<Left::T, Right::T>;
+    type TRef<'a>
+    where 
+        <Left as HasChildrenOf>::T: 'a,
+        <Right as HasChildrenOf>::T: 'a
+    = Either<&'a Left::T, &'a Right::T>;
+
+    type T = Either<Left::T, Right::T>;
+    type TRef<'a>
+    where 
+        <Left as HasChildrenOf>::T: 'a,
+        <Right as HasChildrenOf>::T: 'a
+        = Either<&'a Left::T, &'a Right::T>;
+
+    type T = Either<Left::T, Right::T>;
+    type TRef<'a> = Either<&'a Left::T, &'a Right::T>
+    where 
+        <Left as HasChildrenOf>::T: 'a,
+        <Right as HasChildrenOf>::T: 'a;
+    
+    // Scott: but ending a multiline list with commas?
+    // Niko: how is it different from tuple structs?
+    
+    struct Foo<T>(u32)
+    where
+        T: Ord;
+        
+    // Yup, checked, and rustfmt does
+    struct Foo<T, U>(T, U)
+    where
+        T: Ord,
+        U: Ord;
 ```
 
 ### Q
 
-Scott: Should we explore what a more direct opt-out would be, to see what it would be like if the default was less smart?
-
-* Mark: you could opt out if you write any where clauses, right?
+Would implied bounds even make sense on GATs?
 
 ```rust
-trait Parser {
-    type Output<'a, T> where T: Debug; // you want the default here, too
-    
-    fn foo<T>(&self) -> Self::Output<'_, T>;
+trait MyTrait {
+    type MyType<T> = where T: PartialEq<Self::MyType<T>>;
+}
+
+impl MyTrait for .. {
+    type MyType<T> = ValueType where T: PartialEq<Self::MyType<T>>;
+}
+
+impl<A> PartialEq<ValueType> for A { }
+
+```
+
+It is true that
+
+* if we do want a syntax for this
+* and it is the trait alias syntax
+
+we just messed it up.
+- Comment from Jack - But actually the "implied bound" where clause is in front of the equals, and this is not that
+
+### Q
+
+> Scott: Do we need people to copy them over? Is it a breaking change to remove them? Does the impl need to repeat them?
+
+Today they are implied, but we've also discussed this proposed change:
+
+```rust
+trait Foo {
+    unsafe fn foo();
+}
+
+impl Foo for () {
+    fn foo();
+}
+
+fn safe_fn() {
+    <() as Foo>::foo(); // No unsafe needed
 }
 ```
 
-Josh proposal:
+"If the compiler can identify your impl, it can use the signature for your impl" -- should that work just for unsafe, but not for where clauses? Seems weird.
 
-```rust
-type Output<'a> where 'a; // (1)
-type Output<'a> where 'a: Self; // (2)  --- not legal syntax today
-type Output<'a> where T: Foo<'a>; // (3) what would happen here?
-type Output<'a> where 'a:; // (4) this is legal today, right?
-```
+Scott: What about lifetimes?
 
-Felix proposal:
+Niko: Currently everything is typed against the trait signature. I would expect that to be consistent with unsafe but it occurs to be that there is more of a circularity implementation wise.
 
-```rust
-type Output<'a> where Self: ?'a
-```
+* Today:
+    * Consumers of the associated type would ignore the bounds on the impl, so they could be defaulted to the ones that appear in the trait.
+* Tomorrow:
+    * But if we made it significant that you use fewer, that would be a change, and in particular having an empty list would make code stop compiling if those predicates were required for the value to be well-typed.
 
-Definitely obscure, but maybe it's very unusual, and that's ok.  The analogy to `?Sized` holds up.
+But of course we could do this over an edition easily enough.
 
-Could use a marker:
-
-```rust
-#[no_lifetime_default]
-type Output<'a>;
-```
-
-Josh: I'd support the smart default iff we have an opt-out syntax that doesn't require an artificial supertrait or anything else that would require changes in users or implementers of the trait.
-
-Jack: The lint is appealing because we could find out if anybody in practice is using this.
-
-Niko: I'd vaguely prefer to force people to write `where Self: 'a` or an opt-out, and a plan to either add the default or something else in the future.
-
-Quick poll:
-
-* scott: interested in a naive default with some way to opt-out, kinda like lifetime elision, if that hits enough scenarios to make the explicit form rare enough.  But I could probably also be convinced that the analogy to structs holds up and that we should look at how they're used too.
