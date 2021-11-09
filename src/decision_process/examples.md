@@ -52,7 +52,7 @@ At this point, rustbot updates the state; Barbara's status of
 > | @Grace | |
 > | @Niklaus | |
 
-Alan is currently busy at work, though, so by by the time that he and Barbara
+Alan is currently busy at work, though, so by the time that he and Barbara
 get a chance to talk, 11 days have passed. (Alan and Barbara receive a ping
 from rustbot after a week or so.) Once they get a chance to talk, Alan
 fully addresses Barbara's concern, so Barbara posts:
