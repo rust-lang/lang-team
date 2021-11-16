@@ -32,3 +32,4 @@
   - [Auto traits](./design_notes/auto_traits.md)
   - [Eager drop](./design_notes/eager_drop.md)
   - [Autoderef and autoref in operators](./design_notes/autoref_ops.md)
+  - [Copy type ergonomics](./design_notes/copy_ergonomics.md)
