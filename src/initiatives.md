@@ -17,35 +17,38 @@ Key:
 * 🚀 -- Feature complete and seeking feedback
 * ✅ -- Stable
 
-| Initiative                   |               | [Stage]   | [Owner]           | [Liaison]      |
-| ---------------------------- | ------------- | ------- | --------------- | ------------ |
-| [Impl Trait]                 |               |         | nikomatsakis    | ?            |
-| ↳ Type Alias Impl Trait      | 💻           | [▰▰▰▱▱] | oli-obk         | nikomatsakis |
-| [Generic Associated Types]   | 💻           | [▰▰▰▱▱] | jackh726        | nikomatsakis |
-| [let-else][#87335]           | 💻           | [▰▰▰▱▱] | fishrock        | JoshTriplett |
-| [Async Foundations]          |               |         | tmandry         | nikomatsakis |
-| ↳ [Async fundamentals]       | 🔬           | [▱▱▱▱▱] | tmandry         | nikomatsakis |
-| Never type                   | 🔬           | [▰▰▱▱▱] | mark-simulacrum | nikomatsakis |
-| [Inline assembly]            |               |         | Amanieu         | JoshTriplett |
-| ↳ Core feature               | 🚀           | [▰▰▰▰▱] | Amanieu         | JoshTriplett |
-| ↳ Const support              | [🛑][#76001] | [▰▰▱▱▱] |                 |              |
-| [Dyn upcasting]              | 💻           | [▰▰▰▱▱] | crlf0710        | nikomatsakis |
-| Negative traits in coherence |               | [▱▱▱▱▱] | jane lusby      | nikomatsakis |
-| [FFI Unwind]                 |               |         | BatmanAod       | nikomatsakis |
-| ↳ extern "C-unwind"          | 🚀           | [▰▰▰▰▱] | BatmanAod       | nikomatsakis |
-| ↳ longjmp                    | ⏳             | [▰▰▱▱▱] | BatmanAod       | nikomatsakis |
-| [Disjoint closure capture]   | 🚀           | [▰▰▰▰▱] | nikomatsakis    | TBD          |
-| Try and generalized `?`      |               |         |                 |              |
-| ↳ `?` operator               | ✅            | [▰▰▰▰▰] |                 |              |
-| ↳ [`Try` trait][#42327]      | 🚀           | [▰▰▰▰▱] | scottmcm        | ?            |
-| ↳ `try` blocks               | ⏳             | [▰▰▰▱▱] | scottmcm        |              |
+| Initiative                    |               | [Stage] | [Owner]         | [Liaison]    |
+| ----------------------------- | ------------- | ------- | --------------- | ------------ |
+| [Impl Trait]                  |               |         | nikomatsakis    | ?            |
+| ↳ Type Alias Impl Trait       | 💻           | [▰▰▰▱▱] | oli-obk         | nikomatsakis |
+| [Generic Associated Types]    | 💻           | [▰▰▰▱▱] | jackh726        | nikomatsakis |
+| [let-else][#87335]            | 💻           | [▰▰▰▱▱] | fishrock        | JoshTriplett |
+| [Async Foundations]           |               |         | tmandry         | nikomatsakis |
+| ↳ [Async fundamentals]        | 🔬           | [▱▱▱▱▱] | tmandry         | nikomatsakis |
+| Never type                    | 🔬           | [▰▰▱▱▱] | mark-simulacrum | nikomatsakis |
+| [Inline assembly]             |               |         | Amanieu         | JoshTriplett |
+| ↳ Core feature                | 🚀           | [▰▰▰▰▱] | Amanieu         | JoshTriplett |
+| ↳ Const support               | [🛑][#76001] | [▰▰▱▱▱] |                 |              |
+| [Dyn upcasting]               | 💻           | [▰▰▰▱▱] | crlf0710        | nikomatsakis |
+| [Negative impls in coherence] | 🔬           | [▰▰▱▱▱] | nikomatsakis    | pnkfelix     |
+| [FFI Unwind]                  |               |         | BatmanAod       | nikomatsakis |
+| ↳ extern "C-unwind"           | 🚀           | [▰▰▰▰▱] | BatmanAod       | nikomatsakis |
+| ↳ longjmp                     | ⏳             | [▰▰▱▱▱] | BatmanAod       | nikomatsakis |
+| [Disjoint closure capture]    | ✅           | [▰▰▰▰▰] | nikomatsakis    | TBD          |
+| Try and generalized `?`       |               |         |                 |              |
+| ↳ `?` operator                | ✅            | [▰▰▰▰▰] |                 |              |
+| ↳ [`Try` trait][#42327]       | 🚀           | [▰▰▰▰▱] | scottmcm        | ?            |
+| ↳ `try` blocks                | ⏳             | [▰▰▰▱▱] | scottmcm        |              |
 
 [▱▱▱▱▱]: ./initiatives/process/stages/proposal.md
 [▰▰▱▱▱]: ./initiatives/process/stages/experimental.md
 [▰▰▰▱▱]: ./initiatives/process/stages/development.md
 [▰▰▰▰▱]: ./initiatives/process/stages/feature_complete.md
 [▰▰▰▰▰]: ./initiatives/process/stages/stabilized.md
-[Disjoint closure capture]: https://github.com/rust-lang/project-rfc-2229/
+[Stage]: ./initiaives/process/stages.md
+[Owner]: ./initiaives/roles/owner.md
+[Liaison]: ./initiaives/roles/liaison.md
+
 [#42327]: https://github.com/rust-lang/rust/issues/42327
 [#76001]: https://github.com/rust-lang/rust/issues/76001
 [Async Foundations]: https://rust-lang.github.io/wg-async-foundations/
@@ -58,9 +61,7 @@ Key:
 [FFI Unwind]: https://github.com/rust-lang/project-ffi-unwind/
 [Inline assembly]: https://github.com/rust-lang/project-inline-asm
 [Dyn upcasting]: https://github.com/rust-lang/dyn-upcasting-coercion-initiative
-[Stage]: ./initiaives/process/stages.md
-[Owner]: ./initiaives/roles/owner.md
-[Liaison]: ./initiaives/roles/liaison.md
+[Negative impls in coherence]: https://rust-lang.github.io/negative-impls-initiative/
 
 Note that this list doesn't represent the complete set of unstable features. We are currently in the process of transitioning into
 the initiative system, so there are a number of RFCs that have been accepted (and even implemented!) which don't

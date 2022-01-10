@@ -3,6 +3,7 @@
 - [Welcome](./welcome.md)
 - [Initiatives](./initiatives.md)
   - [Current priorities](./initiatives/priorities.md)
+  - [Stabilized initiatives](./initiatives/stable.md)
   - [Process](./initiatives/process.md)
     - [Roles](./initiatives/process/roles.md)
       - [Owner](./initiatives/process/roles/owner.md)
