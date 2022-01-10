@@ -25,7 +25,7 @@ Key:
 | [let-else][#87335]            | 💻           | [▰▰▰▱▱] | fishrock        | JoshTriplett |
 | [Async Foundations]           |               |         | tmandry         | nikomatsakis |
 | ↳ [Async fundamentals]        | 🔬           | [▱▱▱▱▱] | tmandry         | nikomatsakis |
-| ↳ [Generators]                | 🔬           | [▰▱▱▱▱] | estebank        | pnkfelix |
+| ↳ [Generators]                | 🔬           | [▰▰▱▱▱] | estebank        | pnkfelix |
 | Never type                    | 🔬           | [▰▰▱▱▱] | mark-simulacrum | nikomatsakis |
 | [Inline assembly]             |               |         | Amanieu         | JoshTriplett |
 | ↳ Core feature                | 🚀           | [▰▰▰▰▱] | Amanieu         | JoshTriplett |
