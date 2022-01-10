@@ -35,7 +35,6 @@ Key:
 | [FFI Unwind]                  |               |         | BatmanAod       | nikomatsakis |
 | ↳ extern "C-unwind"           | 🚀           | [▰▰▰▰▱] | BatmanAod       | nikomatsakis |
 | ↳ longjmp                     | ⏳             | [▰▰▱▱▱] | BatmanAod       | nikomatsakis |
-| [Disjoint closure capture]    | ✅            | [▰▰▰▰▰] | nikomatsakis    | TBD          |
 | Try and generalized `?`       |               |         |                 |              |
 | ↳ `?` operator                | ✅            | [▰▰▰▰▰] |                 |              |
 | ↳ [`Try` trait][#42327]       | 🚀           | [▰▰▰▰▱] | scottmcm        | ?            |
