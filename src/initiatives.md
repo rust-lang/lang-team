@@ -25,6 +25,7 @@ Key:
 | [let-else][#87335]            | 💻           | [▰▰▰▱▱] | fishrock        | JoshTriplett |
 | [Async Foundations]           |               |         | tmandry         | nikomatsakis |
 | ↳ [Async fundamentals]        | 🔬           | [▱▱▱▱▱] | tmandry         | nikomatsakis |
+| ↳ [Generators]                | 🔬           | [▰▱▱▱▱] | estebank        | pnkfelix |
 | Never type                    | 🔬           | [▰▰▱▱▱] | mark-simulacrum | nikomatsakis |
 | [Inline assembly]             |               |         | Amanieu         | JoshTriplett |
 | ↳ Core feature                | 🚀           | [▰▰▰▰▱] | Amanieu         | JoshTriplett |
@@ -34,7 +35,7 @@ Key:
 | [FFI Unwind]                  |               |         | BatmanAod       | nikomatsakis |
 | ↳ extern "C-unwind"           | 🚀           | [▰▰▰▰▱] | BatmanAod       | nikomatsakis |
 | ↳ longjmp                     | ⏳             | [▰▰▱▱▱] | BatmanAod       | nikomatsakis |
-| [Disjoint closure capture]    | ✅           | [▰▰▰▰▰] | nikomatsakis    | TBD          |
+| [Disjoint closure capture]    | ✅            | [▰▰▰▰▰] | nikomatsakis    | TBD          |
 | Try and generalized `?`       |               |         |                 |              |
 | ↳ `?` operator                | ✅            | [▰▰▰▰▰] |                 |              |
 | ↳ [`Try` trait][#42327]       | 🚀           | [▰▰▰▰▱] | scottmcm        | ?            |
@@ -62,6 +63,7 @@ Key:
 [Inline assembly]: https://github.com/rust-lang/project-inline-asm
 [Dyn upcasting]: https://github.com/rust-lang/dyn-upcasting-coercion-initiative
 [Negative impls in coherence]: https://rust-lang.github.io/negative-impls-initiative/
+[Generators]: https://github.com/rust-lang/lang-team/issues/137
 
 Note that this list doesn't represent the complete set of unstable features. We are currently in the process of transitioning into
 the initiative system, so there are a number of RFCs that have been accepted (and even implemented!) which don't
