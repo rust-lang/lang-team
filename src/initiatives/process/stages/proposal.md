@@ -2,12 +2,14 @@
 
 ## Summary
 
-The proposal stage is where specific ideas start. A _proposal_ is, like today, an issue on the lang-team repository. It should include:
+The proposal stage is where specific ideas start. To make a new proposal, [open an "Initiative Proposal" issue on the lang-team repository][open-proposal]. It should include:
 
 - Motivation and general idea
 - Any relevant background links
 - Enough detail to understand the problem and some sense of how it might be solved
 - Someone interested in being the [owner] for the initiative, if any.
+
+[open-proposal]: https://github.com/rust-lang/lang-team/issues/new/choose
 
 Proposals are meant to be raised early. The idea should have undergone some amount of iteration, perhaps on internals or elsewhere, but it doesn't have to be -- and ideally is not -- a fully formed, concrete proposal. It can be a sketch of "here is a problem and here are a few general ideas for how to address it".
 
