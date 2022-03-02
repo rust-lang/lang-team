@@ -15,6 +15,7 @@
       - [Feature complete](./initiatives/process/stages/feature_complete.md)
       - [Stabilized](./initiatives/process/stages/stabilized.md)
       - [Inactive](./initiatives/process/stages/inactive.md)
+    - [Checklists](./initiatives/process/checklists.md)
   - [FAQ](./initiatives/faq.md)
 - [Decision process and principles](./decision_process.md)
   - [Decision process examples](./decision_process/examples.md)

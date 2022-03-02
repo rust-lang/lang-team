@@ -52,7 +52,7 @@ Types of objections that make sense at this period:
 
 - Technical concerns:
   - These are typically managed by adding the scenario or concern to a list of constraints to be taken under consideration and addressed.
-  - It is absolutely not necessary to have answers to all the technical problems before seconding a proposal!
+  - **It is absolutely not necessary to have answers to all the technical problems before seconding a proposal!**
 - Overload concerns:
   - A single owner or liaison should not be involved in too many things.
 - Prioritization concerns:
@@ -63,3 +63,5 @@ Types of objections that make sense at this period:
 ## Exit: Proposal is not accepted
 
 In some cases, proposals will not be accepted. This could happen because there is nobody who wants to second it at this time. It could also happen because the lang team leads decide that the proposal doesn't it the current priorities of the team, or because the lang team leads feel that the task is not a good fit for the proposed owner or liaison (for example, the task may require specialized skills or more time than they have available). In these cases, the proposal will be closed.
+
+We typically do not close proposals just because lang team members have technical objections: instead, those objections can be logged and resolved through the experimentation period. However, if it is clear that the proposal has no pathway to being accepted, we would try to take that into account.
