@@ -27,6 +27,7 @@ Once a proposal has been seconded and the FCP has expired:
 * Add the tracking issue to the [project board][pb]:
     * Set the status appropriately (typically "experimental").
 * If necessary, add a feature-gate to the compiler and tag it as "experimental".
+* Close the proposal issue with a link to the tracking issue.
 
 ## Close a proposal
 
