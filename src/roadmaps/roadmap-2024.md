@@ -419,9 +419,10 @@ to discuss, or send a private message to Josh Triplett and nikomatsakis.
 ## Conclusion
 
 We hope that this post has given you a taste for what we plan to focus on over
-the next few years. If you'd like to help us reach these goals, please get
-involved! We've listed a number of active initiatives for each point, but we've
-also included a lot of ideas that are looking for an owner. Whether you prefer
-to code, design, or to document, there's work for you to do. And if the only
-thing you want to do with Rust 2024 is to use it, we welcome that too. Happy
-Rust hacking to y'all!
+the next few years. If you'd like to help us reach these goals, please [get
+involved](https://rust-lang.zulipchat.com/#narrow/stream/318377-t-lang.2Froadmap-2024)!
+We've listed a number of active initiatives for each point, but we've also
+included a lot of ideas that are looking for an owner. Whether you prefer to
+code, design, or to document, there's work for you to do. And if the only thing
+you want to do with Rust 2024 is to use it, we welcome that too. Happy Rust
+hacking to y'all!
