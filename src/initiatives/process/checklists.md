@@ -47,11 +47,11 @@ Once a proposal has been seconded and the FCP has expired:
 ## 
 
 [pb]: https://github.com/orgs/rust-lang/projects/16/
-[proposal]: ./initiatives/process/stages/proposal.md
-[experimental]: ./initiatives/process/stages/experimental.md
-[development]: ./initiatives/process/stages/development.md
-[feature complete]: ./initiatives/process/stages/feature_complete.md
-[stabilized]: ./initiatives/process/stages/stabilized.md
-[Stage]: ./initiaives/process/stages.md
-[Owner]: ./initiaives/roles/owner.md
-[Liaison]: ./initiaives/roles/liaison.md
+[proposal]: ./stages/proposal.md
+[experimental]: ./stages/experimental.md
+[development]: ./stages/development.md
+[feature complete]: ./stages/feature_complete.md
+[stabilized]: ./stages/stabilized.md
+[Stage]: ./stages.md
+[Owner]: ./roles/owner.md
+[Liaison]: ./roles/liaison.md

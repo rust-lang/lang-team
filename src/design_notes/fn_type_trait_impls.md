@@ -128,7 +128,7 @@ fn main() {
 
 However, this will fail to compile with the following error:
 
-> error[E0277]: the trait bound `fn() {my_callback}: Default` is not satisfied
+> error\[E0277\]: the trait bound `fn() {my_callback}: Default` is not satisfied
 
 ## Implementing the `Default` trait
 

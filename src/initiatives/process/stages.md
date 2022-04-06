@@ -10,9 +10,6 @@ Presuming that an initiative continues successfully, it will go through the foll
 | [Feature complete]                    | Gathering feedback                        | Advertisting the initiative as "feature complete"                                             | Stabilization proposal approved                           |
 | [Stabilized]                          |                                           | Use on stable branch                                                                          | (none)                                                    |
 
-[liaison]: ../roles/liaison.md
-[owner]: ../roles/owner.md
-
 The "experimental" stage can be skipped if the initiative is sufficiently simple that a RFC doesn't seem necessary; see ["simple initiatives"](#simple-initiatives) below.
 
 Initiatives can also become [inactive] for a variety of reasons.
@@ -23,13 +20,14 @@ Initiatives can also become [inactive] for a variety of reasons.
 [feature complete]: ./stages/feature_complete.md
 [stabilized]: ./stages/stabilized.md
 [inactive]: ./stages/inactive.md
+[liaison]: ./roles/liaison.md
 
 ## Simple initiatives
 
 The above process is the ideal, but there are alternative routes that occur in practice for simple initiatives. The most common is one that begins with a PR:
 
 - Implement the idea and open a PR.
-- [Nominate](/how_to/nominate.md) the PR to the lang team's attention.
+- [Nominate](../../how_to/nominate.md) the PR to the lang team's attention.
 - The lang team may opt to either approve the PR (skip directly to "feature complete"), assign an owner (skip directly to "development"), or to request a proposal.
 
 ## Umbrella initiatives
