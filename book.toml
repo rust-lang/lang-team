@@ -21,3 +21,5 @@ command = "mdbook-mermaid"
 "/priorities.html" = "initiatives/priorities.html"
 "/project_groups.html" = "initiatives/active.html"
 "/proposing_a_project.html" = "initiatives/proposing.html"
+
+[output.linkcheck]
