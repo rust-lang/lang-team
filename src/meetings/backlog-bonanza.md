@@ -8,7 +8,7 @@ Backlog bonanza meetings are typically scheduled as [design meetings](./design.m
 
 ## Can I attend?
 
-Yes! Design meetings are open to the public. You'll find the details on our [calendar](./calendar.md).
+Yes! Design meetings are open to the public. You'll find the details on our [calendar](../calendar.md).
 
 ## What labels do we apply to issues?
 
