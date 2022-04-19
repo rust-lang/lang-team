@@ -15,11 +15,11 @@ In that meeting, we choose what design meetings we will hold the rest of the mon
 
 ## How do I propose a design meeting?
 
-You need to open an issue, [as described here](./how_to/design_meeting.md).
+You need to open an issue, [as described here](../how_to/design_meeting.md).
 
 ## Can I attend?
 
-Yes! Design meetings are open to the public. You'll find the details on our [calendar](./calendar.md).
+Yes! Design meetings are open to the public. You'll find the details on our [calendar](../calendar.md).
 
 ## How does a design meeting work?
 

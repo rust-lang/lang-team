@@ -18,7 +18,7 @@ In addition, it's a good place to explain how any "unresolved questions" from th
 
 In addition to evaluating the feature, this is a good period to prepare "reference" documentation that explains the changes in depth. This is typically included in the [Rust reference] but may appear in other documentation as well, such as the Necronomicon. These changes will be reviewed as part of the stabilization report and will land after the feature is stabilized.
 
-[Rust reference]:
+[Rust reference]: https://doc.rust-lang.org/reference/
 
 ## Exit: Stabilization report prepared and approved
 

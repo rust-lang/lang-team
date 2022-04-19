@@ -4,11 +4,11 @@ Backlog bonanza is a particular kind of design meeting. We often schedule a back
 
 ## When does backlog bonanza take place?
 
-Backlog bonanza meetings are typically scheduled as [design meetings](./design.md).
+Backlog bonanza meetings are typically scheduled as [design meetings](design.md).
 
 ## Can I attend?
 
-Yes! Design meetings are open to the public. You'll find the details on our [calendar](./calendar.md).
+Yes! Design meetings are open to the public. You'll find the details on our [calendar](../calendar.md).
 
 ## What labels do we apply to issues?
 
