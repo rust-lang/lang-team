@@ -57,7 +57,7 @@ T-lang commented on this in \[3] (w.r.t. const `Weak<T>::[into|from]_raw` and `W
 
 > Consensus from meeting:
 > - We approve the option to make `align_of_val_raw` require a once-valid-but-dropped value, in order to better support thin objects
->   - we believe the sentinel design (of `Weak::new`) means that `align_of_val_raw` is only ever invoked on once-valid-but-dropped values
+>   - we believe the sentinel design \[of `Weak::new`] means that `align_of_val_raw` is only ever invoked on once-valid-but-dropped values
 > - We do not want `align_of_val_raw` to be forced to work for metadata + thin pointer
 > - Implement `Weak::from_raw` to check for sentinel and take some special action if it is observed
 >   - potential cost: for unsized types (only), there is an extra branch (but if custom dst doesn’t require \[dynamic] alignment, we can change this later)
