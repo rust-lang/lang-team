@@ -107,7 +107,8 @@ that `&UnsafeCell<T>` cannot (safely) read (or write) any of `T`'s bytes, if `st
 Thus (at the time of writing) there are three known potential resolutions to this constraint:
 
 - Require layout to be calculated solely from thin pointer and pointee metadata,
-- Require `size_of_val` to acquire a read lock (for `Mutex`-like types), or
+- Require `size_of_val` to acquire a read lock (for `Mutex`-like types),
+- Declare `noop_write` is only sound for types which determine layout without reading the pointee, or 
 - Prohibit the use of pointee-determined-layout types in `Mutex`-like types.
 
 ## Potential Conclusions
