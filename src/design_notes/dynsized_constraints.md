@@ -129,6 +129,10 @@ Examples of these are respectively `u8`, `dyn Trait`, `ThinCStr`, and `extern ty
 `Ref<T>`-like types want "`?Sized + ?MetaSized + ?DynSized`", and
 `UnsafeCell<T>`-like types want "`?Sized + MetaSized + DynSized`".
 
+Additionally, it could be useful to restrict `MetaSized` to only know the pointee metadata and not the data pointer;
+this would allow things like `[T] where T: ?Sized + MetaSized` using both slice and `T` metadata for an extra-fat pointer
+(e.g. `[[T]]` for 2D slices doing the obvious thing (without stride)).
+
 ## References
 
 - \[1] https://internals.rust-lang.org/t/erfc-minimal-custom-dsts-via-extern-type-dynsized/16591?u=cad97
