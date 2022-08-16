@@ -18,7 +18,11 @@ The easiest way to get something on the agenda is to [nominate it](../how_to/nom
 
 ## Can I generate the agenda myself?
 
-Sure, clone the [triagebot] repo and run this
+Sure. You can visit the following link and one will be generated for you for (the current date):
+
+https://triage.rust-lang.org/agenda/lang/triage
+
+Alternatively, clone the [triagebot] repo and run this
 
 ```bash
 > cargo run --bin lang agenda
