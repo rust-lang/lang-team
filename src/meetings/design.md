@@ -13,6 +13,10 @@ consensus around a specific proposals.
 To schedule design meetings, we hold a special **planning meeeting** once per month.
 In that meeting, we choose what design meetings we will hold the rest of the month.
 
+To generate the agenda for the planning meeting, you can use the following link and then copy/paste the generated text into a fresh hackmd page:
+
+https://triage.rust-lang.org/agenda/lang/planning
+
 ## How do I propose a design meeting?
 
 You need to open an issue, [as described here](../how_to/design_meeting.md).
