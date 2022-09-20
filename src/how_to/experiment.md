@@ -1,28 +1,22 @@
-# Start an experimental feature
+# Experimental feature gates
 
-Sometimes it is helpful to be able to do experimentation before authoring the RFC. **We allow experienced Rust contributors to create an experimental nightly feature gate even before an RFC is authored, if you can find a lang-team champion for the idea.**
+We use "experimental feature gates" to allow experienced Rust contributors to start implementing and exploring features even before an RFC has been written. This is particularly useful for larger features where we know we definitely want to solve the problem, but there are a lot of unknowns to work out before we can really create a coherent RFC -- think of things like adding async functions or the like.
 
 [rfc]: https://github.com/rust-lang/rfcs/#when-you-need-to-follow-this-process
 
-## Roles
-
-When doing an experiment, there are two roles:
-
-* An **experimentor** who is driving the work. They need to be an experienced contributor and able to devote enough time to keep the idea moving forward steadily.
-* A **lang-team champion** who will [second](../decision_process.md) the PR. 
-
-These can be the same person, but in that case, you should find someone else to second the PR.
-
 ## Process
 
-The process is as follows:
+If you are an experienced Rust contributor who would like to start an experiment in-tree, the process is as follows:
 
-* The **experimentor** should open a PR adding a new feature gate to the compiler, along with an associated tracking issue. They should include a short write-up documenting the motivation and outline of what they are trying to achieve. 
-* The **lang-team champion** can "second" the PR, starting an FCP. Once the FCP completes, the PR can land and implementation work begins (always gated under the new feature gate).
+* Write-up a description of the problem you are trying to solve and the general shape of the solution you want to work on. Discuss it on Zulip or elsewhere to find a **lang-team champion**:
+    * The champion is the connection to the lang-team. They can check in with you from time to time to see how the work is going and relay those updates to the lang-team (of course, you're always welcome to join meetings yourself too!). They can also help to discuss problems that arise.
+* Once you've found a champion, open a PR adding a new feature gate to the compile and create an associated tracking issue.
+    * The PR should include a write-up documenting the motivation and outline of what they are trying to achieve. 
+    * The feature gate should be marked as 'experimental', so that users get warnings if they try to use it. This flag has to stay until an RFC is accepted, even if the implementation is in good shape.
+* The lang-team champion will "second" the PR, starting an FCP. Once the FCP completes, the PR can land and implementation work begins (always gated under the new feature gate).
     * **Approving a new feature gate does not imply support for the feature.** It implies only that the lang team thinks it is worth doing the experiment to see what results.
-    * *Note to lang team members:* If you have concerns about the feasibility or wisdom of the feature, the right course of action is usually to allow experimentation to continue, but ensure that your concerns are noted on the tracking issue. This allows the experimentors to try and gather data and address your concern.
-
-**In order to be stabilized, a full RFC will be required.** The goal of the experimentation period is simply to gain experience and information so that a better RFC can be authored.
+    * Note to lang team members: If you have concerns about the feasibility or wisdom of the feature, the right course of action is usually to allow experimentation to continue, but ensure that your concerns are noted on the tracking issue. This allows the experimentors to try and gather data and address your concern.
+* When you feel the design is ready, you write an RFC as normal with your proposal. The goal of the experimentation period is simply to gain experience and information so that a better RFC can be authored.
 
 [members]: https://www.rust-lang.org/governance/teams/lang
 
