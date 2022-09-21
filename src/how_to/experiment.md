@@ -49,3 +49,23 @@ That's fine, you can still open the PR, but your mentor should be the one to nom
 ### What if I'm an experienced contributor, and I want to mentor someone?
 
 See the previous question.
+
+### As the experimentor, what do I do when I feel like I am ready to write the RFC?
+
+Glad to hear the experiment was a success! Check in with the champion to figure out if they feel like it's time to author the RFC. In particular, if people raised concerns about the design in the beginning, make sure that you have a good answer for them. Even better, show them the answer, and see if they are convinced!
+
+### As the experimentor, what if I feel like we don't want the feature after all?
+
+This is also a very useful finding! In this case, it's best to write up a comment (potentially short) on the tracking issue reflecting the findings from the experimentation phase, and suggest to your lang team champion that the tracking issue may want to be fcp'd to close so we can remove the feature from the compiler.
+
+It's generally a good idea to do this for features that aren't being actively driven to conclusion and are in the experimental phase, as they can easily accumulate otherwise.
+
+### As the experimentor, what if I run out of time to drive this proposal?
+
+First off, it's always ok to take a break. If you are going to step away for a long time, you should at minimum leave a comment with your current thinking on things -- if nothing else, it'll help you remember what was going on when you come back. 
+
+If you feel like you have to step away indefinitely, then discuss with the champion. They may be able to find someone else, or it may make sense to simply write-up your findings and remove the feature from the compiler.
+
+### As a lang team member, what do I do if I feel like my concerns are not being addressed?
+
+Bring up your concerns with the lang team champion and try to work towards finding experiments or new approaches that can resolve them. If this feature is ever going to make it to RFC, they are going to need your agreement, after all!
