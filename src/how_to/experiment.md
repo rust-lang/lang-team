@@ -69,3 +69,7 @@ If you feel like you have to step away indefinitely, then discuss with the champ
 ### As a lang team member, what do I do if I feel like my concerns are not being addressed?
 
 Bring up your concerns with the lang team champion and try to work towards finding experiments or new approaches that can resolve them. If this feature is ever going to make it to RFC, they are going to need your agreement, after all!
+
+### What if I have a competing proposal? Can I land my own experimental feature?
+
+Obviously the *best* is if you can combine your idea with the existing experiment, particularly if your idea is a minor variation. But it is also ok to have multiple competing experiments, if the idea is going in a different direction. Just follow the same process (find a lang team champion, etc). Be sure to note in the PR etc that you know this overlaps with the existing experiment and are looking to explore a different part of the design space. Also, it will be really helpful if you and the other experimenters can jointly maintain a kind of FAQ comparing and contrasting the two ideas.
