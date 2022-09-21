@@ -10,7 +10,7 @@ The final step in the [language-change process](./propose.md) is to **stabilize*
     * Provide answers to any "unresolved questions" listed in the RFC.
     * Describe the implementation history of the feature (optional).
 * Prior to stabilizing, we need to coordinate with other teams:
-    * An open PR editing the reference to describe the change is required. (You don't personally have to author it, but there needs to be an open PR, and ideally one that has been edited and is generally accepted.)
+    * An open PR editing the reference to describe the change is required. (You don't personally have to author it, but there needs to be an open PR, and ideally one that has been edited and is approved modulo actual stabilization by one of the repo maintainers.)
     * If the feature affects the type system, you should ping @rust-lang/types to check for their approval.
     * If the feature adds new syntax, you should ping the style team.
 * The lang team will read the report and eventually move to FCP. Per our [decision process](../decision_process.md), full consensus is required, as this is an irreversible change.
