@@ -23,7 +23,7 @@ If your comment requires more than 5-10 minutes of reading and discussion to und
 
 ## How quickly will the lang team answer?
 
-We try to be prompt, but sometimes we are not. Othertimes, we discuss the issue, but fail to leave the follow-up comment, because we're only human. Please feel free to ping again if it's been a week.
+We try to be prompt, but sometimes we are not. Othertimes, we discuss the issue, but fail to leave the follow-up comment, because we're only human. Please feel free to raise the topic on Zulip or reach out to a lang team member.
 
 ## Repositories where we look for nominations
 
