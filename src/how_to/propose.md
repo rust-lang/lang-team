@@ -84,7 +84,7 @@ These refer to our [decision process](./decision_process.md):
 * A **second** means that some [lang team member] must champion the idea, but it doesn't require full checkboxes. Instead, the idea goes immediately into "final comment period" (which lasts for 10 days), giving other lang team members a chance to comment on it and raise concerns. We use seconding for *reversible decisions* that don't commit the language to anything in particular.
 * A **consensus** means that every [lang team member] must check their box and actively approve.
 
-In both cases, we currently handle consensus with rfcbot (`@rfcbot fcp`). For a second, however, the lang team member who initiatives FCP can go ahead and check the boxes of other lang-team members, they can raise concerns if needed. This is a temporary measure until we have first-class support for FCP.
+In both cases, we currently handle consensus with rfcbot (`@rfcbot fcp`). For a second, however, the lang team member who initiatives FCP can go ahead and check the boxes of other lang-team members, they can raise concerns if needed. This is a temporary measure until we have first-class support for seconding.
 
 [lang team member]: https://www.rust-lang.org/governance/teams/lang
 
