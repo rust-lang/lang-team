@@ -14,7 +14,7 @@ Note that implementation itself is governed by the [compiler team](https://githu
 
 We also work closely with the [types team](https://github.com/rust-lang/types-team), which owns the details of the type system design in much the same way as the compiler team owns the details of the implementation.
 
-Finally, there are often "grey areas" between the language and library teams, such as the addition of a new trait to the standard library that 
+Finally, there are often "grey areas" between the language and library teams, such as the addition of a new standard library trait that reflects a core system capability (e.g., `Future`). In those cases, the lang team is generally reponsible for deciding if we want the core capability, the libs team owns the API details.
 
 ## Key links
 
