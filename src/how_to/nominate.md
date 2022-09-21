@@ -19,6 +19,8 @@ Where should we go from here?
 
 The ideal comment will identify precisely what question you would like answered. Please try to make the comment easy for us to parse and understand without requiring a lot of context. We encourage links to internals or Zulip so we can dive into the details, but it really helps us give useful answers if you can summarize the key details up front.
 
+If your comment requires more than 5-10 minutes of reading and discussion to understand and effectively respond to, consider filing a meeting proposal (TODO: link) instead. This will give you ~60 minutes to present your question and the lang team more time to analyze it. We may punt the question back to you with an ask to do so if the question isn't answerable in our triage meeting time.
+
 ## How quickly will the lang team answer?
 
 We try to be prompt, but sometimes we are not. Othertimes, we discuss the issue, but fail to leave the follow-up comment, because we're only human. Please feel free to ping again if it's been a week.
