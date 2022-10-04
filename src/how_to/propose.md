@@ -77,6 +77,7 @@ click StabilizationAccepted href "./stabilize.html" "Read about stabilization pr
 click Documented href "./stabilize.html" "Read about stabilization procedure"
 click TypesTeamApproval href "./stabilize.html" "Read about stabilization procedure"
 click StyleTeamNotified href "./stabilize.html" "Read about stabilization procedure"
+click TweakToExistingFeature href "./propose.html#what-constitutes-a-small-addition-or-tweak-to-an-existing-feature"
 ```
 
 ## Frequently asked questions
