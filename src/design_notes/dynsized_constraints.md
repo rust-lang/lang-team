@@ -35,23 +35,23 @@ This design document is about the restrictions on what `T: ?Sized + DynSized` ac
 
 `Arc` supports "zombie" references, where all strong `Arc` and the pointee have been dropped,
 but `Weak` handles still exist and so the allocation still exists.
-This means that `Weak` needs to be able to determine the layout of the allocation from a dropped pointee.
+This means that `Weak` needs to be able to determine the layout of the allocation from a dropped pointee,
+as the `T` is dropped with the last `Arc` but the allocation freed with the last `Weak`.
 
 In addition, `Weak` are pointers to the *reference count* part of the `ArcInner` allocation,
 and thus need to *statically* know the alignment of the pointee type to determine the offset
 (it cannot call `align_of_val_raw` without first knowing the offset).
 
-For the alignment, there are three potential resolutions:
-
-- Store layout information in the `ArcInner` header,
-- Require that alignment be determined solely from pointee metadata, or
-- Change the pointer of `Arc<T>` to point directly at `T` and use a fixed negative offset for the header.
-
-For the both, there are three potential resolutions:
+There are three potential resolutions that cover both size and alignment:
 
 - Store layout information in the `ArcInner` header, or
 - Require that layout be determined solely from pointee metadata, or
 - Require that layout be determinable from a dropped pointee.
+  [^This is trivially the case if determining the layout does not read the pointee (i.e. is derivable by just the potentially wide pointer);
+  alternatively, the pointee could ensure that layout information (e.g. vtable pointer) remains valid to read even after it's been dropped.]
+
+Dealing with alignment can be simplified by changing `Arc<T>` from storing `*mut ArcInner<T>` to
+storing `*mut T` and storing the refcount metadata at a fixed negative offset independent of `T`.
 
 T-lang commented on this in \[3] (w.r.t. const `Weak<T>::[into|from]_raw` and `Weak::new`):
 
