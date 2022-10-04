@@ -78,6 +78,8 @@ click Documented href "./stabilize.html" "Read about stabilization procedure"
 click TypesTeamApproval href "./stabilize.html" "Read about stabilization procedure"
 click StyleTeamNotified href "./stabilize.html" "Read about stabilization procedure"
 click TweakToExistingFeature href "./propose.html#what-constitutes-a-small-addition-or-tweak-to-an-existing-feature"
+click LangTeamChampion "./experiment.html" "Read about experimental feature gates"
+click NeedToExperiment "./experiment.html" "Read about experimental feature gates"
 ```
 
 ## Frequently asked questions
