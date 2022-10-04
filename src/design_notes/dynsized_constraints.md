@@ -46,9 +46,10 @@ There are three potential resolutions that handle both size and alignment unifor
 
 - Store layout information in the `ArcInner` header, or
 - Require that layout be determined solely from pointee metadata, or
-- Require that layout be determinable from a dropped pointee.
-  [^This is trivially the case if determining the layout does not read the pointee (i.e. is derivable by just the potentially wide pointer);
-  alternatively, the pointee could ensure that layout information (e.g. vtable pointer) remains valid to read even after it's been dropped.]
+- Require that layout be determinable from a dropped pointee.[^why]
+
+[^why]: This is trivially the case if determining the layout does not read the pointee (i.e. is derivable by just the potentially wide pointer);
+    alternatively, the pointee could ensure that layout information (e.g. vtable pointer) remains valid to read even after it's been dropped.]
 
 Dealing with alignment can be simplified by changing `Arc<T>` from storing `*mut ArcInner<T>` to
 storing `*mut T` and storing the refcount metadata at a fixed negative offset independent of `T`.
