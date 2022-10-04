@@ -8,7 +8,7 @@ The highlights are these:
 
 * An [RFC] is required for most changes.
 * Small changes that fit in a PR, have narrow impact, and are uncontroversial can skip the RFC process ([read more](#what-constitutes-a-small-addition-or-tweak-to-an-existing-feature)).
-* If you have a lang-team champion and an experienced implementor, you can start [experimenting](./experiment.md) by just adding a feature gate and a tracking issue, but you'll still need an RFC later.
+* If you have a lang-team liaison and an experienced implementor, you can start [experimenting](./experiment.md) by just adding a feature gate and a tracking issue, but you'll still need an RFC later.
 
 [RFC]: https://github.com/rust-lang/rfcs/#when-you-need-to-follow-this-process
 
@@ -21,7 +21,7 @@ flowchart TD
 
 subgraph LangTeamChangeProcess [Lang Team Change Process]
 TweakToExistingFeature["How large is your proposed change?"]
-LangTeamChampion["Are you an experienced contributor\nwith a lang team champion?"]
+LangTeamLiaison["Are you an experienced contributor\nwith a lang team liaison?"]
 NeedToExperiment["Do you need to experiment\nbefore you can write RFC?"]
 
 subgraph Stages
@@ -55,9 +55,9 @@ subgraph Stages
 end
 
 TweakToExistingFeature -- Tweak to an existing aspect of Rust --> ChangeProposed
-TweakToExistingFeature -- New feature or a complex change --> LangTeamChampion
-LangTeamChampion -- Yes --> NeedToExperiment
-LangTeamChampion -- No --> RFCOpen
+TweakToExistingFeature -- New feature or a complex change --> LangTeamLiaison
+LangTeamLiaison -- Yes --> NeedToExperiment
+LangTeamLiaison -- No --> RFCOpen
 NeedToExperiment -- Yes --> ExperimentalFeatureGateProposed
 NeedToExperiment -- No --> RFCOpen
 end
@@ -78,7 +78,7 @@ click Documented href "./stabilize.html" "Read about stabilization procedure"
 click TypesTeamApproval href "./stabilize.html" "Read about stabilization procedure"
 click StyleTeamNotified href "./stabilize.html" "Read about stabilization procedure"
 click TweakToExistingFeature href "./propose.html#what-constitutes-a-small-addition-or-tweak-to-an-existing-feature"
-click LangTeamChampion "./experiment.html" "Read about experimental feature gates"
+click LangTeamLiaison "./experiment.html" "Read about experimental feature gates"
 click NeedToExperiment "./experiment.html" "Read about experimental feature gates"
 ```
 
@@ -88,7 +88,7 @@ click NeedToExperiment "./experiment.html" "Read about experimental feature gate
 
 These refer to our [decision process](./decision_process.md):
 
-* A **second** means that some [lang team member] must champion the idea, but it doesn't require full checkboxes. Instead, the idea goes immediately into "final comment period" (which lasts for 10 days), giving other lang team members a chance to comment on it and raise concerns. We use seconding for *reversible decisions* that don't commit the language to anything in particular.
+* A **second** means that some [lang team member] must liaison the idea, but it doesn't require full checkboxes. Instead, the idea goes immediately into "final comment period" (which lasts for 10 days), giving other lang team members a chance to comment on it and raise concerns. We use seconding for *reversible decisions* that don't commit the language to anything in particular.
 * A **consensus** means that every [lang team member] must check their box and actively approve.
 
 In both cases, we currently handle consensus with rfcbot (`@rfcbot fcp`). For a second, however, the lang team member who initiatives FCP can go ahead and check the boxes of other lang-team members, they can raise concerns if needed. This is a temporary measure until we have first-class support for seconding.
