@@ -27,7 +27,7 @@ Lang team members can propose new additions to the team as follows:
 * Lang team member prepares a short write-up to propose candidate to the rest of the team
     * The write-up should draw on the qualifications below, giving examples where the candidate demonstrated the various criteria
 * Leads check with moderation team for known flags, surface to team if any.
-* The decision to add must have unanimous consent, similar to any other decision.
+* The decision to add must have unanimous consent, similar to any other decision. Objections may be raised in a private team discussion, or by contacting a team lead.
 
 **Important:** Discussions about potential new members are kept strictly confidential. Email or voice conversation are often preferred because they doesn't keep publicly available records.
 
