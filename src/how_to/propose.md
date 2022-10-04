@@ -19,11 +19,10 @@ The following lays out the complete flow chart for language features. Note that 
 ```mermaid
 flowchart TD
 
-TweakToExistingFeature["Proposing a small addition or\ntweaking an existing feature?"]
-
-NewFeatureOrComplexChange["New feature, or a complex change?"]
-
+subgraph LangTeamChangeProcess [Lang Team Change Process]
+TweakToExistingFeature["How large is your proposed change?"]
 LangTeamChampion["Are you an experienced contributor\nwith a lang team champion?"]
+NeedToExperiment["Do you need to experiment\nbefore you can write RFC?"]
 
 subgraph Stages
     ExperimentalFeatureGateProposed["Create a tracking issue and\nopen a rust-lang/rust PR proposing\nan experimental feature gate"]
@@ -51,18 +50,23 @@ subgraph Stages
     TypesTeamApproval --> StabilizationAccepted
     StabilizationProposed --and this--> StyleTeamNotified
     StyleTeamNotified --> StabilizationAccepted
-    StabilizationAccepted -.if a change is needed.-> ChangeProposed
     ChangeProposed --FCP proposed and accepted--> ChangeAccepted
-    ChangeAccepted -.if more changes are needed.-> ChangeProposed
+    ChangeProposed -- If team feels change\nmerits a second RFC --> RFCOpen
 end
 
-TweakToExistingFeature --> ChangeProposed
-
-NewFeatureOrComplexChange --> RFCOpen
-
-LangTeamChampion -- Yes --> ExperimentalFeatureGateProposed
-
+TweakToExistingFeature -- Tweak to an existing aspect of Rust --> ChangeProposed
+TweakToExistingFeature -- New feature or a complex change --> LangTeamChampion
+LangTeamChampion -- Yes --> NeedToExperiment
 LangTeamChampion -- No --> RFCOpen
+NeedToExperiment -- Yes --> ExperimentalFeatureGateProposed
+NeedToExperiment -- No --> RFCOpen
+end
+
+%% Drawn from https://coolors.co/25283d-8f3985-a675a1-cea2ac-efd9ce
+classDef pink fill:#EFD9CE
+classDef tuscany fill:#CEA2AC
+class LangTeamChangeProcess pink
+class Stages tuscany
 
 click RFCOpen href "https://github.com/rust-lang/rfcs/#when-you-need-to-follow-this-process" "Read about RFCs"
 click RFCAccepted href "https://forge.rust-lang.org/lang/rfc-merge-procedure.html" "RFC merge procedure"
