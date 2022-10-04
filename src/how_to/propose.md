@@ -122,11 +122,11 @@ In the diagram above, we show experiments as always leading to an RFC. This is t
 
 ### What about adding special traits and things to the standard library?
 
-We consider intrinsics and "lang item" (things that need special treatment from the language) to be under the lang team purview. Specifically, the lang team governs the semantics and capabilities exposed by this new feature. The details of the API are governed by the [libs team].
+We consider intrinsics and "lang item" (things that need special treatment from the language) to be under the lang team purview. Specifically, the lang team governs the semantics and capabilities exposed by this new feature. The details of the API are governed by the [libs-api team].
 
-Whenever possible, though, we prefer to issue a quick approval for the "general feature" being discussed, and leave it to the libs team to decide where to apply it. For example, we approved the ability to add inherent methods to standard library types like `u32` long ago, but the [libs team] governs what APIs are available.
+Whenever possible, though, we prefer to issue a quick approval for the "general feature" being discussed, and leave it to the libs-api team to decide where to apply it. For example, we approved the ability to add inherent methods to standard library types like `u32` long ago, but the [libs-api team] governs what APIs are available.
 
-[libs team]: (https://github.com/rust-lang/libs-team)
+[libs-api team]: https://github.com/rust-lang/libs-team
 
 ### My RFC has been waiting for a comment from the lang-team for a long time!
 
