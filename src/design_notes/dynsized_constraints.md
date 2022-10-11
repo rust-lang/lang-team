@@ -42,9 +42,10 @@ In addition, `Weak` are pointers to the *reference count* part of the `ArcInner`
 and thus need to *statically* know the alignment of the pointee type to determine the offset
 (it cannot call `align_of_val_raw` without first knowing the offset).
 
-There are three potential resolutions that handle both size and alignment uniformly:
+There are four potential resolutions that handle both size and alignment uniformly:
 
 - Store layout information in the `ArcInner` header, or
+- Store layout information in `T`'s space after it's been dropped, or
 - Require that layout be determined solely from pointee metadata, or
 - Require that layout be determinable from a dropped pointee.[^why]
 
