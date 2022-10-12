@@ -12,6 +12,7 @@
   - [Decision process examples](./decision_process/examples.md)
   - [Decision process reference](./decision_process/reference.md)
 - [Becoming and being a lang-team member](./membership.md)
+  - [Lang-team leads](./leads.md)
 - [Chat platform](./chat_platform.md)
 - [Calendar](./calendar.md)
 - [Meetings](./meetings.md)
