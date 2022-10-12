@@ -11,6 +11,7 @@
 - [Decision process and principles](./decision_process.md)
   - [Decision process examples](./decision_process/examples.md)
   - [Decision process reference](./decision_process/reference.md)
+- [Becoming and being a lang-team member](./membership.md)
 - [Chat platform](./chat_platform.md)
 - [Calendar](./calendar.md)
 - [Meetings](./meetings.md)
