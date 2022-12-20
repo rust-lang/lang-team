@@ -28,14 +28,14 @@ we grow, we face increasing challenges in how we can scale the ways in which we
 empower people to an increasing number of people. This roadmap presents three
 general themes we plan to focus on:
 
-- **[Flatten the (learning) curve](#Theme-Flatten-the-learning-curve)**:
+- **[Flatten the (learning) curve](#theme-flatten-the-learning-curve)**:
   scaling to new users and new use cases
     - Make Rust more accessible to new and existing users alike, and make
       solving hard problems easier.
-- **[Help Rust's users help each other](#Theme-Help-users-help-each-other)**:
+- **[Help Rust's users help each other](#theme-help-users-help-each-other)**:
   scaling the ecosystem
     - Empower library authors so they can---in turn---empower their users.
-- **[Help the Rust project scale](#Theme-Help-the-Rust-project-scale)**:
+- **[Help the Rust project scale](#theme-help-the-rust-project-scale)**:
   scaling the project
     - Develop processes to scale to the needs and use cases of a growing number
       of users; evaluate and finish projects we've started.
