@@ -129,7 +129,7 @@ Whenever possible, Rust tries to do the safe thing by default.
 
 Numeric overflow checking (e.g. `1000u16 * 1000u16`) is one case where Rust
 compromised on this: on many targets, numeric overflow checking has high enough
-overhead to hut performance too much for a wide variety of code. As a result,
+overhead to hurt performance too much for a wide variety of code. As a result,
 Rust defaults to having overflow checking only for debug builds, while release
 builds have overflow checking off by default. (Even in release builds, numeric
 overflow is still undefined, and projects can turn it on.)
