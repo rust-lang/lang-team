@@ -19,6 +19,7 @@
   - [Triage meeting](./meetings/triage.md)
   - [Planning and design meetings](./meetings/design.md)
   - [Backlog bonanza](./meetings/backlog-bonanza.md)
+- [Frequently Requested Changes](./frequently-requested-changes.md)
 - [Design notes](./design_notes.md)
   - [Allowing integer literals like `1` to be inferred to floating point](./design_notes/int_literal_as_float.md)
   - [Generalizing coroutines](./design_notes/general_coroutines.md)
