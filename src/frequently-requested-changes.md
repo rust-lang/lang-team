@@ -131,8 +131,9 @@ Numeric overflow checking (e.g. `1000u16 * 1000u16`) is one case where Rust
 compromised on this: on many targets, numeric overflow checking has high enough
 overhead to hurt performance too much for a wide variety of code. As a result,
 Rust defaults to having overflow checking only for debug builds, while release
-builds have overflow checking off by default. (Even in release builds, numeric
-overflow is still undefined, and projects can turn it on.)
+builds have overflow checking off by default. (In release builds, numeric
+overflow wraps, but code cannot count on this behavior, and projects can turn
+on overflow checking in release mode.)
 
 We've thought about this choice many times, and we're open to considering
 changes to this default based on benchmarks. If, on some Rust targets, overflow
