@@ -148,9 +148,9 @@ explicitly non-overflowing numeric types such as `Wrapping`.
 
 ## Cross-function type inference
 
-Rust's type inference stops at function boundaries; Rust requires specifying
-explicit types for function parameters, rather than allowing inference to work
-across functions.
+Rust's type inference generally stops at function boundaries; Rust requires
+specifying explicit types for function parameters, rather than allowing
+inference to work across functions.
 
 This is an intentional design choice: by making functions an inference
 boundary, type errors become easier to debug and compartmentalize, and Rust
