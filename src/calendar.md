@@ -10,7 +10,7 @@ meetings.
 
 ## Subteam Calendars
 
-Some subteams of the lang team reuse the primary lang team calendar for their own calendar events, while others may choose to create a separate calendar. The calendars of all subteams that do not use the main calendar are listed below:
+Some subteams of the lang team reuse the primary lang team calendar for their own calendar events, while others may choose to create a separate calendar. The calendars of all subteams that do not use the main calendar should be listed below:
 
 ### Style Team
 
