@@ -116,9 +116,10 @@ In general, such a change would substantially raise barriers to entry for Rust
 developers, making Rust code less approachable and less universally
 understandable. We're unlikely to add support for this.
 
-Note that Rust's existing operator overloading is semantic (`impl Add`), not
-syntactic (`impl Plus`), which tends to encourage using overloaded operators
-for the same semantic purposes, rather than for building arbitrary domain-specific languages.
+Note that Rust's existing operator overloading uses semantic trait names (`impl
+Add`), rather than symbols or names of symbols (`Plus` or `+`), which tends to
+encourage using overloaded operators for the same semantic purposes, rather
+than for building arbitrary domain-specific languages.
 
 Rust developers seeking to build arbitrary domain-specific languages (DSLs)
 should consider the macro system.
