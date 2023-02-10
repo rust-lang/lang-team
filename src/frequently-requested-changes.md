@@ -134,8 +134,9 @@ overhead to hurt performance too much for a wide variety of code. As a result,
 Rust defaults to having overflow checking only for debug builds, while release
 builds have overflow checking off by default. (In release builds, numeric
 overflow wraps, but code cannot count on overflow checking being disabled even
-in release builds, as projects can turn on overflow checking in release
-builds.)
+in release builds, as projects can turn on overflow checking in release builds.
+In addition, library code cannot make any assumptions about overflow checking,
+as the top-level compilation decides whether to enable or disable it.)
 
 We've thought about this choice many times, and we're open to considering
 changes to this default based on benchmarks. If, on some Rust targets, overflow
