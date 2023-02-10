@@ -133,8 +133,9 @@ compromised on this: on many targets, numeric overflow checking has high enough
 overhead to hurt performance too much for a wide variety of code. As a result,
 Rust defaults to having overflow checking only for debug builds, while release
 builds have overflow checking off by default. (In release builds, numeric
-overflow wraps, but code cannot count on this behavior, and projects can turn
-on overflow checking in release mode.)
+overflow wraps, but code cannot count on overflow checking being disabled even
+in release builds, as projects can turn on overflow checking in release
+builds.)
 
 We've thought about this choice many times, and we're open to considering
 changes to this default based on benchmarks. If, on some Rust targets, overflow
