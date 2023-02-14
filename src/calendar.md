@@ -15,7 +15,7 @@ Some subteams of the lang team reuse the primary lang team calendar for their ow
 ### Style Team
 
 - [View calendar](https://calendar.google.com/calendar/embed?src=d0564ed914a41cf4915bd5ebe6e2e4ec0ee1293fdc1d09d6f5bdb27d4f91c083%40group.calendar.google.com)
-- [ICS file][https://calendar.google.com/calendar/ical/d0564ed914a41cf4915bd5ebe6e2e4ec0ee1293fdc1d09d6f5bdb27d4f91c083%40group.calendar.google.com/public/basic.ics]
+- [ICS file](https://calendar.google.com/calendar/ical/d0564ed914a41cf4915bd5ebe6e2e4ec0ee1293fdc1d09d6f5bdb27d4f91c083%40group.calendar.google.com/public/basic.ics)
 
 [caldav]: https://calendar.google.com/calendar/embed?src=recud4b9o8cmc0m5rmr033p5nk%40group.calendar.google.com
 [ics]: https://calendar.google.com/calendar/ical/recud4b9o8cmc0m5rmr033p5nk%40group.calendar.google.com/public/basic.ics
