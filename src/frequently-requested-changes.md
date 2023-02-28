@@ -116,9 +116,10 @@ In general, such a change would substantially raise barriers to entry for Rust
 developers, making Rust code less approachable and less universally
 understandable. We're unlikely to add support for this.
 
-Note that Rust's existing operator overloading is semantic (`impl Add`), not
-syntactic (`impl Plus`), which tends to encourage using overloaded operators
-for the same semantic purposes, rather than for building arbitrary domain-specific languages.
+Note that Rust's existing operator overloading uses semantic trait names (`impl
+Add`), rather than symbols or names of symbols (`Plus` or `+`), which tends to
+encourage using overloaded operators for the same semantic purposes, rather
+than for building arbitrary domain-specific languages.
 
 Rust developers seeking to build arbitrary domain-specific languages (DSLs)
 should consider the macro system.
@@ -132,8 +133,10 @@ compromised on this: on many targets, numeric overflow checking has high enough
 overhead to hurt performance too much for a wide variety of code. As a result,
 Rust defaults to having overflow checking only for debug builds, while release
 builds have overflow checking off by default. (In release builds, numeric
-overflow wraps, but code cannot count on this behavior, and projects can turn
-on overflow checking in release mode.)
+overflow wraps, but code cannot count on overflow checking being disabled even
+in release builds, as projects can turn on overflow checking in release builds.
+In addition, library code cannot make any assumptions about overflow checking,
+as the top-level compilation decides whether to enable or disable it.)
 
 We've thought about this choice many times, and we're open to considering
 changes to this default based on benchmarks. If, on some Rust targets, overflow
@@ -146,9 +149,9 @@ explicitly non-overflowing numeric types such as `Wrapping`.
 
 ## Cross-function type inference
 
-Rust's type inference stops at function boundaries; Rust requires specifying
-explicit types for function parameters, rather than allowing inference to work
-across functions.
+Rust's type inference generally stops at function boundaries; Rust requires
+specifying explicit types for function parameters, rather than allowing
+inference to work across functions.
 
 This is an intentional design choice: by making functions an inference
 boundary, type errors become easier to debug and compartmentalize, and Rust
