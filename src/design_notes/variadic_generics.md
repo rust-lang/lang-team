@@ -10,6 +10,8 @@ this space.
 - [Analysing variadics, and how to add them to Rust - Olivier Faure](https://poignardazur.github.io/2021/01/30/variadic-generics/)
 - [rust-variadics-background - Alice Cecile](https://github.com/alice-i-cecile/rust-variadics-background/)
 - [More enum types - Yoshua Wuyts](https://blog.yoshuawuyts.com/more-enum-types/)
+- [\[Brainstorming\] Use cases for variadic generics - /r/Rust
+](https://www.reddit.com/r/rust/comments/l8vaa6/brainstorming_use_cases_for_variadic_generics/)
 - [A mirror for Rust - JeanHeyd Meneide](https://soasis.org/posts/a-mirror-for-rust-a-plan-for-generic-compile-time-introspection-in-rust/)
 
 ## Potential use cases
