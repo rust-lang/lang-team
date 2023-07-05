@@ -166,3 +166,15 @@ go anywhere, including in systems contexts where relatively few languages can.
 
 That said, we're happy to add language features to *support* an *optional*
 garbage collector, where needed.
+
+## Suffix modifiers (`if` after `return`/`break`/`continue`, or after arbitrary statements)
+
+We often get proposals for syntax like `return expr if condition;` or
+`break if condition;`. We don't plan to make such a change to Rust.
+
+Such a change would prioritize *concise* code over *readable* code. We don't
+want people to start out thinking they're reading an unconditional `return`
+statement, and only later see the `if` and realize it's a conditional return.
+
+Such a change would also have non-obvious evaluation order (evaluating the
+condition before the return expression).
