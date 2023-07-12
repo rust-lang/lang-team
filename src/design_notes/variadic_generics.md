@@ -31,10 +31,10 @@ this space.
 
 - [C](https://en.cppreference.com/w/c/variadic)
 - [Clojure](https://clojure.org/guides/learn/functions#_multi_arity_functions)
-- [Circle](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#pack-traits)
 - [Common Lisp](http://clhs.lisp.se/Body/03_dac.htm)
 - [Crystal](https://crystal-lang.org/reference/1.8/syntax_and_semantics/default_values_named_arguments_splats_tuples_and_overloading.html#components-of-a-method-definition)
 - [C++](https://en.cppreference.com/w/cpp/language/parameter_pack)
+  - [Circle](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#pack-traits)
   - [Reversing a tuple](https://stackoverflow.com/questions/17178075/how-do-i-reverse-the-order-of-element-types-in-a-tuple-type)
 - [C#](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params)
 - [D](https://dlang.org/spec/function.html#variadic)
@@ -190,7 +190,8 @@ Most similar to Fredpointzero's proposal. Like all previous proposals, uses tupl
 
 #### Pros
 
-- Most flexible proposal so far
+- Iteration/expansion is explicit (`static for`)
+- Most flexible proposal so far, including:
   - Lifetime and const variadics
   - Generalized MxN -> NxM transformation
   - Homogeneous varargs, using arrays
@@ -198,7 +199,7 @@ Most similar to Fredpointzero's proposal. Like all previous proposals, uses tupl
 #### Cons
 
 - Most complex of all proposals so far
-- No support for recursion, out-of-order iteration, or random access as of yet
+  - Lots of new syntax, which will need bikeshed
 
 #### Syntax
 
@@ -252,7 +253,7 @@ impl<...Futs: Future> Future for Join<...Futs> {
 ```rust
 // Implement non-symmetric `PartialEq` for tuples
 
-impl<...Ts; N, ...Us; N> PartialEq<Us> for Ts
+impl<...Ts, ...Us> PartialEq<Us> for Ts
 where
     for<T, U in Ts, Us> T: PartialEq<U>,
 {
