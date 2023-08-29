@@ -204,3 +204,9 @@ Such a change could also pose problems for existing unsafe code, which may assum
 can be manually offset by the size of the type to access the next array element. Unsafe
 code may also assume that overwriting trailing padding is allowed, which would conflict with
 the repurposing of such padding for data storage.
+
+Cross-referencing to other discussions:
+
+* https://github.com/rust-lang/rfcs/issues/1397
+* https://github.com/rust-lang/rust/issues/17027
+* https://github.com/rust-lang/unsafe-code-guidelines/issues/176
