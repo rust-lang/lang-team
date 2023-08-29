@@ -188,7 +188,7 @@ padding, and allow interop with other languages which do this optimization.
 
 Rust makes several guarantees that make supporting these types difficult in the general case.
 The combination of `std::array::from_ref` and array indexing is a stable guarantee that a pointer
-(or reference) to an type is convertible to a pointer to a 1-array of that type.
+(or reference) to a type is convertible to a pointer to a 1-array of that type.
 
 Such a change could also pose problems for existing unsafe code, which may assume that pointers
 can be manually offset by the size of the type to access the next array element. Unsafe
