@@ -178,3 +178,19 @@ statement, and only later see the `if` and realize it's a conditional return.
 
 Such a change would also have non-obvious evaluation order (evaluating the
 condition before the return expression).
+
+## Size != Stride
+
+Rust assumes that the size of an object is equivalent to the stride of an object -
+this means that the size of `[T; N]` is `N * std::mem::size_of::<T>`. Other languages
+may have objects that take up less space in arrays due to the reuse of tail
+padding, and allow interop with other languages which do this optimization.
+
+Rust makes several guarantees that make supporting these types difficult in the general case.
+The combianation `std::array::from_ref` and array indexing is a stable guarantee that a pointer
+(or reference) to an type is convertible to a pointer to a 1-array of that type.
+
+Such a change could also pose problems for existing unsafe code, which may assume that pointers
+can be manually offset by the size of the type to access the next array element. Unsafe
+code may also assume that overwriting trailing padding is allowed, which would conflict with
+the repurposing of such padding for data storage.
