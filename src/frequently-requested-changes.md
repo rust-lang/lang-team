@@ -186,9 +186,19 @@ this means that the size of `[T; N]` is `N * std::mem::size_of::<T>`. Other lang
 may have objects that take up less space in arrays due to the reuse of tail
 padding, and allow interop with other languages which do this optimization.
 
-Rust makes several guarantees that make supporting these types difficult in the general case.
+One downside of this assumption is that types with alignment greater than their size can
+waste large amounts of space due to padding. An overaligned struct such as the following:
+```
+#[repr(C, align(512))] 
+struct Overaligned(u8);
+```
+will store only 1 byte of data, but will have 511 bytes of tail padding for a total size of
+512 bytes. This tail padding will not be reusable, and adding `Overaligned` as a struct field
+may exacerbate this waste as additional trailing padding be included after any other members.
+
+Rust makes several guarantees that make supporting size != stride difficult in the general case.
 The combination of `std::array::from_ref` and array indexing is a stable guarantee that a pointer
-(or reference) to a type is convertible to a pointer to a 1-array of that type.
+(or reference) to a type is convertible to a pointer to a 1-array of that type, and vice versa.
 
 Such a change could also pose problems for existing unsafe code, which may assume that pointers
 can be manually offset by the size of the type to access the next array element. Unsafe
