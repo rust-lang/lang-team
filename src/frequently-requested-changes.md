@@ -187,7 +187,7 @@ may have objects that take up less space in arrays due to the reuse of tail
 padding, and allow interop with other languages which do this optimization.
 
 Rust makes several guarantees that make supporting these types difficult in the general case.
-The combianation `std::array::from_ref` and array indexing is a stable guarantee that a pointer
+The combination of `std::array::from_ref` and array indexing is a stable guarantee that a pointer
 (or reference) to an type is convertible to a pointer to a 1-array of that type.
 
 Such a change could also pose problems for existing unsafe code, which may assume that pointers
