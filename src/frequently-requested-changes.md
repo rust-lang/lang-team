@@ -182,9 +182,9 @@ condition before the return expression).
 ## Size != Stride
 
 Rust assumes that the size of an object is equivalent to the stride of an object -
-this means that the size of `[T; N]` is `N * std::mem::size_of::<T>`. Other languages
-may have objects that take up less space in arrays due to the reuse of tail
-padding, and allow interop with other languages which do this optimization.
+this means that the size of `[T; N]` is `N * std::mem::size_of::<T>`. Allowing
+size to not equal stride  may allow objects that take up less space in arrays due
+to the reuse of tail padding, and allow interop with other languages with this behavior.
 
 One downside of this assumption is that types with alignment greater than their size can
 waste large amounts of space due to padding. An overaligned struct such as the following:
@@ -205,7 +205,12 @@ can be manually offset by the size of the type to access the next array element.
 code may also assume that overwriting trailing padding is allowed, which would conflict with
 the repurposing of such padding for data storage.
 
-While changing the fundamental layout guarantees seems unlikely, it may be reasonable to add additional inspection APIs for code that wishes to opt into the possibility of copying smaller parts of an object -- an API to find out that copying only bytes `0..1` of `Overaligned` is sufficient might still be reasonable, or something `size_of_val`-like that could be variant-aware to say which bytes are sufficient for copying a particular instance.
+While changing the fundamental layout guarantees seems unlikely, it may be reasonable to add additional
+inspection APIs for code that wishes to opt into the possibility of copying smaller parts of an object
+-- an API to find out that copying only bytes `0..1` of `Overaligned` is sufficient might still be
+reasonable, or something `size_of_val`-like that could be variant-aware to say which bytes are sufficient
+for copying a particular instance. Similarly, move-only fields may allow users to mitigate the effects
+of tail or internal padding, as they can be reused due to the lack of a possible reference or pointer.
 
 Cross-referencing to other discussions:
 
