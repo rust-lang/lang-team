@@ -205,6 +205,8 @@ can be manually offset by the size of the type to access the next array element.
 code may also assume that overwriting trailing padding is allowed, which would conflict with
 the repurposing of such padding for data storage.
 
+While changing the fundamental layout guarantees seems unlikely, it may be reasonable to add additional inspection APIs for code that wishes to opt into the possibility of copying smaller parts of an object -- an API to find out that copying only bytes `0..1` of `Overaligned` is sufficient might still be reasonable, or something `size_of_val`-like that could be variant-aware to say which bytes are sufficient for copying a particular instance.
+
 Cross-referencing to other discussions:
 
 * https://github.com/rust-lang/rfcs/issues/1397
