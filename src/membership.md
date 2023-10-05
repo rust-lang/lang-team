@@ -37,17 +37,19 @@ These are the questions we ask ourselves when deciding whether someone would be 
 
 * Has this person demonstrated **strong language design skills**?
     * Have they led an impactful initiative to completion?
-    * Have they identified a criticial flaw in someone else's design that led to the design being altered?
 * Is this person **responsible**?
     * When they agree to take on a task, do they either get it done or identify that they are not able to follow through and ask for help?
 * Is this person able to **lead others to a productive conversation**?
     * Are there times when a conversation was stalled out and this person was able to step in and get the design discussion back on track?
         * This could have been by suggesting a compromise, but it may also be by asking the right questions or encouraging the right tone.
-* Is this person able to **disagree productively**?
+* Is this person able to **disagree constructively and empathically**?
     * When they are having a debate, do they make an active effort to understand and repeat back others' points of view?
-    * Do they "steelman", looking for ways to restate others' points in the most convincing way? 
+    * Do they "steelman", looking for ways to restate others' points in the most convincing way?
+    * Do people come away from disagreements with this person feeling respected?
 * Is this person **active**?
-    * Are they attending the triage/design meetings regularly?
+    * Are they attending the [triage meeting](./meetings/triage.md) and [design meetings](./meetings/triage.md) regularly?
     * Either in meeting or elsewhere, do they comment on disussions and otherwise?
 * Does this person have an **overall desire to improve the language**, rather than a strong interest in some particular domain?
     * Everyone have preferences, but members are responsible for balancing a wide array of interests. Someone with very specialized interest may be a better choice for a lang team advisor.
+
+Keep in mind that qualifications are not a checklist and membership decisions are ultimately made on a case-by-case basis. **If you are interested in joining the lang team, we recommend you out to the lead(s) to talk about the path forward.**
