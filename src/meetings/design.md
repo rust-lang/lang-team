@@ -23,7 +23,7 @@ You need to open an issue, [as described here](../how_to/design_meeting.md).
 
 ## Can I attend?
 
-Yes! Design meetings are open to the public. You'll find the details on our [calendar](../calendar.md).
+Yes! Design meetings are open to the public. You'll find the details on our [calendar](../calendar.md) and a list of the upcoming meetings in the [design meeting schedule][ghp].
 
 ## How does a design meeting work?
 
@@ -40,4 +40,4 @@ After everyone is done reading, whoever is driving the meeting will pick questio
 The [design-meeting-minutes directory][dnm] contains the document from each meeting along with any questions that were asked and the ensuing disceussion.
 
 [dnm]: https://github.com/rust-lang/lang-team/tree/master/design-meeting-minutes
-
+[ghp]: https://github.com/orgs/rust-lang/projects/31/views/10
