@@ -44,7 +44,7 @@ These are the questions we ask ourselves when deciding whether someone would be 
         * This could have been by suggesting a compromise, but it may also be by asking the right questions or encouraging the right tone.
 * Is this person able to **disagree constructively and empathically**?
     * When they are having a debate, do they make an active effort to understand and repeat back others' points of view?
-    * Do they "steelman", looking for ways to restate others' points in the most convincing way?
+    * If they have a concern, do they engage actively to make sure it is understood and to look for ways to resolve it?
     * Do people come away from disagreements with this person feeling respected?
 * Is this person **active**?
     * Are they attending the [triage meeting](./meetings/triage.md) and [design meetings](./meetings/triage.md) regularly?
