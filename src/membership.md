@@ -52,4 +52,4 @@ These are the questions we ask ourselves when deciding whether someone would be 
 * Does this person have an **overall desire to improve the language**, rather than a strong interest in some particular domain?
     * Everyone have preferences, but members are responsible for balancing a wide array of interests. Someone with very specialized interest may be a better choice for a lang team advisor.
 
-Keep in mind that qualifications are not a checklist and membership decisions are ultimately made on a case-by-case basis. **If you are interested in joining the lang team, we recommend you out to the lead(s) to talk about the path forward.**
+Keep in mind that qualifications are not a checklist and membership decisions are ultimately made on a case-by-case basis. **If you are interested in joining the lang team, we recommend you reach out to the lead(s) to talk about the path forward.**
