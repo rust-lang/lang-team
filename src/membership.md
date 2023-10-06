@@ -48,7 +48,7 @@ These are the questions we ask ourselves when deciding whether someone would be 
     * If they have a concern, do they engage actively to make sure it is understood and to look for ways to resolve it?
     * Do people come away from disagreements with this person feeling respected?
 * Is this person **active**?
-    * Are they attending the [triage meeting](./meetings/triage.md) and [design meetings](./meetings/triage.md) regularly? (meetings are open for anyone to attend; but note that merely attending meetings is not enough to become a team member!)
+    * Are they attending the [triage meeting](./meetings/triage.md) and [design meetings](./meetings/triage.md) regularly? (Meetings are open for anyone to attend, but note that merely attending meetings is not enough to become a team member!)
     * Either in meeting or elsewhere, do they comment on disussions and otherwise?
 * Does this person have an **overall desire to improve the language**, rather than a strong interest in some particular domain?
     * Everyone have preferences, but members are responsible for balancing a wide array of interests. Someone with very specialized interest may be a better choice for a lang team advisor.
