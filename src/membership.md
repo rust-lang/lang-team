@@ -36,7 +36,8 @@ Lang team members can propose new additions to the team as follows:
 These are the questions we ask ourselves when deciding whether someone would be a good choice as a lang team member.
 
 * Has this person demonstrated **strong language design skills**?
-    * Have they led an impactful initiative to completion?
+    * Have they made major contributions to an area of the language, such as leading an impactful initiative to completion?
+    * Are they able to identify flaws in a design and, just as importantly, come up with creative solutions?
 * Is this person **responsible**?
     * When they agree to take on a task, do they either get it done or identify that they are not able to follow through and ask for help?
 * Is this person able to **lead others to a productive conversation**?
