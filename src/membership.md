@@ -43,7 +43,7 @@ These are the questions we ask ourselves when deciding whether someone would be 
 * Is this person able to **lead others to a productive conversation**?
     * Are there times when a conversation was stalled out and this person was able to step in and get the design discussion back on track?
         * This could have been by suggesting a compromise, but it may also be by asking the right questions or encouraging the right tone.
-* Is this person able to **disagree constructively and empathically**?
+* Is this person able to **disagree collaboratively, constructively, and with empathy**?
     * The expectation is that team members go "above and beyond" the [Rust code of conduct](https://www.rust-lang.org/policies/code-of-conduct), embodying not only the letter but also the spirit.
     * Do they help turn disagreements into collaborations, jointly seeking a mutually satisfying solution based on everyone's values?
     * When they are having a debate, do they make an active effort to understand and repeat back others' points of view?
