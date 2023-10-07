@@ -47,7 +47,7 @@ These are the questions we ask ourselves when deciding whether someone would be 
     * The expectation is that team members go "above and beyond" the [Rust code of conduct](https://www.rust-lang.org/policies/code-of-conduct), embodying not only the letter but also the spirit.
     * When they are having a debate, do they make an active effort to understand and repeat back others' points of view?
     * If they *or others* have a concern, do they engage actively to make sure it is understood and to look for ways to resolve it?
-    * Do people come away from disagreements with this person feeling respected?
+    * Do people come away from disagreements with this person feeling respected, understood, and valued?
 * Is this person **active**?
     * Are they attending the [triage meeting](./meetings/triage.md) and [design meetings](./meetings/triage.md) regularly? (Meetings are open for anyone to attend, but note that merely attending meetings is not enough to become a team member!)
     * Either in meeting or elsewhere, do they comment on disussions and otherwise?
