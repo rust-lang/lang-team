@@ -45,6 +45,7 @@ These are the questions we ask ourselves when deciding whether someone would be 
         * This could have been by suggesting a compromise, but it may also be by asking the right questions or encouraging the right tone.
 * Is this person able to **disagree constructively and empathically**?
     * The expectation is that team members go "above and beyond" the [Rust code of conduct](https://www.rust-lang.org/policies/code-of-conduct), embodying not only the letter but also the spirit.
+    * Do they help turn disagreements into collaborations, jointly seeking a mutually satisfying solution based on everyone's values?
     * When they are having a debate, do they make an active effort to understand and repeat back others' points of view?
     * If they *or others* have a concern, do they engage actively to make sure it is understood and to look for ways to resolve it?
     * Do people come away from disagreements with this person feeling respected, understood, and valued?
