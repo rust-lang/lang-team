@@ -4,7 +4,7 @@ Lang team members are the ones who ultimately decide the syntax/semantics of the
 
 ## Relations to other teams
 
-Lang team members should be familiar with how the compiler works, but they don't need to drive its implementation or even work on it. Compiler implementation details are the job of the [compiler team]. Note that compiler team members are encouraged to raise concerns if they feel that the desired design cannot be implemented in a reasoable and maintainable way.
+Lang team members should be familiar with how the compiler works, but they don't need to drive its implementation or even work on it. Compiler implementation details are the job of the [compiler team]. Note that compiler team members are encouraged to raise concerns if they feel that the desired design cannot be implemented in a reasonable and maintainable way.
 
 [compiler team]: https://rust-lang.github.io/compiler-team/
 
