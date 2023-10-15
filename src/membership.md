@@ -48,7 +48,7 @@ These are the questions we ask ourselves when deciding whether someone would be 
     * Do they help turn disagreements into collaborations, jointly seeking a mutually satisfying solution based on everyone's values?
     * When they are having a debate, do they make an active effort to understand and repeat back others' points of view?
     * If they *or others* have a concern, do they engage actively to make sure it is understood and to look for ways to resolve it?
-    * Do people come away from disagreements with this person feeling respected, understood, and valued?
+    * Do they respect others when disagreeing, seek earnestly to understand others' points of view, and show that they value others for bringing forward reasonable disagreement and dissent?
 * Is this person **active**?
     * Are they attending the [triage meeting](./meetings/triage.md) and [design meetings](./meetings/triage.md) regularly? (Meetings are open for anyone to attend, but note that merely attending meetings is not enough to become a team member!)
     * Either in meeting or elsewhere, do they comment on disussions and otherwise?
