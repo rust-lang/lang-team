@@ -7,6 +7,14 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install mdbook-mermaid
         run: cargo install mdbook-mermaid
-      - uses: XAMPPRocky/deploy-mdbook@v1.1
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
         with:
-            token: ${{ secrets.GITHUB_TOKEN }}
+          mdbook-version: '0.4.35'
+      - run: mdbook build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book
