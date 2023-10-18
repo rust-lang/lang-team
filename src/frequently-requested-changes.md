@@ -178,3 +178,42 @@ statement, and only later see the `if` and realize it's a conditional return.
 
 Such a change would also have non-obvious evaluation order (evaluating the
 condition before the return expression).
+
+## Size != Stride
+
+Rust assumes that the size of an object is equivalent to the stride of an object -
+this means that the size of `[T; N]` is `N * std::mem::size_of::<T>`. Allowing
+size to not equal stride  may allow objects that take up less space in arrays due
+to the reuse of tail padding, and allow interop with other languages with this behavior.
+
+One downside of this assumption is that types with alignment greater than their size can
+waste large amounts of space due to padding. An overaligned struct such as the following:
+```
+#[repr(C, align(512))] 
+struct Overaligned(u8);
+```
+will store only 1 byte of data, but will have 511 bytes of tail padding for a total size of
+512 bytes. This tail padding will not be reusable, and adding `Overaligned` as a struct field
+may exacerbate this waste as additional trailing padding be included after any other members.
+
+Rust makes several guarantees that make supporting size != stride difficult in the general case.
+The combination of `std::array::from_ref` and array indexing is a stable guarantee that a pointer
+(or reference) to a type is convertible to a pointer to a 1-array of that type, and vice versa.
+
+Such a change could also pose problems for existing unsafe code, which may assume that pointers
+can be manually offset by the size of the type to access the next array element. Unsafe
+code may also assume that overwriting trailing padding is allowed, which would conflict with
+the repurposing of such padding for data storage.
+
+While changing the fundamental layout guarantees seems unlikely, it may be reasonable to add additional
+inspection APIs for code that wishes to opt into the possibility of copying smaller parts of an object
+-- an API to find out that copying only bytes `0..1` of `Overaligned` is sufficient might still be
+reasonable, or something `size_of_val`-like that could be variant-aware to say which bytes are sufficient
+for copying a particular instance. Similarly, move-only fields may allow users to mitigate the effects
+of tail or internal padding, as they can be reused due to the lack of a possible reference or pointer.
+
+Cross-referencing to other discussions:
+
+* https://github.com/rust-lang/rfcs/issues/1397
+* https://github.com/rust-lang/rust/issues/17027
+* https://github.com/rust-lang/unsafe-code-guidelines/issues/176
