@@ -34,4 +34,4 @@ to types semver breaking. That means that stabilizing defining new auto traits i
 currently unlikely.
 
 [rust-lang/rust#13231]: https://github.com/rust-lang/rust/issues/13231
-[freeze discussion]: https://zulip-archive.rust-lang.org/213817tlang/73585Freezestabilizationandautotraitbackcompat.html
+[freeze discussion]: https://rust-lang.zulipchat.com/#narrow/stream/213817-t-lang/topic/Freeze.20stabilization.20and.20auto-trait.20backcompat/near/214251682
