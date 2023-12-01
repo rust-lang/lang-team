@@ -8,7 +8,7 @@ meetings.
 - [View calendar][caldav] -- use this to view the calendar online and add it to your Google Calendar
 - [ICS file, for use outside from google calendar][ics] -- you can use this to subscribe from other programs
 
-You can also find a list of upcoming design meetings here:
+You can find a list of upcoming design meetings here:
 
 - [Design meeting schedule][ghp]
 
