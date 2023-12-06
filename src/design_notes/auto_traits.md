@@ -44,10 +44,17 @@ not held. `pyo3` provides explicit `!Ungil` impls only for types defined in the
 `pyo3` crate itself. Because of this, all types that do not implement `Ungil`
 are defined either by `pyo3` itself, or by downstream dependencies of `pyo3`. As
 long as `pyo3` does not introduce new negative impls for existing types in new
-minor versions of itself, there is no backward compatibility hazard.
+minor versions of itself, the backward compatibility hazard is mostly avoided.
+
+However, there is still one problematic case. Trait objects only implement the
+traits they list explicitly, so even with the restrictions described previously,
+downstream crates would be able to test for the presence of trait objects inside
+upstream types. One potential solution is to change `dyn Trait` to mean
+`dyn Trait + AllAutoTraitsDefinedInDownstreamCrates` or
+`dyn Trait + AllAutoTraitsDefinedOutsideOfCore`.
 
 `obj2c` uses its [`AutoreleaseSafe` auto trait][AutoreleaseSafe] in a similar
-manner.
+manner to `pyo3`'s `Ungil`.
 
 [As of October 2023][2020-10-03 triage meeting], the lang team no longer feels
 that stabilizing any form of auto traits is entirely out of the question.
