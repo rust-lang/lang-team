@@ -1,27 +1,34 @@
 # Calendar
 
-We have a lang-team calendar that shows the time for our various meetings.
-Meetings are generally open to anyone who wants to listen in. We also try to
-post [minutes](https://github.com/rust-lang/lang-team/tree/master/minutes) (and recordings, if any) on a "best-effort" basis from our
-meetings.
+The lang team has two recurring weekly meeting slots:
 
-- [View calendar][caldav] -- use this to view the calendar online and add it to your Google Calendar
-- [ICS file, for use outside from google calendar][ics] -- you can use this to subscribe from other programs
+- [Triage meetings](./meetings/triage.html): Weekly on Wednesdays at 11:00 U.S. Eastern Time.
+- [Design/planning meetings](./meetings/design.html): Weekly on Wednesdays at 13:00 U.S. Eastern Time.
 
-You can find a list of upcoming design meetings here:
+When adjusting for other time zones, note that our meeting times follow changes in the particulars of U.S. daylight saving time.
 
-- [Design meeting schedule][ghp]
+For the design/planning meeting slot, we typically do a planning meeting on the first Wednesday of the month, then we do design meetings on each remaining Wednesday.
+
+Our meetings are open to all those who are interested to listen.
+
+To subscribe to the calendar of our recurring meetings, add this URL to your favorite calendaring application:
+
+- <https://rust-lang.github.io/calendar/lang.ics>
+
+Our schedule of upcoming design meetings is tracked in a GitHub project and can be viewed here:
+
+- [Design meeting schedule](https://github.com/orgs/rust-lang/projects/31/views/10)
+
+Each design meeting issue includes details about what we'll be discussing. After the meeting, the issue will include a link to the minutes.
+
+Minutes for all of our recent meetings can be found here:
+
+- [Lang team documents on HackMD](https://hackmd.io/@rust-lang-team)
+
+Periodically, we archive our meeting minutes to git:
+
+- [Lang team archived minutes](https://github.com/rust-lang/lang-team/tree/master/minutes)
 
 ## Subteam Calendars
 
-Some subteams of the lang team reuse the primary lang team calendar for their own calendar events, while others may choose to create a separate calendar. The calendars of all subteams that do not use the main calendar should be listed below:
-
-### Style Team
-
-- [View calendar](https://calendar.google.com/calendar/embed?src=d0564ed914a41cf4915bd5ebe6e2e4ec0ee1293fdc1d09d6f5bdb27d4f91c083%40group.calendar.google.com)
-- [ICS file](https://calendar.google.com/calendar/ical/d0564ed914a41cf4915bd5ebe6e2e4ec0ee1293fdc1d09d6f5bdb27d4f91c083%40group.calendar.google.com/public/basic.ics)
-
-[caldav]: https://calendar.google.com/calendar/embed?src=recud4b9o8cmc0m5rmr033p5nk%40group.calendar.google.com
-[ics]: https://calendar.google.com/calendar/ical/recud4b9o8cmc0m5rmr033p5nk%40group.calendar.google.com/public/basic.ics
-[main meeting]: https://calendar.google.com/event?action=TEMPLATE&tmeid=NmU4ajUyaWpmaHZic2YzYXVxa25rcnIyZHRfMjAxOTA0MTFUMTkwMDAwWiByZWN1ZDRiOW84Y21jMG01cm1yMDMzcDVua0Bn&tmsrc=recud4b9o8cmc0m5rmr033p5nk%40group.calendar.google.com&scp=ALL
-[ghp]: https://github.com/orgs/rust-lang/projects/31/views/10
+Some subteams of the lang team reuse the primary lang team calendar for their own calendar events, while others may choose to create a separate calendar. We'll list below the calendars of all subteams that do not use the main calendar.
