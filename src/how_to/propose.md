@@ -133,4 +133,4 @@ Whenever possible, though, we prefer to issue a quick approval for the "general 
 
 ### My RFC has been waiting for a comment from the lang-team for a long time!
 
-First off, I'm sorry, that sucks. We are aware that we need to do a better job keeping up with RFCs. :/ That said, what you can do is to [nominate](./nominate.md) the RFC and we will discuss it during the meeting.
+First off, I'm sorry, that sucks. We are aware that we need to do a better job keeping up with RFCs :/ (as long as it's tagged with `T-lang`, we'll know it exists). That said, what you can do is to [nominate](./nominate.md) the RFC and we will discuss it during the meeting.
