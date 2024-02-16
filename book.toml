@@ -8,6 +8,8 @@ title = "The Rust Language Design Team"
 [output.html]
 additional-js =["mermaid.min.js", "mermaid-init.js"]
 cname = "lang-team.rust-lang.org"
+git-repository-url = "https://github.com/rust-lang/lang-team"
+edit-url-template = "https://github.com/rust-lang/lang-team/edit/master/{path}"
 
 [output.html.fold]
 enable = true
