@@ -10,7 +10,7 @@ If you are an experienced Rust contributor who would like to start an experiment
 
 * Write-up a description of the problem you are trying to solve and the general shape of the solution you want to work on. Discuss it on Zulip or elsewhere to find a **lang-team liaison**:
     * The liaison is the connection to the lang-team. They can check in with you from time to time to see how the work is going and relay those updates to the lang-team (of course, you're always welcome to join meetings yourself too!). They can also help to discuss problems that arise.
-* Once you've found a liaison, open a PR [adding a new feature gate to the compiler](adding) and create an associated tracking issue.
+* Once you've found a liaison, open a PR [adding a new feature gate to the compiler][adding] and create an associated tracking issue.
     * The PR and tracking issue should include a write-up documenting the motivation and outline of what they are trying to achieve. 
     * The feature gate should be marked as 'experimental', so that users get warnings if they try to use it. This flag has to stay until an RFC is accepted, even if the implementation is in good shape.
 * The lang-team liaison will "second" the PR, starting an FCP. Once the FCP completes, the PR can land and implementation work begins (always gated under the new feature gate).
