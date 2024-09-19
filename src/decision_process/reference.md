@@ -65,7 +65,7 @@ We trust other teams to make decisions about their areas of expertise, without
 waiting on language team approval on every such decision.
 
 If the matter being decided seems non-trival or subtle, then we do wish to be
-part of the decision-making process. But the answer for a problem seems obvious,
+part of the decision-making process. But if the answer for a problem seems obvious,
 then it need not wait on T-lang nomination and approval.
 
 For example, we trust the compiler team to fix obvious bugs that are not
