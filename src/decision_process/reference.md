@@ -66,12 +66,15 @@ waiting on language team approval on every such decision.
 
 If the matter being decided seems non-trival or subtle, then we do wish to be
 part of the decision-making process. But if the answer for a problem seems obvious,
-then it need not wait on T-lang nomination and approval.
+and the corresponding decision is reversible, then it need not wait on T-lang nomination and approval.
 
 For example, we trust the compiler team to fix obvious bugs that are not
 intended to be part of the Rust language and have minimal known breakage. See
 for instance [PR #129422](https://github.com/rust-lang/rust/pull/129422), which
-corrected a mistake in the implementation of `#[repr(Rust)]`).
+corrected a mistake in the implementation of `#[repr(Rust)]`). Since the correction
+being applied here was changing a no-op to an error, we have the option of
+reversing the decision (going from an error back to a no-op), and thus this decision
+can be delegated without having to go through T-lang nomination and approval.
 
 However, when another team makes a language-relevant decision, the language team
 also wants to be aware of it. This way we can ensure that the set of delegated
