@@ -214,6 +214,6 @@ of tail or internal padding, as they can be reused due to the lack of a possible
 
 Cross-referencing to other discussions:
 
-* https://github.com/rust-lang/rfcs/issues/1397
-* https://github.com/rust-lang/rust/issues/17027
-* https://github.com/rust-lang/unsafe-code-guidelines/issues/176
+* <https://github.com/rust-lang/rfcs/issues/1397>
+* <https://github.com/rust-lang/rust/issues/17027>
+* <https://github.com/rust-lang/unsafe-code-guidelines/issues/176>
