@@ -10,7 +10,7 @@ consensus around a specific proposals.
 
 ## How are design meetings scheduled?
 
-To schedule design meetings, we hold a special **planning meeeting** once per month.
+To schedule design meetings, we hold a special **planning meeting** once per month.
 In that meeting, we choose what design meetings we will hold the rest of the month.
 
 To generate the agenda for the planning meeting, you can use the following link and then copy/paste the generated text into a fresh hackmd page:
