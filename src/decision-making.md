@@ -14,7 +14,7 @@ These two goals can be in tension. The former pushes us to empower individuals. 
 
 Our decision making process axioms are rules that we follow to help us achieve our goal. We try to satisfy them all, but if they come into tension, we prefer items that appear first in the list.
 
-* **No new rationale**. We make decisions only after the rationale have been presented publicly and all relevant stakeholders have had a chance to present counterarguments. In particular, we never make [1-way door decisions](./consensus.md) in sync meetings. Instead, we present meeting consensus and leverage rfcbot.
+* **No new rationale**. We make decisions only after the rationale have been presented publicly and all relevant stakeholders have had a chance to present counterarguments.
 - **Not afraid to do the right thing**. At the end of the day, we have to do what we feel is *right*. Sometimes this means breaking with the tradition and precedent set by other languages. Sometimes it means taking a socially uncomfortable stance (but always with respect).
 - **Find common ground**. It's good to break up designs into small pieces and proceed step by step. But be sure that each piece solves an end-to-end problem on its own.
 - **Trust each other**. Lang team members are expected to have demonstrated sharp instincts, humility, and the ability to hear and understand others. Sometimes you have to put your doubts aside and trust the others on the team. 
