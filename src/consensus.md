@@ -50,7 +50,7 @@ If deeper discussion does not reach a solution, a [lang team member](#definition
 
 Challenging a concern is done by scheduling a meeting in which the lang team reads and discusses a summary of the concern and the subsequent discussion. At the end of this meeting, the concern will either be *sustained* (meaning that progress is still blocked) or *resolved* (meaning that final-comment-period can continue, assuming there aren't other concerns to be resolved).
 
-Sustaining a concern requires [1/3 of the lang team](#doing-the-math) to agree to sustain; this number includes the person who raised the concern, if they are a member of the lang team and not an advisor. Members can agree to sustain either because they with the concern *or* because they feel more time is needed for discussion.
+Sustaining a concern requires [1/4 of the lang team](#doing-the-math) to agree to sustain; this number includes the person who raised the concern, if they are a member of the lang team and not an advisor. Members can agree to sustain either because they with the concern *or* because they feel more time is needed for discussion.
 
 *Note:* The document to be read during the meeting will ideally be prepared by both the person raising the concern and the people challenging it so that it fairly represents both points of view. The document should include a
 
@@ -60,14 +60,19 @@ Sustaining a concern requires [1/3 of the lang team](#doing-the-math) to agree t
 
 ## Doing the math
 
-Given a team of N>=4 members, the actual threshold `R` for approving a decision is `R = floor(N * 2 / 3)`. The threshold `S` for sustaining a concern is then `N - R`. So e.g...
+Given a team of N>=4 members, the actual threshold `R` for approving a decision is `R = round(N * 2 / 3)`. The threshold `S` for sustaining a concern is `floor(N / 4)`. So e.g...
 
 | N   | R   | S   |
 | --- | --- | --- |
-| 8   | 5   | 3   |
-| 7   | 4   | 3   |
+| 20  | 13  | 5   |
+| ... | ... | ... |
+| 12  | 8   | 3   |
+| ... | ... | ... |
+| 9   | 6   | 2   |
+| 8   | 5   | 2   |
+| 7   | 5   | 2   |
 | 6   | 4   | 2   |
 | 5   | 3   | 2   |
-| 4   | 2   | 2   |
+| 4   | 3   | 2   |
 
 If the team has 3 members or less, all members must agree to all decisions and concerns cannot be challenged. Really y'all need to recruit some new members at that point.
