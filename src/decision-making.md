@@ -6,7 +6,7 @@ This page documents our decision making process.
 
 We want the ability to make designs that feel fresh, bold, and innotative. We do not want Rust to feel like it has been "designed by committee", with all the interesting bits smoothed down.
 
-We also want designs that meet Rust user's needs and live up to Rust's ethos of reliabile, performant, accessible code.
+We also want designs that meet Rust users' needs and live up to Rust's ethos of reliabile, performant, accessible code.
 
 These two goals can be in tension. The former pushes us to empower individuals. The latter pushes us to validate designs broadly. We use this decision making process to guide us in balancing those tensions.
 

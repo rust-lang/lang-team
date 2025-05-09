@@ -8,10 +8,10 @@ They are used for for decisions that cannot be reversed (e.g., stabilization dec
 
 The decision making process distinguishes the following roles
 
-* **Lang team**: the [Language Design Team](https://github.com/rust-lang/team/blob/master/teams/lang.toml).
-* **Lang team member**: a member of the Lang team. Lang team members are the ones who have to [approve the final decision](#the-process).
-* **Advisor**: a member of the [lang team advisors](https://github.com/rust-lang/team/blob/master/teams/lang-advisors.toml). Advisors can propose a decision and can raise [formal concerns](#raising-concerns) but their approval is not required.
-* **Decision document**: the RFC, issue text, or other document describing the decision being made.
+* **Lang team**: The [Language Design Team](https://github.com/rust-lang/team/blob/master/teams/lang.toml).
+* **Lang team member**: A member of the Lang team. Lang team members are the ones who have to [approve the final decision](#the-process).
+* **Advisor**: A member of the [lang team advisors](https://github.com/rust-lang/team/blob/master/teams/lang-advisors.toml). Advisors can propose a decision and can raise [formal concerns](#raising-concerns) but their approval is not required.
+* **Decision document**: The RFC, issue text, or other document describing the decision being made.
 * **Document author**: The person who authored the decision document. They ultimately decide what changes they wish to make to the text in response to concerns. They often do this in close consultation with a member of the lang team, but that is not required.
 
 ## The process
