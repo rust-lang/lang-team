@@ -61,7 +61,7 @@ Sustaining a concern requires [1/4 of the lang team](#doing-the-math) to agree t
 ## Doing the math
 
 
-Given a team of N>=4 members, the actual threshold `R` for approving a decision is `R = floor(N * 2 / 3)`. The threshold `S` for sustaining a concern is `floor(N / 3)`. So e.g...
+Given a team of N>=4 members, the actual threshold `R` for approving a decision is `R = floor(N * 2 / 3)`. The threshold `S` for sustaining a concern is `round(N / 3)`. So e.g...
 
 | N   | R   | S   |
 | --- | --- | --- |
@@ -70,7 +70,7 @@ Given a team of N>=4 members, the actual threshold `R` for approving a decision 
 | 12  | 8   | 4   |
 | ... | ... | ... |
 | 9   | 6   | 3   |
-| 8   | 5   | 2   |
+| 8   | 5   | 3   |
 | 7   | 4   | 2   |
 | 6   | 4   | 2   |
 | 5   | 3   | 2   |
