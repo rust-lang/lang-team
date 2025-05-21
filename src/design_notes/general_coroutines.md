@@ -87,7 +87,7 @@ async gen {
 - The major disagreement between past proposals is whether to use "yield
   expressions" or "magic mutation".
   - Yield expression: `let after = yield output;`
-    - Used by [eRFC-2033][1]
+    - Used by [eRFC-2033][1] and is the current implementation.
   - Magic mutation: `let before = arg; yield output; let after = arg;`
     - Used by [RFC-2781][2] and [MCP-49][3]
 - Many people have a strong gut preference for yield expressions.
