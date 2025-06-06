@@ -1,7 +1,7 @@
 ---
 name: Design meeting proposal
 about: Propose a topic for the design meeting.
-title: "(My meeting proposal)"
+title: "Design meeting: (My meeting proposal)"
 labels: meeting-proposal, T-lang
 assignees: ''
 
