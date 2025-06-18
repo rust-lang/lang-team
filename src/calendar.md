@@ -2,8 +2,8 @@
 
 The lang team has two recurring weekly meeting slots:
 
-- [Triage meetings](./meetings/triage.html): Weekly on Wednesdays at 11:00 U.S. Eastern Time.
-- [Design/planning meetings](./meetings/design.html): Weekly on Wednesdays at 12:30 U.S. Eastern Time.
+- [Triage meetings](./meetings/triage.html): Weekly on Wednesdays at 11:00 U.S. Eastern Time ([convert to local time](https://savvytime.com/converter/ny-new-york-city/11am)).
+- [Design/planning meetings](./meetings/design.html): Weekly on Wednesdays at 12:30 U.S. Eastern Time ([convert to local time](https://savvytime.com/converter/ny-new-york-city/12-30pm)).
 
 When adjusting for other time zones, note that our meeting times follow changes in the particulars of U.S. daylight saving time.
 
