@@ -2,14 +2,14 @@
 
 The lang team has two recurring weekly meeting slots:
 
-- [Triage meetings](./meetings/triage.html): Weekly on Wednesdays at 11:00 U.S. Eastern Time.
-- [Design/planning meetings](./meetings/design.html): Weekly on Wednesdays at 13:00 U.S. Eastern Time.
+- [Triage meetings](./meetings/triage.html): Weekly on Wednesdays at 11:00 U.S. Eastern Time ([convert to local time](https://savvytime.com/converter/ny-new-york-city/11am)).
+- [Design/planning meetings](./meetings/design.html): Weekly on Wednesdays at 12:30 U.S. Eastern Time ([convert to local time](https://savvytime.com/converter/ny-new-york-city/12-30pm)).
 
 When adjusting for other time zones, note that our meeting times follow changes in the particulars of U.S. daylight saving time.
 
 For the design/planning meeting slot, we typically do a planning meeting on the first Wednesday of the month, then we do design meetings on each remaining Wednesday.
 
-Our meetings are open to all those who are interested to listen.
+Our meetings are open to all those who are interested to listen. You can join in at: <https://meet.jit.si/ferris-rules>.
 
 To subscribe to the calendar of our recurring meetings, add this URL to your favorite calendaring application:
 
