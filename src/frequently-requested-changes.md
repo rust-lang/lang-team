@@ -259,5 +259,5 @@ as something like `make_pair(|| a, || loop { … })` would still need to allocat
 that never reaching the `assume_init` part, it's still unlikely that this occurs frequently.
 
 There *is* still interest in maybe doing optimizations like this on *sum* types, however.  There's more
-to potentially be gained there since one variant of a `union` or `enum` being uninhabited doesn't
+to potentially be gained there since one variant of an `enum` being uninhabited doesn't
 keep the whole *value* from being uninhabited the way an uninhabited field does in a `struct`.
