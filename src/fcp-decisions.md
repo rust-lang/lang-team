@@ -46,7 +46,7 @@ If the concern is not withdrawn, someone (typically the document author) can pro
 
 #### Creating a concern issue
 
-For concerns that require discussion (judgment calls rather than simple technical corrections), create a GitHub issue to track the concern. The issue can be on rust-lang/lang-team if there is no other suitable repository.
+For concerns that require discussion (judgment calls rather than simple technical corrections), create a GitHub issue to track the concern. In most cases --- when the concern involves a change to the language --- the issue will be filed in `rust-lang/rust`. Otherwise, if there is no other suitable repository, the issue can be filed on `rust-lang/lang-team`.
 
 *Note:* We recommend that rfcbot be updated to create these issues automatically. Until then, create them manually.
 
