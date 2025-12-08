@@ -217,3 +217,47 @@ Cross-referencing to other discussions:
 * https://github.com/rust-lang/rfcs/issues/1397
 * https://github.com/rust-lang/rust/issues/17027
 * https://github.com/rust-lang/unsafe-code-guidelines/issues/176
+
+## Uninhabited `struct`s should all be ZSTs
+
+It makes conceptual sense that if something is uninhabited, it shouldn't take up any space.
+In safe code that works great, but we tried it and ran into problems, so it's not likely to happen.
+
+The biggest problem is related to field projection during initialization.  Take this code:
+
+```rust
+pub fn make_pair<T0, T1>(a0: impl Fn() -> T0, a1: impl Fn() -> T1) -> Box<(T0, T1)> {
+    let mut mu = Box::<(T0, T1)>::new_uninit();
+    unsafe {
+        let p0 = &raw mut (*mu.as_mut_ptr()).0;
+        p0.write(a0());
+
+        let p1 = &raw mut (*mu.as_mut_ptr()).1;
+        p1.write(a1());
+        
+        mu.assume_init()
+    }
+}
+```
+
+Is that *sound*?  It sure looks reasonable -- after all, it initialized both the fields -- but
+it depends on exactly what the layout rules are.
+
+(Aside: Note that a production-ready version of that function should also handle unwinding cleanup
+of the first value if constructing the second panicked, but for simplicity of presentation we're
+ignoring that part here because leaking is still *sound*.)
+
+For something simple like `make_pair::<u8, i32>`, it's clearly fine.  But with `make_pair::<u32, !>`
+it's *only* sound if we *don't* let `(u32, !)` become a ZST.  We need the allocation for the box
+to be large enough to write that `u32` without being an obviously-UB out-of-bounds write.
+
+Thus if we wanted to always have uninhabited product types be ZSTs, we'd need to give up on certain
+other rules, perhaps the one that `T` and `MaybeUninit<T>` always have the same size.  So far, the
+simpler, less-error-prone experience for writing unsafe code has won out over the minimal space
+savings possible from shrinking the types.  After all, while it's not necessarily fully unreachable,
+as something like `make_pair(|| a, || loop { … })` would still need to allocate the space despite
+that never reaching the `assume_init` part, it's still unlikely that this occurs frequently.
+
+There *is* still interest in maybe doing optimizations like this on *sum* types, however.  There's more
+to potentially be gained there since one variant of an `enum` being uninhabited doesn't
+keep the whole *value* from being uninhabited the way an uninhabited field does in a `struct`.
