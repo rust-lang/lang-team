@@ -84,14 +84,13 @@ click NeedToExperiment "./experiment.html" "Read about experimental feature gate
 
 ## Frequently asked questions
 
-### What do the labels "lang-team second" and "lang-team consensus" mean?
+### What's the difference between "champion decisions" and "FCP decisions"?
 
-These refer to our [decision process](./decision_process.md):
+These refer to our [decision process](../decision-making.md):
 
-* A **second** means that some [lang team member] must liaison the idea, but it doesn't require full checkboxes. Instead, the idea goes immediately into "final comment period" (which lasts for 10 days), giving other lang team members a chance to comment on it and raise concerns. We use seconding for *reversible decisions* that don't commit the language to anything in particular.
-* A **consensus** means that every [lang team member] must check their box and actively approve.
+* A **[champion decision](../champion-decisions.md)** means a lang team member or advisor is championing the idea. It does not represent team consensus—only the champion's point of view. The champion nominates the issue for a triage meeting; if no one requests FCP escalation, the champion can proceed. We use champion decisions for experiments and other cases where we want to move quickly.
 
-In both cases, we currently handle consensus with rfcbot (`@rfcbot fcp`). For a second, however, the lang team member who initiatives FCP can go ahead and check the boxes of other lang-team members, they can raise concerns if needed. This is a temporary measure until we have first-class support for seconding.
+* An **[FCP decision](../fcp-decisions.md)** represents a significant commitment from the team. It requires sign-off from team members via rfcbot and follows a formal process for resolving concerns. We use FCP decisions for stabilization, RFC approval, and other cases where we are making a promise to our users.
 
 [lang team member]: https://www.rust-lang.org/governance/teams/lang
 
