@@ -42,7 +42,7 @@ If the person who raised the concern is satisfied—whether because of changes m
 
 ### 2. Resolution proposed
 
-If the concern is not withdrawn, someone (typically the document author) can propose a **resolution**. This is a more formal process that ensures concerns are genuinely engaged with.
+If the concern is not withdrawn, someone (e.g. the document author) can propose a **resolution**. This is a more formal process that ensures concerns are genuinely engaged with.
 
 #### Creating a concern issue
 
