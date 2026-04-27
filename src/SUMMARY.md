@@ -29,4 +29,4 @@
   - [Autoderef and autoref in operators](./design_notes/autoref_ops.md)
   - [Copy type ergonomics](./design_notes/copy_ergonomics.md)
 - [Rationale](./rationale/README.md)
-  - [Decision process April 2026](./rationale/decision-process-april-2026.md)
+  - [PR 360](./rationale/pr-360.md)
