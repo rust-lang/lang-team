@@ -36,3 +36,29 @@ The motivation for these changes was to increase individual autonomomy. We wish 
 ## Why are Champion Decisions "unblockable"?
 
 In the process as written, Champion Decisions (e.g., to start or stop an experiment) cannot be blocked by members of the lang-team. We wish to lean in favor of autonomy and easy experimentation and avoid the perception that champions need to wait for the lang-team to "weigh in" before making lightweight decisions (e.g., how to focus their time). The intended flow is rather that champions document those decisions for periodic review by the lang-team after the fact. Any concerns held my members of the team can be raised there; champions would do well to heed them, as those concerns will simply arise later during the FCP process.
+
+## Why not permit "recursive blocking"?
+
+The rationale and discussion was captured in [resolution issue #365](https://github.com/rust-lang/lang-team/issues/365). The decision was made to favor "perfection is a process" over "treasure dissent", which meant that we favor the ability to take measured steps forward over the ability for an individual to block progress. This decision was controversial and Josh Triplett has opted to include a dissent
+
+> **The crux of the debate**
+>
+> Both views acknowledge they carry risk. Both have mitigation strategies. The difference is **who bears the burden** and **what question they're asking**.
+>
+> Let us assume that there has been significant discussion and there is a proposal to move forward, but the dissenter that raised the original concern is not satisfied:
+>
+> - Under **View A,** the dissenter must decide if their concern is serious enough to be worth blocking forward progress. The team cannot proceed if the dissenter decides it is.
+> - Under **View B,** the rest of the team must ask, "Have we engaged genuinely, and can we course-correct if we are wrong?" They can proceed if they all agree the answer is "yes", even over the dissenter's objection.
+>
+> Put differently: when, after thorough discussion, a single team member remains unconvinced - which way do we tilt? View A tilts toward the dissenter's judgment. View B tilts toward the team's collective judgment.
+
+Do **not** add recursive blocking. The person who raised a concern cannot block the FCP to resolve that concern.
+
+However, add process scaffolding that encouages genuine engagement with concerns, particularly in cases where the concern-raiser does not sign off on the resolution:
+
+- Template for resolution write-ups, including specific reflection questions (see the FAQ for details)
+- Option for concern-raiser to request a design meeting before final decision is complete (where they provide the document) 
+
+### Dissent by Josh Triplett
+
+> Josh Tripplet did not agree with the decision to remove recursive blocking and wished to record a dissent. This spot is left for him to add the dissent in a future PR.
