@@ -20,6 +20,21 @@ To start an FCP, a lang team member or advisor issues `@rfcbot fcp merge` (or `f
 
 Before finalizing the decision, the team should engage with any **new** points raised during the FCP period, particularly from people not able to raise formal concerns.
 
+### Expected contents for an FCP
+
+FCP proposals should include
+
+* Motivation --
+    * Why is this change being made?
+    * If this is reverting a prior FCP, what aspects of the original rationale no longer apply?
+* Details --
+    * What is the old/current behavior and what will be the new behavior?
+* Design considerations --
+    * What alternatives did you consider? why did you choose this route over those?
+    * What are common misconceptions?
+
+FCP proposals do not have to be long, but they should capture the key rationale backing the decision. It is often helpful to link to full details.
+
 ## Raising concerns
 
 Lang team members or advisors can raise a **formal concern** during the discussion process using `@rfcbot concern concern-name`. The decision cannot be finalized until the concern is resolved.

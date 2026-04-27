@@ -90,7 +90,7 @@ These refer to our [decision process](../decision-making.md):
 
 * A **[champion decision](../champion-decisions.md)** means a lang team member or advisor is championing the idea. It does not represent team consensus—only the champion's point of view. The champion nominates the issue for a triage meeting; if no one requests FCP escalation, the champion can proceed. We use champion decisions for experiments and other cases where we want to move quickly.
 
-* An **[FCP decision](../fcp-decisions.md)** represents a significant commitment from the team. It requires sign-off from team members via rfcbot and follows a formal process for resolving concerns. We use FCP decisions for stabilization, RFC approval, and other cases where we are making a promise to our users.
+* An **[FCP decision](../fcp-decisions.md)** represents a significant commitment from the team. It requires sign-off from team members via rfcbot and follows a formal process for resolving concerns. We use FCP decisions for stabilization, RFC approval, breaking changes, and other cases where we are making a promise to our users.
 
 [lang team member]: https://www.rust-lang.org/governance/teams/lang
 
