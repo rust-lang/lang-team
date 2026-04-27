@@ -32,3 +32,7 @@ The motivation for these changes was to increase individual autonomomy. We wish 
 * **Treasure dissent.** The best designs arise out of finding a creative way to overcome two seemingly incompatible constraints. When someone raises a concern that blocks your progress, you should look on it as an opportunity to improve your design so it can meet more needs.
 
 # Frequently Asked Questions
+
+## Why are Champion Decisions "unblockable"?
+
+In the process as written, Champion Decisions (e.g., to start or stop an experiment) cannot be blocked by members of the lang-team. We wish to lean in favor of autonomy and easy experimentation and avoid the perception that champions need to wait for the lang-team to "weigh in" before making lightweight decisions (e.g., how to focus their time). The intended flow is rather that champions document those decisions for periodic review by the lang-team after the fact. Any concerns held my members of the team can be raised there; champions would do well to heed them, as those concerns will simply arise later during the FCP process.
