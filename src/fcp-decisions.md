@@ -37,7 +37,9 @@ FCP proposals do not have to be long, but they should capture the key rationale 
 
 ## Raising concerns
 
-Lang team members or advisors can raise a **formal concern** during the discussion process using `@rfcbot concern concern-name`. The decision cannot be finalized until the concern is resolved.
+Lang team members can raise a **formal concern** during the discussion process using `@rfcbot concern concern-name`. The decision cannot be finalized until the concern is resolved.
+
+**Note:** Advisors used to be able to raise concerns but that was changed. See [PR #360 rationale](./rationale/decision-process-april-2026.md).
 
 ### Expectations when raising a concern
 

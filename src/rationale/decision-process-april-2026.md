@@ -62,3 +62,15 @@ However, add process scaffolding that encouages genuine engagement with concerns
 ### Dissent by Josh Triplett
 
 > Josh Tripplet did not agree with the decision to remove recursive blocking and wished to record a dissent. This spot is left for him to add the dissent in a future PR.
+
+## Why did we remove the ability for advisors to raise a blocking concern?
+
+The original design of the lang advisors permitted them to raise blocking concerns. This is largely ceremonial, as the lang team advisors consists of people for whose opinions the team has deep respect, and hence a concern raised by them would never be overcome lightly. However, we wished to give the team *some* procedural distinction to make membership meaningful.
+
+Under the new process, we have instead chosen to give advisors the ability to **champion** designs. This is a more positive distinction than before, as it means they now have the ability to make champion decisions on their own and to drive new ideas forward.
+
+We decided to remove their ability to directly raise blocking concerns as it did not fit with the new resolution system. In particular, there was no satisfactory answer to the question of whether a champion should be able to block resolution. If they can block resolution, then it means that the pool of people which can block an FCP becomes significantly larger than the 4-8 people on the lang-team. This in turn implies that the threshold for blocking resolution may need to be raised to a proportional measurement, which threatened the nature of the team as a deliberative, unified entity.
+
+On the other hand, if advisors *cannot* block resolution, it gives rise to a "procedural hack" in which an advisor raises the concern and then a lang-team member blocks any attempt to resolve it. This seemed like a threat to the intended use of the process.
+
+Overall we felt that the simplest solution was to say that advisors are given the power to champion, and members the power to block.
