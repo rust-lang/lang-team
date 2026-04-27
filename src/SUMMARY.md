@@ -28,5 +28,5 @@
   - [Eager drop](./design_notes/eager_drop.md)
   - [Autoderef and autoref in operators](./design_notes/autoref_ops.md)
   - [Copy type ergonomics](./design_notes/copy_ergonomics.md)
-- [Roadmaps](./roadmaps.md)
-  - [Roadmap 2024](./roadmaps/roadmap-2024.md)
+- [Rationale](./rationale/README.md)
+  - [Decision process April 2026](./rationale/decision-process-april-2026.md)
