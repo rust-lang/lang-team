@@ -91,6 +91,7 @@ Blocking a concern resolution is held to a higher standard than blocking the ori
 * When a lang-team member blocks the resolution of a concern, that **concern must be seconded** by another lang-team member.
     * If a second cannot be found within a reasonable time, then the concern must be withdrawn. The typical procedure is to discuss the concern in the next triage meeting and to withdraw the concern if nobody seconds it at that time, but leads may opt to give more or less time depending on circumstances.
     * Before the concern is withdrawn, the team member who raised it may request a design meeting. They are expected to author a document explaining why they feel the resolution of the concern is incorrect. At the end of this meeting, there will be a call for seconds from the team; if nobody agrees to second the concern, then it must be withdrawn.
+    * If the second is withdrawn, then another second must be found or else the concern must be withdrawn.
 
 The rules are setup to ensure that a single lang-team member cannot block the remainder of the team if they are aligned on how the concern ought to be resolved.
 
