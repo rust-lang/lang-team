@@ -32,4 +32,4 @@ We divide decisions into two categories:
 
 ## Team size
 
-The lang team operates as a "two-pizza team" of 4-8 members. This keeps the team small enough for high-bandwidth communication and trust, while large enough for diverse perspectives.
+The lang team's ideal size is 4-8 members. This keeps the team small enough for high-bandwidth communication and trust, while large enough for diverse perspectives.
