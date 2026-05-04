@@ -35,19 +35,21 @@ FCP proposals should include
 
 FCP proposals do not have to be long, but they should capture the key rationale backing the decision. It is often helpful to link to full details.
 
-## Raising concerns
+## Blocking concerns
 
-Lang team members can raise a **formal concern** during the discussion process using `@rfcbot concern concern-name`. The decision cannot be finalized until the concern is resolved.
+Lang team members and advisors can raise a **blocking concern** during the discussion process using `@rfcbot concern concern-name`. The decision cannot be finalized until the concern is resolved.
 
-**Note:** Advisors used to be able to raise concerns but that was changed. See [PR #360 rationale](./rationale/decision-process-april-2026.md).
+### Before raising a concern
+
+Before raising a blocking concern, we recommend that you nominate the issue for discussion in the triage meeting. Many blocking concerns can be resolved quickly.
 
 ### Expectations when raising a concern
 
 The person who raises a concern is expected to:
 
-* Write a constructive comment explaining the concern
-* Make themselves available for discussion in a reasonable fashion
-* Be prepared to write a summary document if requested
+* Write a constructive comment explaining the concern;
+* Make themselves available for discussion in a reasonable fashion;
+* Be prepared to write a summary document if requested.
 
 ## Resolving concerns
 
@@ -63,7 +65,7 @@ If the concern is not withdrawn, someone (e.g. the document author) can propose 
 
 #### Creating a concern issue
 
-For concerns that require discussion (judgment calls rather than simple technical corrections), create a GitHub issue to track the concern. In most cases --- when the concern involves a change to the language --- the issue will be filed in `rust-lang/rust`. Otherwise, if there is no other suitable repository, the issue can be filed on `rust-lang/lang-team`.
+For concerns that require extended discussion (judgment calls rather than simple technical corrections), create a GitHub issue to track the concern. In most cases --- when the concern involves a change to the language --- the issue will be filed in `rust-lang/rust`. Otherwise, if there is no other suitable repository, the issue can be filed on `rust-lang/lang-team`.
 
 *Note:* We recommend that rfcbot be updated to create these issues automatically. Until then, create them manually.
 
@@ -71,7 +73,7 @@ For concerns that require discussion (judgment calls rather than simple technica
 
 A resolution must include:
 
-1. **Summary of the concern**: Demonstrate that you understand the concern by summarizing its key points. The person who raised the concern should be able to confirm "yes, you understood me."
+1. **Summary of the concern**: Demonstrate understanding of the concern by summarizing its key points. The person who raised the concern should be able to confirm "yes, you understood me."
 
 2. **Proposed changes**: What changes (if any) are being made to the original proposal, and how they address specific points of the concern. This may be empty if no changes are being made.
 
@@ -81,9 +83,29 @@ A resolution must include:
 
 Post the resolution to the concern issue and start an FCP with `@rfcbot fcp merge`.
 
-**Important:** The person who raised the original concern cannot block this FCP. They can (and should) comment on whether the summary accurately represents their concern, but their only path to blocking is convincing another team member that the resolution is inadequate.
+#### Blocking the resolution of a concern
 
-Other team members can raise new concerns on the resolution, or request a design meeting for deeper discussion.
+Blocking a concern resolution is held to a higher standard than blocking the original decision:
+
+* **Only full lang-team members** (not lang-team advisors) may raise a blocking concern on a concern resolution.
+* When a lang-team member blocks the resolution of a concern, that **concern must be seconded** by another lang-team member.
+    * If a second cannot be found within a reasonable time, then the concern must be withdrawn. The typical procedure is to discuss the concern in the next triage meeting and to withdraw the concern if nobody seconds it at that time, but leads may opt to give more or less time depending on circumstances.
+    * Before the concern is withdrawn, the team member who raised it may request a design meeting. They are expected to author a document explaining why they feel the resolution of the concern is incorrect. At the end of this meeting, there will be a call for seconds from the team; if nobody agrees to second the concern, then it must be withdrawn.
+
+The rules are setup to ensure that a single lang-team member cannot block the remainder of the team if they are aligned on how the concern ought to be resolved.
+
+#### Reasons to second a concern
+
+There are two reasons to raise or second a concern raised on a resolution:
+
+* You are not convinced that the resolution is the correct path:
+    * You may feel that the resolution does not adequately address the concern.
+    * You may feel that the resolution goes too far in addressing the concern and creates new issues of its own.
+    * You may not be sure what is right and prefer to take a more conservative path (e.g., erroring or stabilizing a more narrow set of behavior).
+* You feel the original concern has not been sufficiently discussed:
+    * Sometimes you may not yet be convinced that the original concern is an issue, but you may feel that the champion has moved to resolve the concern too quickly, and that more discussion is warranted.
+
+The team should be careful when opting not to second a concern raised on a resolution. If there is a "forwards compatible" option that preserves the possibility to defer the choice, that is usually better (unless that forwards compatible limitation fully prevents a primary use case).
 
 #### After the resolution
 
@@ -91,3 +113,9 @@ If the resolution FCP completes successfully:
 
 * If the resolution included changes to the original proposal, **restart the original FCP** to give people a chance to review the updated proposal.
 * If no changes were made, the original FCP can continue.
+
+# History
+
+* In April of 2026 the process was revised in [PR #360](https://github.com/rust-lang/lang-team/pull/360). This included a significant discussion about how to manage blocking concerns with a dissent. See the [documented rationale for that PR](./rationale/decision-process-april-2026.md) for more details.
+* A later PR revised the process to a new rfcbot merge procedure that was never adopted in practice. This included the requirement that blocking concerns be "seconded".
+* The original consensus procedure was defined in [RFC #1068](https://github.com/rust-lang/rfcs/blob/master/text/1068-rust-governance.md), which specifies consensus with the team lead empowered to resolve cases where the team cannot come to consensus.
