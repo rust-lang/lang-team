@@ -13,7 +13,7 @@ The final step in the [language-change process](./propose.md) is to **stabilize*
     * An open PR editing the reference to describe the change is required. (You don't personally have to author it, but there needs to be an open PR, and ideally one that has been edited and is approved modulo actual stabilization by one of the repo maintainers.)
     * If the feature affects the type system, you should nominate for @rust-lang/types to check for their approval.
     * If the feature adds new syntax, you should should nominate for the style team to get their approval.
-* The lang team will read the report and eventually move to FCP. Per our [decision process](../decision_process.md), full consensus is required, as this is an irreversible change.
+* The lang team will read the report and eventually move to FCP. Per our [decision process](../decision-making.md), this is an [FCP decision](../fcp-decisions.md), as stabilization is a significant commitment to our users.
     
 See also the rustc-dev-guide's [stabilization guide][sg].
 
