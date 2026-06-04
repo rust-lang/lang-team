@@ -29,7 +29,7 @@ jobs:
         with:
           path: ./book/html
   deploy:
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
     concurrency:
       group: "pages"
       cancel-in-progress: false
