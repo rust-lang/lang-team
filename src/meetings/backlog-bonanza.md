@@ -26,4 +26,4 @@ Here are the labels we apply during the process and their meaning:
 
 ## Where can I find the minutes?
 
-Currently the minutes are tracked in the issues themselves, but we also create hackmd documents in the [Rust lang team](https://hackmd.io/team/rust-lang-team?nav=overview).
+Currently the minutes are tracked in the issues themselves, but we also create hackmd documents in the [Rust lang team](https://hackmd.io/@rust-lang-team).
