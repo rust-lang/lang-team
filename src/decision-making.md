@@ -1,6 +1,6 @@
 # Decision making
 
-This page documents our decision making process.
+This page documents our decision-making process.
 
 ## Our goal
 
@@ -8,11 +8,11 @@ We want the ability to make designs that feel fresh, bold, and innovative. We do
 
 We also want designs that meet Rust users' needs and live up to Rust's ethos of reliable, performant, accessible code.
 
-These two goals can be in tension. The former pushes us to empower individuals. The latter pushes us to validate designs broadly. We use this decision making process to guide us in balancing those tensions.
+These two goals can be in tension. The former pushes us to empower individuals. The latter pushes us to validate designs broadly. We use this decision-making process to guide us in balancing those tensions.
 
 ## Design axioms
 
-Our decision making axioms are rules that we follow to help us achieve our goal. We try to satisfy them all, but if they come into tension, we prefer items that appear first in the list.
+Our decision-making axioms are rules that we follow to help us achieve our goal. We try to satisfy them all, but if they come into tension, we prefer items that appear first in the list.
 
 * **No new rationale**. We make decisions only after the rationale has been presented publicly and all relevant stakeholders have had a chance to present counterarguments.
 * **Not afraid to do the right thing**. At the end of the day, we have to do what we feel is *right*. Sometimes this means breaking with tradition and precedent set by other languages. Sometimes it means taking a socially uncomfortable stance (but always with respect).
@@ -24,7 +24,7 @@ Our decision making axioms are rules that we follow to help us achieve our goal.
 
 We divide decisions into two categories:
 
-* **[Champion decisions](./champion-decisions.md)** are the preferred default. They are used for [starting experiments](./how_to/experiment.md) and other decisions where we want to move quickly. A single lang-team member or advisor can champion a decision; others can raise concerns, but cannot block. A champion decision does *not* represent team consensus—it represents only the champion's point of view. Any team member can request FCP escalation at any point—during the initial triage meeting or later—which converts it to an FCP decision. Once a champion decision has been escalated and FCP'd, it becomes durable in the same way as any other FCP decision.
+* **[Champion decisions](./champion-decisions.md)** are the preferred default. They are used for [starting experiments](./how_to/experiment.md) and other decisions where we want to move quickly. A single lang team member or advisor can champion a decision; others can raise concerns, but cannot block. A champion decision does *not* represent team consensus—it represents only the champion's point of view. Any team member can request FCP escalation at any point—during the initial triage meeting or later—which converts it to an FCP decision. Once a champion decision has been escalated and FCP'd, it becomes durable in the same way as any other FCP decision.
 
 * **[FCP decisions](./fcp-decisions.md)** represent a significant commitment from the team. They are used for [stabilization](./how_to/stabilize.md), RFC approval, and other cases where we are making a promise to our users or taking a position we don't want to reverse lightly. FCP decisions require broader team sign-off and follow a formal process for resolving concerns.
 
