@@ -1,8 +1,13 @@
 [book]
-authors = ["Niko Matsakis"]
 language = "en"
 src = "src"
 title = "The Rust Language Design Team"
+
+[preprocessor]
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
+[output.linkcheck]
 
 [output.html]
 additional-js =["mermaid.min.js", "mermaid-init.js"]
@@ -13,10 +18,6 @@ edit-url-template = "https://github.com/rust-lang/lang-team/edit/master/{path}"
 [output.html.fold]
 enable = true
 level = 0
-
-[preprocessor]
-[preprocessor.mermaid]
-command = "mdbook-mermaid"
 
 [output.html.redirect]
 "/rust-2018/edition-changes.html" = "index.html"
