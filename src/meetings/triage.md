@@ -8,7 +8,7 @@ so we can stay on top of what is going on.
 ## Can I attend?
 
 Yes! The triage meeting is open to the public. You'll find the details
-on our [calendar](src/../../calendar.md).
+on our [calendar](../calendar.md).
 
 ## How do I get something on the agenda?
 
@@ -31,7 +31,7 @@ Alternatively, clone the [triagebot] repo and run this
 If you install the `hackmd-cli`, you can do this:
 
 ```bash
-cargo run --bin lang agenda | hackmd-cli import 
+cargo run --bin lang agenda | hackmd-cli import
 ```
 
 ## Where can I find the minutes?

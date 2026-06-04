@@ -18,8 +18,5 @@ Finally, there are often "grey areas" between the language and library teams, su
 
 ## Key links
 
-* [Active initiatives project board](https://github.com/orgs/rust-lang/projects/16/)
-    * Shows you the things that are currently under development (or exploration) within Rust.
-    * You can [read more about initiatives here](./initiatives.md).
 * [Meeting calendar](./calendar.md), [triage meeting minutes](https://github.com/rust-lang/lang-team/tree/master/minutes), [design meeting minutes](https://github.com/rust-lang/lang-team/tree/master/design-meeting-minutes)
     * You can [read more about our meetings here.](./meetings.md).
