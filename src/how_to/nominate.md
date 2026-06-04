@@ -35,6 +35,7 @@ Nomination is currently supported on the following repositories:
 - rust-lang/rust
 - rust-lang/reference
 - rust-lang/lang-team
+- rust-lang/compiler-team
 
 (This set is defined by the `nominated` list in the [triagebot source code](https://github.com/rust-lang/triagebot/blob/master/src/agenda.rs))
 
