@@ -4,7 +4,7 @@ Champion decisions do not represent team consensus. Rather, they indicate that *
 
 ## When to use champion decisions
 
-* Starting or stopping a [lang-team experiment](./how_to/experiment.md)
+* Starting or stopping a [lang team experiment](./how_to/experiment.md)
 * Closing an RFC or issue that is clearly not going to be accepted
 * Significantly changing an existing experiment's scope or goals (either cutting or expanding scope)
 * Opting to focus on a particular design direction and halt investigations of others
@@ -13,10 +13,10 @@ Champion decisions do not represent team consensus. Rather, they indicate that *
 
 ## Process
 
-### For the champion (lang team member or champion)
+### For the champion (lang team member or advisor)
 
 1. Write up your proposal on a GitHub issue or PR, explaining the decision and context.
-2. [Nominate](./how_to/nominate.md) it for discussion at a lang-team triage meeting.
+2. [Nominate](./how_to/nominate.md) it for discussion at a lang team triage meeting.
 3. At the triage meeting, the team will discuss and raise any concerns.
 4. Consider the feedback. If team members expressed strong concerns, you should likely address those before proceeding.
 
