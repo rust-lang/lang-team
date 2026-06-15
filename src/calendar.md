@@ -27,7 +27,7 @@ Minutes for all of our recent meetings can be found here:
 
 Periodically, we archive our meeting minutes to git:
 
-- [Lang team archived minutes](https://github.com/rust-lang/lang-team/tree/master/minutes)
+- [Lang team archived minutes](https://github.com/rust-lang/lang-team/tree/main/minutes)
 
 ## Subteam Calendars
 

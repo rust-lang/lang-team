@@ -18,5 +18,5 @@ Finally, there are often "grey areas" between the language and library teams, su
 
 ## Key links
 
-* [Meeting calendar](./calendar.md), [triage meeting minutes](https://github.com/rust-lang/lang-team/tree/master/minutes), [design meeting minutes](https://github.com/rust-lang/lang-team/tree/master/design-meeting-minutes)
+* [Meeting calendar](./calendar.md), [triage meeting minutes](https://github.com/rust-lang/lang-team/tree/main/minutes), [design meeting minutes](https://github.com/rust-lang/lang-team/tree/main/design-meeting-minutes)
     * You can [read more about our meetings here.](./meetings.md).
