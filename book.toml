@@ -22,8 +22,8 @@ level = 0
 [output.html.redirect]
 "/rust-2018/edition-changes.html" = "index.html"
 "/priorities.html" = "initiatives/priorities.html"
-"/project_groups.html" = "initiatives/active.html"
-"/proposing_a_project.html" = "initiatives/proposing.html"
+"/project_groups.html" = "https://forge.rust-lang.org/governance/project-groups.html"
+"/proposing_a_project.html" = "how_to/propose.html"
 "/initiatives.html" = "how_to/propose.html"
 "/initiatives/faq.html" = "how_to/propose.html"
 "/initiatives/priorities.html" = "how_to/propose.html"

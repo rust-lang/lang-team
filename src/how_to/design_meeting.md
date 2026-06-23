@@ -11,5 +11,5 @@ must be prepared 24 hours in advance of the design meeting and posted on the iss
 If you propose an issue, you should be willing to prepare that document, or else indicate
 who will do the preparation.
 
-Typically, design meetings are associated with active initiatives: you may wish to
-[propose an initiative](./propose.md) instead.
+Typically, design meetings are associated with active experiments: you may wish to
+[propose an experiment](./experiment.md) instead.
