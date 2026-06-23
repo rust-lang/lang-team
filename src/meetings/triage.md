@@ -12,7 +12,7 @@ on our [calendar](../calendar.md).
 
 ## How do I get something on the agenda?
 
-The easiest way to get something on the agenda is to [nominate it](../how_to/nominate.md). The agenda is automatically built by triagebot from [this template](https://github.com/rust-lang/triagebot/blob/master/templates/lang_agenda.tt). We review pending [initiative proposals](../how_to/propose.md), [nominated](../how_to/nominate.md) issues and PRs from a variety of repositories, as well as pending RFC requests.
+The easiest way to get something on the agenda is to [nominate it](../how_to/nominate.md). The agenda is automatically built by triagebot from [this template](https://github.com/rust-lang/triagebot/blob/master/templates/lang_agenda.tt). We review pending [experiment proposals](../how_to/propose.md), [nominated](../how_to/nominate.md) issues and PRs from a variety of repositories, as well as pending RFC requests.
 
 [triagebot]: https://github.com/rust-lang/triagebot
 
