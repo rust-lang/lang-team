@@ -38,4 +38,4 @@ cargo run --bin lang agenda | hackmd-cli import
 
 [Triage meeting minutes are available in this directory.][tmm]
 
-[tmm]: https://github.com/rust-lang/lang-team/tree/master/minutes
+[tmm]: https://github.com/rust-lang/lang-team/tree/main/minutes

@@ -39,5 +39,5 @@ After everyone is done reading, whoever is driving the meeting will pick questio
 
 The [design-meeting-minutes directory][dnm] contains the document from each meeting along with any questions that were asked and the ensuing disceussion.
 
-[dnm]: https://github.com/rust-lang/lang-team/tree/master/design-meeting-minutes
+[dnm]: https://github.com/rust-lang/lang-team/tree/main/design-meeting-minutes
 [ghp]: https://github.com/orgs/rust-lang/projects/31/views/10
