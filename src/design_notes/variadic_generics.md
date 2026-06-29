@@ -269,6 +269,74 @@ where
 }
 ```
 
+### [soqb's design document](https://gist.github.com/soqb/9ce3d4502cc16957b80c388c390baafc)
+
+This is a collection of ideas, not a complete proposal. Among the ideas:
+
+- This is the only document so far to [discuss the trait solving algorithm in detail](https://gist.github.com/soqb/9ce3d4502cc16957b80c388c390baafc#trait-solving).
+- Unlike other proposals which use an imperative for-loop style, this document leans heavily into recursion and a functional cons-list style.
+  In doing so, it makes an important insight: many transformations of typelists [can be modeled via associated types](https://gist.github.com/soqb/9ce3d4502cc16957b80c388c390baafc#decomposition).
+
+#### Pros
+
+- Typelist recursion is extremely expressive, with a comparatively small cost in syntax
+  - Can express transformations like reversing a list
+- Recursive and imperative paradigms don't conflict, Rust could support both
+
+#### Cons
+
+- Many people find recursive code hard to read/write/understand, prefer an imperative style
+  - for-loop style code can be more compact
+- The chain of generic function calls, and successive layout shufflings, that recursive variadics code could generate
+  may lead to a lot of extra work in codegen/LLVM, and to runtime slowness or even stack overflow
+  if the calls aren't inlined and optimized properly
+
+```rust
+trait MyNumsSummed {
+    type Output: (..);
+}
+
+impl MyNumsSummed for () {
+    type Output = ();
+}
+
+impl<T: Add, U: (..Add)> for (T, ..U) {
+    type Output = (<T as Add>::Output, ..(<U as MyNumsSummed>::Output))
+    // `forall<U> { U: MyNumsSummed }` is provable given `U: (..Add)`,
+    // using the rules defined in "trait solving#candidate selection".
+}
+
+fn sum_my_nums<T: (..Add)>(xyz: T, abc: T) -> <T as MyNumsSummed>::Output {
+    match (xyz, abc) {
+        // both `xyz` and `abc` are empty; we have no work left to do.
+        ((), ()) => (),
+        // both `xyz` and `abc` have > 1 element.
+        // we add what we can and recurse using the remaining elements.
+        (
+            (x, y_etc @ ..),
+             (a, b_etc @ ..),
+        ) => {
+            let x: impl Add = x;
+            let y_etc: impl (..Add) = y_etc;
+
+            compose!(x + a, ..sum_my_nums(y_etc, b_etc))
+        },
+        // the tuples aren't the same length.
+        // perhaps the compiler will be able to detect that `xyz` and `abc`
+        // resue `T` and so are gauranteed to be the same length
+        // but this isn't necessary for an MVP.
+        _ => panic!("you've been a naughty boy!"),
+    }
+}
+
+fn main() {
+    let abc = (1u8, 2u16, 3u32);
+    let xyz = (2u8, 3u16, 5u32);
+    let summed_up = sum_my_nums(abc, xyz);
+    assert_eq!(summed_up, (3, 5, 8));
+}
+```
+
 ## Common notes
 
 All the proposals start with a similar syntax, using two or three dots to represent packing/unpacking types.
