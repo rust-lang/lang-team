@@ -27,6 +27,28 @@ If your comment requires more than 5-10 minutes of reading and discussion to und
 
 We try to be prompt, but sometimes we are not. Othertimes, we discuss the issue, but fail to leave the follow-up comment, because we're only human. Please feel free to raise the topic on Zulip or reach out to a lang team member.
 
+### "Drag" factor and "easy decision"
+
+The language team is experimenting with a **"drag" factor** based system for sorting agenda items. Items are quantized into five drag factor levels, `P-lang-drag-{0,1,2,3,4}`. It is dubbed a *drag factor* to avoid conflating it with priority or "worthiness" of an agenda item, but is instead a combination of factors. Items with *lower* drag factors get ranked *higher* on the agenda. Drag factor 0 agenda items come first while drag factor 4 agenda items come last during a lang meeting.
+
+> **Example**
+>
+> An agenda item may have a complex characterization: it may be of high importance, yet is very difficult, and at the same time is not urgent. Such an agenda item may receive a high drag factor. That is to say, **importance is not the only factor being considered when estimating a drag factor!**
+
+- Most normal agenda items default to drag factor 2.
+- Agenda items known to have high priority for the language team and/or compiler team may be assigned drag factor 1.
+    - Examples (non-exhaustive): on-going effort that the lang team has context on, stabilizations, agenda items that seem particularly important, agenda items that seem very straightforward.
+- Agenda items that are really urgent, such as backport decisions, will receive drag factor 0.
+- Agenda items that seem quite challenging or not very urgent may receive drag factor 3.
+- Agenda items may be assigned drag factor 4 if it might take a while to go through.
+    - Examples: agenda items that need a design meeting.
+
+Lang team may lower the drag factor for nominated agenda items that were discussed but failed to reach team consensus on.
+
+Estimated drag factors are *relative*: just because an agenda item is marked as drag factor 4, it does not mean the item is unimportant. The drag factor is instead an estimate on the expected value that may be gained from discussing another agenda item first being higher. This often has to do with lang team bandwidth and probability of getting through the agenda item versus the value of landing a change.
+
+Within the same drag factor level, agenda items labelled with `I-lang-easy-decision` get bumped in front of other items. An agenda item might be considered an "easy decision" if the item is most likely uncontroversial, and is not complex such that one might reasonably expect the lang team to be able to make a fast decision during a meeting or asynchronously.
+
 ## Repositories where we look for nominations
 
 Nomination is currently supported on the following repositories:
