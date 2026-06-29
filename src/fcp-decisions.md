@@ -81,7 +81,7 @@ A resolution must include:
 
 #### FCP on the resolution
 
-Post the resolution to the concern issue and start an FCP with `@rfcbot fcp merge`.
+Post the resolution to the concern issue and start an FCP with `@rfcbot fcp merge lang`.
 
 #### Blocking the resolution of a concern
 
