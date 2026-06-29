@@ -16,7 +16,7 @@ FCP decisions are used for stabilization, RFC approval, and other cases where we
 
 FCP decisions use rfcbot. They always begin with a decision document authored by the document author, who can be anyone—they do not have to be a member of a Rust team.
 
-To start an FCP, a lang team member or advisor issues `@rfcbot fcp merge` (or `fcp close` for closing). This creates checkboxes. Once enough boxes have been checked (per rfcbot's standard rules), the decision enters final-comment-period. Assuming no concerns are raised, the decision is finalized once the FCP has expired.
+To start an FCP, use `@rfcbot fcp merge lang` (or `fcp close lang` for closing). This creates checkboxes. Once enough boxes have been checked (per rfcbot's standard rules), the decision enters final-comment-period. Assuming no concerns are raised, the decision is finalized once the FCP has expired.
 
 Before finalizing the decision, the team should engage with any **new** points raised during the FCP period, particularly from people not able to raise formal concerns.
 
