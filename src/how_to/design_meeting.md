@@ -11,5 +11,12 @@ must be prepared 24 hours in advance of the design meeting and posted on the iss
 If you propose an issue, you should be willing to prepare that document, or else indicate
 who will do the preparation.
 
-Typically, design meetings are associated with active experiments: you may wish to
-[propose an experiment](./experiment.md) instead.
+The team has limited bandwidth for design meetings. Requests are more likely to
+be honored if they are:
+
+* Included as a pre-approved [project goal] ask
+* Associated with an [active experiment]
+* Needed to unblock the work of another Rust Project team
+
+[project goal]: https://rust-lang.github.io/rust-project-goals/how_to/propose_a_goal.html
+[active experiment]: ./experiment.md

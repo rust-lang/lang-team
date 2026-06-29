@@ -14,11 +14,15 @@ FCP decisions are used for stabilization, RFC approval, and other cases where we
 
 ## The process
 
-FCP decisions use rfcbot. They always begin with a decision document authored by the document author, who can be anyone—they do not have to be a member of a Rust team.
+FCP decisions use rfcbot. They always begin with a decision document authored by the document author, who can be anyone; they do not have to be a member of a Rust team. If the document is an RFC, this will be a pull request in the `rust-lang/rfcs` repo. In most other cases, where the decision involves a change to the language, the issue will be filed in `rust-lang/rust`. Otherwise, if there is no other suitable repository, an issue can be filed on `rust-lang/lang-team`.
 
-To start an FCP, a lang member or advisor issues `@rfcbot fcp merge lang` (or `fcp close lang` for closing). This creates checkboxes. Once enough boxes have been checked (per rfcbot's standard rules), the decision enters final-comment-period. Assuming no concerns are raised, the decision is finalized once the FCP has expired.
+Once the decision document is ready for review by the team, nominate it with `@rustbot label I-lang-nominated`. For longer documents like RFCs, request a [design meeting](./how_to/design-meeting.md).
+
+To start an FCP, the proposer needs to be a member of lang or a different team, typically one related to the FCP. Use `@rfcbot fcp merge lang` (or `fcp close lang` for closing). This creates checkboxes. Once enough boxes have been checked (per rfcbot's standard rules), the decision enters final-comment-period. Assuming no concerns are raised, the decision is finalized once the FCP has expired.
 
 Before finalizing the decision, the team should engage with any **new** points raised during the FCP period, particularly from people not able to raise formal concerns.
+
+*Note:* We recommend that rfcbot be updated to allow all lang-advisors to kick off lang FCPs. At the time of writing, only members of teams known to rfcbot can do so. Until this changes, other adivsors should nominate for lang discussion or ask a lang member to start FCP.
 
 ### Expected contents for an FCP
 
@@ -65,7 +69,7 @@ If the concern is not withdrawn, someone (e.g. the document author) can propose 
 
 #### Creating a concern issue
 
-For concerns that require extended discussion (judgment calls rather than simple technical corrections), create a GitHub issue to track the concern. In most cases --- when the concern involves a change to the language --- the issue will be filed in `rust-lang/rust`. Otherwise, if there is no other suitable repository, the issue can be filed on `rust-lang/lang-team`.
+For concerns that require extended discussion (judgment calls rather than simple technical corrections), create a GitHub issue to track the concern. This should be filed on the same repo as the original proposal.
 
 *Note:* We recommend that rfcbot be updated to create these issues automatically. Until then, create them manually.
 
