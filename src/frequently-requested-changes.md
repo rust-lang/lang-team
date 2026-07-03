@@ -218,7 +218,7 @@ Cross-referencing to other discussions:
 * https://github.com/rust-lang/rust/issues/17027
 * https://github.com/rust-lang/unsafe-code-guidelines/issues/176
 
-## Uninhabited `struct`s should all be ZSTs
+## Uninhabited `struct`s should all be zero-sized types (ZSTs)
 
 It makes conceptual sense that if something is uninhabited, it shouldn't take up any space.
 In safe code that works great, but we tried it and ran into problems, so it's not likely to happen.
