@@ -16,7 +16,7 @@ FCP decisions are used for stabilization, RFC approval, and other cases where we
 
 FCP decisions use rfcbot. They always begin with a decision document authored by the document author, who can be anyone; they do not have to be a member of a Rust team. If the document is an RFC, this will be a pull request in the `rust-lang/rfcs` repo. In most other cases, where the decision involves a change to the language, the issue will be filed in `rust-lang/rust`. Otherwise, if there is no other suitable repository, an issue can be filed on `rust-lang/lang-team`.
 
-Once the decision document is ready for review by the team, nominate it with `@rustbot label I-lang-nominated`. For longer documents like RFCs, request a [design meeting](./how_to/design-meeting.md).
+Once the decision document is ready for review by the team, nominate it with `@rustbot label I-lang-nominated`. For longer documents like RFCs, request a [design meeting](./how_to/design_meeting.md).
 
 To start an FCP, the proposer needs to be a member of lang or a different team, typically one related to the FCP. Use `@rfcbot fcp merge lang` (or `fcp close lang` for closing). This creates checkboxes. Once enough boxes have been checked (per rfcbot's standard rules), the decision enters final-comment-period. Assuming no concerns are raised, the decision is finalized once the FCP has expired.
 
