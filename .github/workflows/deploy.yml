@@ -1,6 +1,7 @@
 name: Deploy book
 on:
   push:
+  merge_group:
   workflow_dispatch:
 env:
   MDBOOK_VERSION: 0.5.1
