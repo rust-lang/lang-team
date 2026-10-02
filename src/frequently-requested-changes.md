@@ -214,6 +214,29 @@ of tail or internal padding, as they can be reused due to the lack of a possible
 
 Cross-referencing to other discussions:
 
-* https://github.com/rust-lang/rfcs/issues/1397
-* https://github.com/rust-lang/rust/issues/17027
-* https://github.com/rust-lang/unsafe-code-guidelines/issues/176
+* <https://github.com/rust-lang/rfcs/issues/1397>
+* <https://github.com/rust-lang/rust/issues/17027>
+* <https://github.com/rust-lang/unsafe-code-guidelines/issues/176>
+
+## A way to bypass visibility, including an `unsafe` bypass
+
+Items are only accessible if they are marked `pub` or re-exported as such;
+they are otherwise private by default. People sometimes wish to break that
+rule to access internals of libraries they're using, for example to access
+private fields of a type or to call private functions.
+
+This could break invariants assumed by the crate's author, which, if any
+unsafe code depends on those, could lead to undefined behavior.
+
+More importantly, allowing people to violate privacy would destroy SemVer.
+If people can access and use implementation details of other crates then
+that means that almost any change is now a breaking change. This would lead
+to widespread fallout across the crate ecosystem.
+
+Making it `unsafe` does nothing to prevent these issues. `unsafe` is
+used to deal with memory safety problems and it is not in any way useful to
+deal with SemVer concerns.
+
+Forking a crate (to insert the necessary `pub`s) does not have these
+problems. As such, a better way to achieve this would be to make patch
+dependencies more ergonomic to use and maintain.
