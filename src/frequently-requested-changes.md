@@ -217,3 +217,30 @@ Cross-referencing to other discussions:
 * https://github.com/rust-lang/rfcs/issues/1397
 * https://github.com/rust-lang/rust/issues/17027
 * https://github.com/rust-lang/unsafe-code-guidelines/issues/176
+
+## Implicit Widening
+
+Often there are requests to no longer need to manually perform lossless numeric conversions,
+such as from `f32` to `f64`, from `u8` to `i32`, etc.
+
+While that's convenient in trivial cases, it's not necessarily good in more complex cases.
+If code was perfect then yes it'd be convenient, but Rust would rather ask which thing you
+want between different options when the types don't match.
+
+Take something like this:
+```rust
+let x: u16 = …;
+let y: u16 = …;
+takes_u32(x + y);
+```
+
+It would certainly be *possible* to have that just compile, as though you'd written
+```rust
+takes_u32((x+y).into())
+```
+
+But having an error there is a good opportunity to ask whether perhaps you wanted
+```rust
+takes_u32(u32::from(x) + u32::from(y))
+```
+so that it can't overflow in the addition.
