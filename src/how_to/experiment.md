@@ -13,6 +13,7 @@ If you are an experienced Rust contributor who would like to start an experiment
     * Lang-team members and advisors are eligible to be champions.
 * Once you've found a champion, create an associated tracking issue.
     * The description should include the motivation and outline of what you are trying to achieve.
+    * The champion should comment on the issue confirming that they want to champion the experiment.
 * The lang-team champion will [nominate](./nominate.md) the tracking issue for discussion at a triage meeting. This is a [champion decision](../champion-decisions.md)—if no team member requests FCP escalation, the experiment can proceed.
     * **Approving a new feature gate does not imply support for the feature.** It implies only that the lang team thinks it is worth doing the experiment to see what results.
     * Note to lang team members: If you have concerns about the feasibility or wisdom of the feature, the right course of action is usually to allow experimentation to continue, but ensure that your concerns are noted on the tracking issue. This allows the experimenters to try and gather data and address your concern.
