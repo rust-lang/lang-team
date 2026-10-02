@@ -11,11 +11,14 @@ If you are an experienced Rust contributor who would like to start an experiment
 * Write-up a description of the problem you are trying to solve and the general shape of the solution you want to work on. Discuss it on Zulip or elsewhere to find a **lang-team champion**:
     * The champion is the connection to the lang-team. They can check in with you from time to time to see how the work is going and relay those updates to the lang-team (of course, you're always welcome to join meetings yourself too!). They can also help to discuss problems that arise.
     * Lang-team members and advisors are eligible to be champions.
-* Once you've found a champion, open a PR adding a new feature gate to the compiler and create an associated tracking issue.
-    * The PR and tracking issue should include a write-up documenting the motivation and outline of what they are trying to achieve.
-* The lang-team champion will [nominate](./nominate.md) the PR for discussion at a triage meeting. This is a [champion decision](../champion-decisions.md)—if no one requests FCP escalation, the experiment can proceed.
+* Once you've found a champion, create an associated tracking issue.
+    * The description should include the motivation and outline of what you are trying to achieve.
+* The lang-team champion will [nominate](./nominate.md) the tracking issue for discussion at a triage meeting. This is a [champion decision](../champion-decisions.md)—if no team member requests FCP escalation, the experiment can proceed.
     * **Approving a new feature gate does not imply support for the feature.** It implies only that the lang team thinks it is worth doing the experiment to see what results.
     * Note to lang team members: If you have concerns about the feasibility or wisdom of the feature, the right course of action is usually to allow experimentation to continue, but ensure that your concerns are noted on the tracking issue. This allows the experimenters to try and gather data and address your concern.
+* You may open an initial PR adding a new feature gate to the compiler concurrently with the tracking issue. The PR can be merged once:
+    * A champion has been assigned, and
+    * The lang team has discussed without any lang team members requesting an FCP; or, in the case of escalation, after a completed FCP with disposition to merge.
 * When you feel the design is ready, you write an RFC as normal with your proposal. The goal of the experimentation period is simply to gain experience and information so that a better RFC can be authored.
 
 [members]: https://www.rust-lang.org/governance/teams/lang
