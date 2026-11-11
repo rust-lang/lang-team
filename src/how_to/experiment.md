@@ -20,7 +20,8 @@ If you are an experienced Rust contributor who would like to start an experiment
 1. You may open an initial PR adding a new feature gate to the compiler concurrently with the tracking issue. The PR can be merged once:
     * A champion has been assigned, and
     * The lang team has discussed without any lang team members requesting an FCP; or, in the case of escalation, after a completed FCP with disposition to merge.
-    When you feel the design is ready, you write an RFC as normal with your proposal. The goal of the experimentation period is simply to gain experience and information so that a better RFC can be authored.
+
+When you feel the design is ready, you write an RFC as normal with your proposal. The goal of the experimentation period is simply to gain experience and information so that a better RFC can be authored.
 
 [members]: https://www.rust-lang.org/governance/teams/lang
 
